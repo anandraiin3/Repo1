@@ -9,6 +9,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 <version>1.0-SNAPSHOT</version>
 <packaging>jar</packaging>
 <description>Sample maven project to test APIs</description>
+ <pluginRepositories>
+        <pluginRepository>
+            <id>SmartBearPluginRepository</id>
+            <url>http://www.soapui.org/repository/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
 <build>
     <plugins>
         <plugin>
