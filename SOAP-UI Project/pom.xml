@@ -26,10 +26,10 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
                 <execution>
                     <id>HelloWorldTestSuite</id>
                     <configuration>
-                        <projectFile>HelloWorldTestSuite.xml</projectFile>
+                        <projectFile>/usr/tmp/jenkins/Repo1/API-HELLOWORLD/SOAP-UI Project/HelloWorldTestSuite.xml</projectFile>
 
                         <outputFolder>target/surefire-reports</outputFolder>
-                        <testSuite>Positive cases</testSuite>
+                        <testSuite>HelloWorldTestSuite</testSuite>
 
                         <junitReport>true</junitReport>
                         <exportwAll>true</exportwAll>
