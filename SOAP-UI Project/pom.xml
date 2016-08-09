@@ -20,7 +20,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
         <plugin>
             <groupId>com.smartbear.soapui</groupId>
             <artifactId>soapui-maven-plugin</artifactId>
-            <version>5.0.0</version>
+            <version>5.1.1</version>
 
             <executions>
                 <execution>
@@ -42,6 +42,19 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
                     <phase>test</phase>
                 </execution>
             </executions>
+<dependencies>
+            <dependency>
+                <groupId>com.smartbear.soapui</groupId>
+                <artifactId>soapui</artifactId>
+                <version>5.1.1</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javafx</groupId>
+                        <artifactId>jfxrt</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
         </plugin>
     </plugins>
 </build>
