@@ -15519,6 +15519,7 @@
 	<fval name="logMaskType"><value>SERVICE</value></fval>
 	<fval name="logSuccess"><value>Successfully echoed back the message</value></fval>
 	<fval name="name"><value>Reflect</value></fval>
+	<fval name="successNode"><value contentType="reference">-1</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="FilterCircuit" entityPK="439114173776866589" parentPK="4264383692757183469">
 	<fval name="category"><value contentType="reference">7358285282752311048</value></fval>
