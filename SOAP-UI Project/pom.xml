@@ -44,7 +44,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 				<execution>
                     <id>WeatherAPITestSuite</id>
                     <configuration>
-                        <projectFile>/usr/tmp/jenkins/Repo1/API-HELLOWORLD/SOAP-UI Project/WeatherAPITestSuite.xml</projectFile>
+                        <projectFile>/usr/tmp/jenkins/Repo1/API-HELLOWORLD/SOAP-UI Project/HelloWorldTestSuite.xml</projectFile>
 
                         <outputFolder>target/surefire-reports</outputFolder>
                         <testSuite>WeatherAPITestSuite</testSuite>
