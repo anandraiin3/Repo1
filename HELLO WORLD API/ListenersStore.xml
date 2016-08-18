@@ -1176,7 +1176,7 @@
 	<fval name="corsProfile"><value contentType="reference">-1</value></fval>
 	<fval name="corsUsage"><value>HTTP</value></fval>
 	<fval name="enableAccessLogging"><value>0</value></fval>
-	<fval name="enabled"><value>0</value></fval>
+	<fval name="enabled"><value>1</value></fval>
 	<fval name="evaluate"><value>1</value></fval>
 	<fval name="filterCircuit"><value contentType="reference">
 <key type='CircuitContainer'><id field='name' value='Weather'/><key type='FilterCircuit'><id field='name' value='Connect to open weather '/></key></key>	</value></fval>
