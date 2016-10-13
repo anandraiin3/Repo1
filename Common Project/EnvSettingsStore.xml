@@ -117,4 +117,21 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntities" entityPK="3480297407672913204" parentPK="0">
 	<fval name="name"><value>Environmentalized Entities Metadata</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="7592243083082522660" parentPK="3480297407672913204">
+	<fval name="entityPk"><value contentType="reference">
+<key type='CassandraSettings'><id field='name' value='Cassandra Settings'/><key type='CassandraServer'><id field='name' value='Local Cassandra server'/></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldString" entityPK="-3081993767423503071" parentPK="7592243083082522660">
+	<fval name="displayName"><value>Host</value></fval>
+	<fval name="entityFieldName"><value>host</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="multiline"><value>0</value></fval>
+	<fval name="value"><value>localhost</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldInteger" entityPK="8694756665848078482" parentPK="7592243083082522660">
+	<fval name="displayName"><value>Port</value></fval>
+	<fval name="entityFieldName"><value>port</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="value"><value>9160</value></fval>
+</entity>
 </entityStoreData>

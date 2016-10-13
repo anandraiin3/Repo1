@@ -1345,7 +1345,7 @@
 	<fval name="username"><value>cassandra</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CassandraServer" entityPK="-4626627187012185695" parentPK="-5926970427614015546">
-	<fval name="host"><value>172.16.1.104</value></fval>
+	<fval name="host"><value>localhost</value></fval>
 	<fval name="name"><value>Local Cassandra server</value></fval>
 	<fval name="port"><value>9160</value></fval>
 </entity>
