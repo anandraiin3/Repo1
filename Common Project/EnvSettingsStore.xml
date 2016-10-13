@@ -117,6 +117,16 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntities" entityPK="3480297407672913204" parentPK="0">
 	<fval name="name"><value>Environmentalized Entities Metadata</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="3346312817351156058" parentPK="3480297407672913204">
+	<fval name="entityPk"><value contentType="reference">
+<key type='NetService'><id field='name' value='Service'/><key type='HTTP'><id field='name' value='API MANAGER API PROXY'/><key type='SSLInterface'><id field='name' value='API MANAGER API PROXY'/></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldBoolean" entityPK="6265413205053905824" parentPK="3346312817351156058">
+	<fval name="displayName"><value>Enable interface</value></fval>
+	<fval name="entityFieldName"><value>enabled</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="value"><value>0</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="7592243083082522660" parentPK="3480297407672913204">
 	<fval name="entityPk"><value contentType="reference">
 <key type='CassandraSettings'><id field='name' value='Cassandra Settings'/><key type='CassandraServer'><id field='name' value='Local Cassandra server'/></key></key>	</value></fval>
@@ -126,7 +136,7 @@
 	<fval name="entityFieldName"><value>host</value></fval>
 	<fval name="index"><value>0</value></fval>
 	<fval name="multiline"><value>0</value></fval>
-	<fval name="value"><value>localhost</value></fval>
+	<fval name="value"><value>172.16.1.106</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldInteger" entityPK="8694756665848078482" parentPK="7592243083082522660">
 	<fval name="displayName"><value>Port</value></fval>
