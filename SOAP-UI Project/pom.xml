@@ -18,6 +18,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
 <build>
     <plugins>
         <plugin>
+		
             <groupId>com.smartbear.soapui</groupId>
             <artifactId>soapui-maven-plugin</artifactId>
             <version>5.1.1</version>
@@ -74,6 +75,48 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
             </dependency>
         </dependencies>
         </plugin>
-    </plugins>
+     <plugin>
+		
+            <groupId>com.smartbear.soapui</groupId>
+            <artifactId>soapui-maven-plugin</artifactId>
+            <version>5.1.1</version>
+
+            <executions>
+                
+				<execution>
+                    <id>WeatherAPITestSuite</id>
+                    <configuration>
+                        <projectFile>/usr/tmp/jenkins/Repo1/API-HELLOWORLD/SOAP-UI Project/HelloWorldTestSuite.xml</projectFile>
+
+                        <outputFolder>target/surefire-reports</outputFolder>
+                        <testSuite>WeatherAPITestSuite</testSuite>
+
+                        <junitReport>true</junitReport>
+                        <exportAll>true</exportAll>
+                        <printReport>true</printReport>
+                        <testFailIgnore>true</testFailIgnore>
+                    </configuration>
+                    <goals>
+                        <goal>verify</goal>
+                    </goals>
+                    <phase>verify</phase>
+                </execution>
+            </executions>
+<dependencies>
+            <dependency>
+                <groupId>com.smartbear.soapui</groupId>
+                <artifactId>soapui</artifactId>
+                <version>5.1.1</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javafx</groupId>
+                        <artifactId>jfxrt</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+        </plugin>
+    
+	</plugins>
 </build>
 </project>
