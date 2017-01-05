@@ -5015,6 +5015,61 @@
 	<fval name="logSuccess"><value>Successfully echoed back the message</value></fval>
 	<fval name="name"><value>Reflect Message</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ConnectToURLFilter" entityPK="2501749967756577273" parentPK="2158820218114846873">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>${content.body}</value></fval>
+	<fval name="caCerts"></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="ciphers"><value>DEFAULT</value></fval>
+	<fval name="connectionFailurePolicy"><value contentType="reference">-1</value></fval>
+	<fval name="forwardClientHostHeader"><value>0</value></fval>
+	<fval name="handleRedirects"><value>1</value></fval>
+	<fval name="logFailure"><value>Failed to route request to endpoint.</value></fval>
+	<fval name="logFatal"><value>Error occurred while routing request to endpoint. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully routed request to endpoint</value></fval>
+	<fval name="method"><value>${http.request.verb}</value></fval>
+	<fval name="name"><value>Connect to URL</value></fval>
+	<fval name="performRetries"><value>0</value></fval>
+	<fval name="profile"><value contentType="reference">-1</value></fval>
+	<fval name="protoHeaders"><value>${http.headers}</value></fval>
+	<fval name="proxyServer"><value contentType="reference">-1</value></fval>
+	<fval name="retryCount"><value>5</value></fval>
+	<fval name="retryHTTPRanges"><value contentType="reference">-1</value></fval>
+	<fval name="retryLatency"><value>500</value></fval>
+	<fval name="runPolicyOnConnectionFailure"><value>0</value></fval>
+	<fval name="saveTransactionOnFailure"><value>0</value></fval>
+	<fval name="sendProxyMode"><value>0</value></fval>
+	<fval name="sendReceivedContentHeaders"><value>0</value></fval>
+	<fval name="slaBreachAsFailure"><value>0</value></fval>
+	<fval name="sslUsers"><value contentType="reference">-1</value></fval>
+	<fval name="stickyCookieDomain"><value></value></fval>
+	<fval name="stickyCookieExpiry"><value>600000</value></fval>
+	<fval name="stickyCookieName"><value>unnamed</value></fval>
+	<fval name="stickyCookiePath"><value></value></fval>
+	<fval name="stickyness"><value>0</value></fval>
+	<fval name="successNode"><value contentType="reference">-274069330614078305</value></fval>
+	<fval name="transparentProxy"><value>0</value></fval>
+	<fval name="url"><value>http://dev.com${htttp.request.uri}</value></fval>
+	<fval name="useRootCerts"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SaveToFileFilter" entityPK="-8425696727765461031" parentPK="2501749967756577273">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="directory"><value>${environment.VINSTDIR}/message-archive</value></fval>
+	<fval name="fileName"><value>${id}.out</value></fval>
+	<fval name="includeHeaders"><value>0</value></fval>
+	<fval name="includeRequestLine"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="maxFileSize"><value>1000</value></fval>
+	<fval name="maxNumberFiles"><value>500</value></fval>
+	<fval name="name"><value>Persistence Details</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AttributeExtractHTTPHeaderFilter" entityPK="8059859212875830132" parentPK="2158820218114846873">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
 	<fval name="attributeName"><value>user.key</value></fval>
@@ -5027,7 +5082,7 @@
 	<fval name="logMaskType"><value>SERVICE</value></fval>
 	<fval name="logSuccess"><value>Extracted attribute from HTTP header</value></fval>
 	<fval name="name"><value>Retrieve from HTTP header</value></fval>
-	<fval name="successNode"><value contentType="reference">-274069330614078305</value></fval>
+	<fval name="successNode"><value contentType="reference">2501749967756577273</value></fval>
 	<fval name="useQueryParameter"><value>0</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="TrackedObjects" entityPK="-8341836417463720632" parentPK="0">

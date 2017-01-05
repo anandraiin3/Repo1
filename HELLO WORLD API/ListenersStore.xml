@@ -1234,13 +1234,21 @@
 	<fval name="reuseAddress"><value>false</value></fval>
 	<fval name="tracelevel"><value>INHERIT</value></fval>
 	<fval name="transparentProxy"><value>0</value></fval>
-	<fval name="wafProfile"><value contentType="reference">-1</value></fval>
+	<fval name="wafProfile"><value contentType="reference">
+<key type='WAFProfileGroup'><id field='name' value='Threat Protection Profiles'/><key type='WAFProfile'><id field='name' value='Mod Security'/></key></key>	</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="APISecurityProfileGroup" entityPK="-927506027944941009" parentPK="0">
 	<fval name="name"><value>REST API Security Profiles</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="WAFProfileGroup" entityPK="396521230186317332" parentPK="0">
 	<fval name="name"><value>Threat Protection Profiles</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="WAFProfile" entityPK="-1557833160088300281" parentPK="396521230186317332">
+	<fval name="activatedRulesDirectory"><value>activated_rules</value></fval>
+	<fval name="configDirectory"><value>${environment.VDISTDIR}/system/conf/threat-protection/default</value></fval>
+	<fval name="configFile"><value>modsecurity.conf</value></fval>
+	<fval name="filterCircuit"><value contentType="reference">-1</value></fval>
+	<fval name="name"><value>Mod Security</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ESConfiguration" entityPK="611421348819743851" parentPK="0">
 	<fval name="name"><value>Entity Store Configuration</value></fval>
