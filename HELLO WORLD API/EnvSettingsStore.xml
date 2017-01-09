@@ -117,25 +117,25 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntities" entityPK="3480297407672913204" parentPK="0">
 	<fval name="name"><value>Environmentalized Entities Metadata</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-2359601588871392978" parentPK="3480297407672913204">
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-6175719892117653467" parentPK="3480297407672913204">
 	<fval name="entityPk"><value contentType="reference">
-<key type='CircuitContainer'><id field='name' value='HELLO WORLD API '/><key type='FilterCircuit'><id field='name' value='SAY HELLO'/><key type='ConnectToURLFilter'><id field='name' value='Connect to URL'/></key></key></key>	</value></fval>
+<key type='NetService'><id field='name' value='Service'/><key type='HTTP'><id field='name' value='MOCK Service'/><key type='InetInterface'><id field='name' value='Port for Mock Service'/></key></key></key>	</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldString" entityPK="-3835455997869176289" parentPK="-2359601588871392978">
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldBoolean" entityPK="8134646278508490717" parentPK="-6175719892117653467">
+	<fval name="displayName"><value>Enable interface</value></fval>
+	<fval name="entityFieldName"><value>enabled</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="value"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="2136489313638176362" parentPK="3480297407672913204">
+	<fval name="entityPk"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='Weather'/><key type='FilterCircuit'><id field='name' value='Connect to open weather '/><key type='ConnectToURLFilter'><id field='name' value='Connect to open weather apis'/></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldString" entityPK="3097815039618968934" parentPK="2136489313638176362">
 	<fval name="displayName"><value>URL</value></fval>
 	<fval name="entityFieldName"><value>url</value></fval>
 	<fval name="index"><value>0</value></fval>
 	<fval name="multiline"><value>0</value></fval>
-	<fval name="value"><value>http://dev.com${htttp.request.uri}</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-629398175010313018" parentPK="3480297407672913204">
-	<fval name="entityPk"><value contentType="reference">
-<key type='CircuitContainer'><id field='name' value='HELLO WORLD API '/><key type='FilterCircuit'><id field='name' value='SAY HELLO'/><key type='Reflector'><id field='name' value='Reflect Message'/></key></key></key>	</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldInteger" entityPK="-1458362079643569482" parentPK="-629398175010313018">
-	<fval name="displayName"><value>HTTP response code status: </value></fval>
-	<fval name="entityFieldName"><value>httpResponseStatus</value></fval>
-	<fval name="index"><value>0</value></fval>
-	<fval name="value"><value>200</value></fval>
+	<fval name="value"><value>http://api.openweathermap.org/data/2.5/weather?q=${http.querystring.city}&amp;appid=6cb17a857b72cdbfd150807ea5d85eb9</value></fval>
 </entity>
 </entityStoreData>
