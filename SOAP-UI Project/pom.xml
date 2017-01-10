@@ -42,8 +42,7 @@
 									<soapuiProperties>
 										<property>
 											<name>soapui.properties.WeatherAPITestSuite</name>
-											<value>${scm.repo}/SOAP-UI
-												Project/TestData/DEV/weatherAPI.properties</value>
+											<value>${scm.repo}/SOAP-UI Project/TestData/DEV/weatherAPI.properties</value>
 										</property>
 									</soapuiProperties>
 
