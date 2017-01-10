@@ -25,22 +25,33 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/ma
             <groupId>com.smartbear.soapui</groupId>
             <artifactId>soapui-maven-plugin</artifactId>
             <version>5.1.1</version>
+            
             <executions>
                 <execution>
                     <id>HelloWorldTestSuite</id>
+                    
                     <configuration>
-                        <projectFile>${scm.repo}/SOAP-UI Project/HelloWorldTestSuite.xml</projectFile>
-
+                 
+                      <!--  <projectFile>${scm.repo}/SOAP-UI Project/HelloWorldTestSuite.xml</projectFile> -->
+                        <projectFile>${scm.repo}/SOAP-UI Project/WeatherAPI.xml</projectFile>
                         <outputFolder>target/surefire-reports</outputFolder>
-                        <testSuite>HelloWorldTestSuite</testSuite>
-
+                        <testSuite>WeatherAPITestSuite</testSuite>
                         <junitReport>true</junitReport>
                         <exportAll>true</exportAll>
                         <printReport>true</printReport>
                         <testFailIgnore>true</testFailIgnore>
+                        <soapuiProperties>
+    <property>
+      <name>soapui.properties.WeatherAPITestSuite</name>
+      <value>${scm.repo}/SOAP-UI Project/TestData/DEV/weatherAPI.properties</value>
+    </property>
+  </soapuiProperties>
+                        
                     </configuration>
+                    
                     <goals>
                         <goal>test</goal>
+                        
                     </goals>
                     <phase>test</phase>
                 </execution>
