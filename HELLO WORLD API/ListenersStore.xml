@@ -1119,58 +1119,77 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="NetService" entityPK="-4285712696025034360" parentPK="0">
 	<fval name="name"><value>Service</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="HTTP" entityPK="5905797541778709196" parentPK="-4285712696025034360">
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="HTTP" entityPK="2016646677437211689" parentPK="-4285712696025034360">
 	<fval name="corsProfile"><value contentType="reference">-1</value></fval>
-	<fval name="name"><value>HTTP PORT</value></fval>
+	<fval name="name"><value>MOCK Service</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CoreAPIBroker" entityPK="3116451597776691263" parentPK="5905797541778709196">
-	<fval name="apiVersion"><value>1.0</value></fval>
-	<fval name="corsProfile"><value contentType="reference">-1</value></fval>
-	<fval name="corsUsage"><value xsi:nil="true"></value></fval>
-	<fval name="description"><value></value></fval>
-	<fval name="descriptionLocation"><value>INTERNAL</value></fval>
-	<fval name="destination"><value xsi:nil="true"></value></fval>
-	<fval name="enableAccessLogging"><value>0</value></fval>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="InetInterface" entityPK="-2538116613164807675" parentPK="2016646677437211689">
+	<fval name="activetimeout"><value>60000</value></fval>
+	<fval name="address"><value>*</value></fval>
+	<fval name="auditConn"><value>false</value></fval>
+	<fval name="backlog"><value>64</value></fval>
 	<fval name="enabled"><value>1</value></fval>
-	<fval name="evaluate"><value>1</value></fval>
-	<fval name="httpMethod"><value>*</value></fval>
-	<fval name="id"><value>01966580-2a09-4b2e-a308-b76649bb7dbf</value></fval>
-	<fval name="logMask"><value>2</value></fval>
-	<fval name="markdownFile"><value></value></fval>
-	<fval name="name"><value>HELLO WORLD API</value></fval>
-	<fval name="pathMatching"><value>LONGEST</value></fval>
-	<fval name="payloadMask"><value>0</value></fval>
-	<fval name="routingType"><value>CUSTOM</value></fval>
-	<fval name="summary"><value></value></fval>
-	<fval name="uriprefix"><value>/v1</value></fval>
+	<fval name="exportCorrelationId"><value>1</value></fval>
+	<fval name="idletimeout"><value>60000</value></fval>
+	<fval name="inputEncodings"><value>.inherit</value></fval>
+	<fval name="maxRequestMemory"><value>16777216</value></fval>
+	<fval name="name"><value>Port for Mock Service</value></fval>
+	<fval name="opsSettingsUsage"><value>SYSTEM</value></fval>
+	<fval name="outputEncodings"><value>.inherit</value></fval>
+	<fval name="port"><value>7080</value></fval>
+	<fval name="protocol"><value>ipv4</value></fval>
+	<fval name="recordCircuitPath"><value>1</value></fval>
+	<fval name="recordInboundTxns"><value>1</value></fval>
+	<fval name="recordOutboundTxns"><value>1</value></fval>
+	<fval name="recordReceived"><value>1</value></fval>
+	<fval name="recordSent"><value>1</value></fval>
+	<fval name="recordTrace"><value>1</value></fval>
+	<fval name="reuseAddress"><value>false</value></fval>
+	<fval name="tracelevel"><value>INHERIT</value></fval>
+	<fval name="transparentProxy"><value>0</value></fval>
+	<fval name="wafProfile"><value contentType="reference">-1</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CoreAPIMethod" entityPK="1621082943379289206" parentPK="3116451597776691263">
-	<fval name="blockUnspecifiedParams"><value>true</value></fval>
-	<fval name="checkSourceContentType"><value>false</value></fval>
-	<fval name="copyContentType"><value>INBOUND</value></fval>
-	<fval name="copyQueryParams"><value>true</value></fval>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XMLFirewall" entityPK="2015664367528294413" parentPK="2016646677437211689">
 	<fval name="corsProfile"><value contentType="reference">-1</value></fval>
-	<fval name="corsUsage"><value xsi:nil="true"></value></fval>
-	<fval name="description"><value></value></fval>
-	<fval name="descriptionLocation"><value>INTERNAL</value></fval>
-	<fval name="destinationContentType"><value>application/x-www-form-urlencoded</value></fval>
-	<fval name="destinationHttpVerb"><value>*</value></fval>
-	<fval name="destinationPath"><value xsi:nil="true"></value></fval>
+	<fval name="corsUsage"><value>HTTP</value></fval>
 	<fval name="enableAccessLogging"><value>0</value></fval>
 	<fval name="enabled"><value>1</value></fval>
 	<fval name="evaluate"><value>1</value></fval>
 	<fval name="filterCircuit"><value contentType="reference">
-<key type='CircuitContainer'><id field='name' value='Generated Policies'/><key type='CircuitContainer'><id field='name' value='REST API&apos;s'/><key type='CircuitContainer'><id field='name' value='HELLO WORLD API'/><key type='FilterCircuit'><id field='name' value='GET HELLO WORLD'/></key></key></key></key>	</value></fval>
-	<fval name="httpMethod"><value>GET</value></fval>
-	<fval name="id"><value>05ffcb9b-6dad-4dd0-b167-f4dda0f7fa0c</value></fval>
+<key type='CircuitContainer'><id field='name' value='MOCK SERVICES'/><key type='FilterCircuit'><id field='name' value='Open Weather Mock Service'/></key></key>	</value></fval>
+	<fval name="httpMethod"><value>*</value></fval>
 	<fval name="logMask"><value>2</value></fval>
-	<fval name="markdownFile"><value></value></fval>
-	<fval name="name"><value>GET HELLO WORLD</value></fval>
-	<fval name="notes"><value></value></fval>
-	<fval name="pathMatching"><value>EXACT</value></fval>
+	<fval name="pathMatching"><value>LONGEST</value></fval>
 	<fval name="payloadMask"><value>0</value></fval>
-	<fval name="responseSchema"><value contentType="reference">-1</value></fval>
-	<fval name="uriprefix"><value>/hello</value></fval>
+	<fval name="uriprefix"><value>/mock/weather/v1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="PortableCircuitReference" entityPK="-1006443285646804229" parentPK="2015664367528294413">
+	<fval name="circuitPK"><value contentType="reference">-1</value></fval>
+	<fval name="evaluate"><value>true</value></fval>
+	<fval name="name"><value>CUSTOM_POLICY_REQ</value></fval>
+	<fval name="priority"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="PortableCircuitReference" entityPK="-610372887323818674" parentPK="2015664367528294413">
+	<fval name="circuitPK"><value contentType="reference">-1</value></fval>
+	<fval name="evaluate"><value>true</value></fval>
+	<fval name="name"><value>CUSTOM_POLICY_RSP</value></fval>
+	<fval name="priority"><value>3</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SoftCircuitReference" entityPK="1230988461642580185" parentPK="2015664367528294413">
+	<fval name="circuitPK"><value>system.policy.response</value></fval>
+	<fval name="evaluate"><value>0</value></fval>
+	<fval name="name"><value>GLOBAL_POLICY_RSP</value></fval>
+	<fval name="priority"><value>4</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SoftCircuitReference" entityPK="5907167342314354826" parentPK="2015664367528294413">
+	<fval name="circuitPK"><value>system.policy.request</value></fval>
+	<fval name="evaluate"><value>0</value></fval>
+	<fval name="name"><value>GLOBAL_POLICY_REQ</value></fval>
+	<fval name="priority"><value>0</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="HTTP" entityPK="5905797541778709196" parentPK="-4285712696025034360">
+	<fval name="corsProfile"><value contentType="reference">-1</value></fval>
+	<fval name="name"><value>HTTP PORT</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XMLFirewall" entityPK="5754240556014440958" parentPK="5905797541778709196">
 	<fval name="corsProfile"><value contentType="reference">-1</value></fval>
@@ -1184,7 +1203,7 @@
 	<fval name="logMask"><value>2</value></fval>
 	<fval name="pathMatching"><value>LONGEST</value></fval>
 	<fval name="payloadMask"><value>0</value></fval>
-	<fval name="uriprefix"><value>/metrological/v1/weather</value></fval>
+	<fval name="uriprefix"><value>/meteorolgy/v1/weather</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="PortableCircuitReference" entityPK="-4250342341181301527" parentPK="5754240556014440958">
 	<fval name="circuitPK"><value contentType="reference">-1</value></fval>
