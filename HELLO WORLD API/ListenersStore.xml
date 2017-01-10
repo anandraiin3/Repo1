@@ -1253,8 +1253,7 @@
 	<fval name="reuseAddress"><value>false</value></fval>
 	<fval name="tracelevel"><value>INHERIT</value></fval>
 	<fval name="transparentProxy"><value>0</value></fval>
-	<fval name="wafProfile"><value contentType="reference">
-<key type='WAFProfileGroup'><id field='name' value='Threat Protection Profiles'/><key type='WAFProfile'><id field='name' value='Mod Security'/></key></key>	</value></fval>
+	<fval name="wafProfile"><value contentType="reference">-1</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="APISecurityProfileGroup" entityPK="-927506027944941009" parentPK="0">
 	<fval name="name"><value>REST API Security Profiles</value></fval>
