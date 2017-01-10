@@ -117,6 +117,23 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntities" entityPK="3480297407672913204" parentPK="0">
 	<fval name="name"><value>Environmentalized Entities Metadata</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-7548524540865971145" parentPK="3480297407672913204">
+	<fval name="entityPk"><value contentType="reference">
+<key type='NetService'><id field='name' value='Service'/><key type='HTTP'><id field='name' value='HTTP PORT'/><key type='InetInterface'><id field='name' value='HTTP PORT'/></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldString" entityPK="-7799268502875385482" parentPK="-7548524540865971145">
+	<fval name="displayName"><value>Port: </value></fval>
+	<fval name="entityFieldName"><value>port</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="multiline"><value>0</value></fval>
+	<fval name="value"><value>8080</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldBoolean" entityPK="8214608630335808142" parentPK="-7548524540865971145">
+	<fval name="displayName"><value>Enable interface</value></fval>
+	<fval name="entityFieldName"><value>enabled</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="value"><value>1</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-6175719892117653467" parentPK="3480297407672913204">
 	<fval name="entityPk"><value contentType="reference">
 <key type='NetService'><id field='name' value='Service'/><key type='HTTP'><id field='name' value='MOCK Service'/><key type='InetInterface'><id field='name' value='Port for Mock Service'/></key></key></key>	</value></fval>
