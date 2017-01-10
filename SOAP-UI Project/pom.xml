@@ -42,7 +42,8 @@
 									<soapuiProperties>
 										<property>
 											<name>soapui.properties.WeatherAPITestSuite</name>
-											<value>${scm.repo}/SOAP-UI Project/TestData/DEV/weatherAPI.properties</value>
+											<value>${scm.repo}/SOAP-UI
+												Project/TestData/DEV/weatherAPI.properties</value>
 										</property>
 									</soapuiProperties>
 
@@ -54,35 +55,35 @@
 								</goals>
 								<phase>test</phase>
 							</execution>
-								</executions>
-							<dependencies>
-								<dependency>
-									<groupId>com.smartbear.soapui</groupId>
-									<artifactId>soapui</artifactId>
-									<version>5.1.1</version>
-									<exclusions>
-										<exclusion>
-											<groupId>javafx</groupId>
-											<artifactId>jfxrt</artifactId>
-										</exclusion>
-									</exclusions>
-								</dependency>
-							</dependencies>
-				
+						</executions>
+						<dependencies>
+							<dependency>
+								<groupId>com.smartbear.soapui</groupId>
+								<artifactId>soapui</artifactId>
+								<version>5.1.1</version>
+								<exclusions>
+									<exclusion>
+										<groupId>javafx</groupId>
+										<artifactId>jfxrt</artifactId>
+									</exclusion>
+								</exclusions>
+							</dependency>
+						</dependencies>
+
 					</plugin>
 
 				</plugins>
 			</build>
-<reporting>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-report-plugin</artifactId>
-            <version>2.7.2</version>
-        </plugin>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-report-plugin</artifactId>
+						<version>2.7.2</version>
+					</plugin>
 
-    </plugins>
-</reporting>
+				</plugins>
+			</reporting>
 
 		</profile>
 		<profile>
@@ -141,15 +142,15 @@
 				</plugins>
 			</build>
 			<reporting>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-report-plugin</artifactId>
-            <version>2.7.2</version>
-        </plugin>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-report-plugin</artifactId>
+						<version>2.7.2</version>
+					</plugin>
 
-    </plugins>
-</reporting>
+				</plugins>
+			</reporting>
 
 
 		</profile>
@@ -208,16 +209,16 @@
 
 				</plugins>
 			</build>
-<reporting>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-report-plugin</artifactId>
-            <version>2.7.2</version>
-        </plugin>
+			<reporting>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-report-plugin</artifactId>
+						<version>2.7.2</version>
+					</plugin>
 
-    </plugins>
-</reporting>
+				</plugins>
+			</reporting>
 
 		</profile>
 
