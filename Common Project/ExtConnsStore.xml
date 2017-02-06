@@ -1434,11 +1434,11 @@
 	<fval name="sessionCacheSize"><value>32</value></fval>
 	<fval name="verifyServerHostname"><value>0</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="-3083376755345058519" parentPK="-6831033811850827617">
-	<fval name="addresses"><value>172.16.1.106:8075</value></fval>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="-2866214725001443400" parentPK="-6831033811850827617">
+	<fval name="addresses"><value>GW-UAT-LB-371846769.us-east-1.elb.amazonaws.com:443</value></fval>
 	<fval name="rank"><value>0</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="5855919008310614817" parentPK="-6831033811850827617">
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="-1896304735612006159" parentPK="-6831033811850827617">
 	<fval name="name"><value>0d0fe58d-3c94-47b3-aa10-4a8679eabea2</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoteHost" entityPK="-4662578216067124622" parentPK="-2583589238751181053">
@@ -1465,11 +1465,11 @@
 	<fval name="sessionCacheSize"><value>32</value></fval>
 	<fval name="verifyServerHostname"><value>0</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="-2407594727491899950" parentPK="-4662578216067124622">
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="-3863414217649866234" parentPK="-4662578216067124622">
 	<fval name="name"><value>717c5254-3873-4042-a95a-26d729cf2df0</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="-2142413051848523191" parentPK="-4662578216067124622">
-	<fval name="addresses"><value>172.16.1.105:8075</value></fval>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="-3177279413611817664" parentPK="-4662578216067124622">
+	<fval name="addresses"><value>SIT-LB-1702413593.us-east-1.elb.amazonaws.com:443</value></fval>
 	<fval name="rank"><value>0</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoteHost" entityPK="285800551930166179" parentPK="-2583589238751181053">
@@ -1527,12 +1527,12 @@
 	<fval name="sessionCacheSize"><value>32</value></fval>
 	<fval name="verifyServerHostname"><value>0</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="1506852072755634778" parentPK="2190832135028344783">
-	<fval name="name"><value>0d0fe58d-3c94-47b3-aa10-4a8679eabea2</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="3998517722430691129" parentPK="2190832135028344783">
-	<fval name="addresses"><value>172.16.1.104:8075</value></fval>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="2075612981786973269" parentPK="2190832135028344783">
+	<fval name="addresses"><value>GW-LB-141042998.us-east-1.elb.amazonaws.com:443</value></fval>
 	<fval name="rank"><value>0</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="8956546036434421552" parentPK="2190832135028344783">
+	<fval name="name"><value>0d0fe58d-3c94-47b3-aa10-4a8679eabea2</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoteHost" entityPK="3415851579859677026" parentPK="-2583589238751181053">
 	<fval name="activetimeout"><value>30000</value></fval>
