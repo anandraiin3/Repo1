@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "host" : "172.31.58.124:8065",
   "basePath" : "/api",
-  "schemes" : [ "https" ],
+  "schemes" : [ "http" ],
   "consumes" : [ "application/json", "application/x-www-form-urlencoded", "multipart/form-data" ],
   "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
   "paths" : {
@@ -817,7 +817,7 @@
     "API Key" : [ ]
   } ],
   "info" : {
-    "title" : "Uber Products Microservice",
+    "title" : "Uber Products Microservice - 0.0.1",
     "description" : "",
     "version" : "0.0.1"
   },
