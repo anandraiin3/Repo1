@@ -1,14 +1,5 @@
 {
-	"info" : {
-    "title" : "Uber Service 0.1.1",
-    "description" : "",
-    "version" : "0.1.1",
-	"organization" : "20734ea6-b6ac-44ba-941e-4a83cbda3225",
-	"tags":{
-		
-	}
-  },
- 	"corsProfiles": [{
+	"corsProfiles": [{
 			"name": "_default",
 			"isDefault": true,
 			"origins": ["*"],
@@ -63,5 +54,14 @@
 	},
    "caCerts": [{
 	   }
-	]
+	],
+	"info" : {
+    "title" : "Uber Service Alpha",
+    "description" : "",
+    "version" : "0.1.1",
+	"organization" : "20734ea6-b6ac-44ba-941e-4a83cbda3225",
+	"tags":{
+		
+	}
+  }
 }

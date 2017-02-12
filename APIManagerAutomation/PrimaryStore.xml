@@ -10589,6 +10589,22 @@
 	<fval name="name"><value>CreateFrontEndAPIProxy</value></fval>
 	<fval name="start"><value contentType="reference">-5745730524288670900</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="-9068652401006676829" parentPK="-7893051661707146725">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="consumedProperties"></fval>
+	<fval name="engineName"><value>groovy</value></fval>
+	<fval name="generatedProperties"></fval>
+	<fval name="logFailure"><value>Failed script filter</value></fval>
+	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Passed script filter</value></fval>
+	<fval name="name"><value>Copy CORS Profile from User provided FE API Defintion</value></fval>
+	<fval name="requiredProperties"></fval>
+	<fval name="script"><value>import java.lang.String;&#xD;&#xA;&#xD;&#xA;def invoke(msg) {&#xD;&#xA;&#x9;def var1 = msg.get(&quot;custom.frontendAPIdefinition&quot;);&#xD;&#xA;&#x9;def var2 = var1.lastIndexOf(&quot;\&quot;corsProfiles\&quot;:&quot;);&#xD;&#xA;&#x9;int startIndex = var2 + 15;&#xD;&#xA;&#x9;def lastIndex = var1.lastIndexOf(&quot;\&quot;securityProfiles\&quot;&quot;);&#xD;&#xA;&#x9;String output= var1.substring(startIndex,lastIndex-1);&#xD;&#xA;&#x9;msg.put(&quot;custom.corsProfile1&quot;,output);&#xD;&#xA;&#x9;return true;&#xD;&#xA;}&#xD;&#xA;&#x9;</value></fval>
+	<fval name="successNode"><value contentType="reference">7848857597680928419</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONAddNodeFilter" entityPK="-7648882549348394723" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
 	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
@@ -10676,7 +10692,7 @@
 	<fval name="logSuccess"><value>Filter passed</value></fval>
 	<fval name="name"><value>Add Security Profile</value></fval>
 	<fval name="objectFieldName"><value>securityProfiles</value></fval>
-	<fval name="successNode"><value contentType="reference">906540716807872282</value></fval>
+	<fval name="successNode"><value contentType="reference">-3520157490717680195</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="-3984902219463264821" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
@@ -10710,6 +10726,22 @@
 	<fval name="traceLevel"><value>5</value></fval>
 	<fval name="traceMsg"><value></value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="-3520157490717680195" parentPK="-7893051661707146725">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="consumedProperties"></fval>
+	<fval name="engineName"><value>groovy</value></fval>
+	<fval name="generatedProperties"></fval>
+	<fval name="logFailure"><value>Failed script filter</value></fval>
+	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Passed script filter</value></fval>
+	<fval name="name"><value>Extract caCerts from user provided FE Definition</value></fval>
+	<fval name="requiredProperties"></fval>
+	<fval name="script"><value>import java.lang.String;&#xD;&#xA;import java.util.ArrayList;&#xD;&#xA;&#xD;&#xA;def invoke(msg) {&#xD;&#xA;&#x9;def var1 = msg.get(&quot;custom.frontendAPIdefinition&quot;);&#xD;&#xA;&#x9;def var2 = var1.lastIndexOf(&quot;\&quot;caCerts\&quot;:&quot;);&#xD;&#xA;&#x9;int startIndex = var2 + 10;&#xD;&#xA;&#x9;def lastIndex = var1.lastIndexOf(&quot;\&quot;info\&quot;&quot;);&#xD;&#xA;&#x9;String output= var1.substring(startIndex,lastIndex-1);&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;msg.put(&quot;custom.caCerts&quot;,output);&#xD;&#xA;&#x9;return true;&#xD;&#xA;}</value></fval>
+	<fval name="successNode"><value contentType="reference">4300633510014150460</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONAddNodeFilter" entityPK="-3496026902984863685" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
 	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
@@ -10724,7 +10756,23 @@
 	<fval name="logSuccess"><value>Filter passed</value></fval>
 	<fval name="name"><value>Add Cors Profile</value></fval>
 	<fval name="objectFieldName"><value>corsProfiles</value></fval>
-	<fval name="successNode"><value contentType="reference">-3984902219463264821</value></fval>
+	<fval name="successNode"><value contentType="reference">-929600071066241462</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="-3127751903155126004" parentPK="-7893051661707146725">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="consumedProperties"></fval>
+	<fval name="engineName"><value>groovy</value></fval>
+	<fval name="generatedProperties"></fval>
+	<fval name="logFailure"><value>Failed script filter</value></fval>
+	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Passed script filter</value></fval>
+	<fval name="name"><value>Extract Inbound Profile from User Provided FE Defintion</value></fval>
+	<fval name="requiredProperties"></fval>
+	<fval name="script"><value>import java.lang.String;&#xD;&#xA;import java.util.ArrayList;&#xD;&#xA;&#xD;&#xA;def invoke(msg) {&#xD;&#xA;&#x9;def var1 = msg.get(&quot;custom.frontendAPIdefinition&quot;);&#xD;&#xA;&#x9;def var2 = var1.lastIndexOf(&quot;\&quot;inboundProfiles\&quot;:&quot;);&#xD;&#xA;&#x9;int startIndex = var2 + 18;&#xD;&#xA;&#x9;def lastIndex = var1.lastIndexOf(&quot;\&quot;outboundProfiles\&quot;&quot;);&#xD;&#xA;&#x9;String output= var1.substring(startIndex,lastIndex-1);&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;msg.put(&quot;custom.inboundProfile1&quot;,output);&#xD;&#xA;&#x9;return true;&#xD;&#xA;}</value></fval>
+	<fval name="successNode"><value contentType="reference">-722144105884185820</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="TraceFilter" entityPK="-2743795089348368942" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
@@ -10861,6 +10909,22 @@
 	<fval name="script"><value>import java.lang.String;&#xD;&#xA;import java.util.ArrayList;&#xD;&#xA;&#xD;&#xA;def invoke(msg) {&#xD;&#xA;&#x9;def corsProfile = msg.get(&quot;custom.securityProfiles&quot;);&#xD;&#xA;&#x9;def corsProfileIterator = corsProfile.iterator();&#xD;&#xA;&#x9;corsProfile1=new ArrayList();&#xD;&#xA;&#x9;while (corsProfileIterator.hasNext()) {&#xD;&#xA;&#x9;&#x9;String corsProfileIteratorValue = corsProfileIterator.next();&#xD;&#xA;&#x9;&#x9;String custom0 = corsProfileIteratorValue.replaceAll(&quot;\\s+&quot;, &quot;&quot;);&#xD;&#xA;&#x9;&#x9;String custom1= custom0.replace(&quot;{&quot;,&quot;{\&quot;&quot;);&#xD;&#xA;&#x9;&#x9;String custom2= custom1.replace(&quot;}&quot;,&quot;\&quot;}&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom3= custom2.replace(&quot;,&quot;,&quot;\&quot;,\&quot;&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom4= custom3.replace(&quot;=&quot;,&quot;\&quot;:\&quot;&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;String custom6= custom4.replace(&quot;\&quot;true\&quot;&quot;,&quot;true&quot;);&#xD;&#xA;&#x9;&#x9;String custom7= custom6.replace(&quot;\&quot;false\&quot;&quot;,&quot;false&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom8= custom7.replace(&quot;\&quot;[&quot;,&quot;[&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom9= custom8.replace(&quot;]\&quot;&quot;,&quot;]&quot;);&#xD;&#xA;&#x9;&#x9;String custom10= custom9.replace(&quot;[&quot;,&quot;[\&quot;&quot;);&#xD;&#xA;&#x9;&#x9;String custom11= custom10.replace(&quot;]&quot;,&quot;\&quot;]&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom12= custom11.replace(&quot;\&quot;{&quot;,&quot;{&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom13= custom12.replace(&quot;}\&quot;&quot;,&quot;}&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;String custom14= custom13.replace(&quot;{\&quot;\&quot;}&quot;,&quot;{}&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;       corsProfile1.add(custom14);&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;msg.put(&quot;custom.securityProfiles&quot;,corsProfile1);&#xD;&#xA;&#x9;return true;&#xD;&#xA;}</value></fval>
 	<fval name="successNode"><value contentType="reference">-5143347468041123480</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="-929600071066241462" parentPK="-7893051661707146725">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="consumedProperties"></fval>
+	<fval name="engineName"><value>groovy</value></fval>
+	<fval name="generatedProperties"></fval>
+	<fval name="logFailure"><value>Failed script filter</value></fval>
+	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Passed script filter</value></fval>
+	<fval name="name"><value>Extract Authentication Profile from User Provided FE Definition</value></fval>
+	<fval name="requiredProperties"></fval>
+	<fval name="script"><value>import java.lang.String;&#xD;&#xA;import java.util.ArrayList;&#xD;&#xA;&#xD;&#xA;def invoke(msg) {&#xD;&#xA;&#x9;def var1 = msg.get(&quot;custom.frontendAPIdefinition&quot;);&#xD;&#xA;&#x9;def var2 = var1.lastIndexOf(&quot;\&quot;authenticationProfiles\&quot;:&quot;);&#xD;&#xA;&#x9;int startIndex = var2 + 25;&#xD;&#xA;&#x9;def lastIndex = var1.lastIndexOf(&quot;\&quot;inboundProfiles\&quot;&quot;);&#xD;&#xA;&#x9;String output= var1.substring(startIndex,lastIndex-1);&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;msg.put(&quot;custom.authenticationProfiles&quot;,output);&#xD;&#xA;&#x9;return true;&#xD;&#xA;}</value></fval>
+	<fval name="successNode"><value contentType="reference">3655372365138909397</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="TraceFilter" entityPK="-722144105884185820" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
 	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
@@ -10923,7 +10987,7 @@
 	<fval name="logSuccess"><value>Filter passed</value></fval>
 	<fval name="name"><value>Add Inbound Profile</value></fval>
 	<fval name="objectFieldName"><value>inboundProfiles</value></fval>
-	<fval name="successNode"><value contentType="reference">5634853745787464769</value></fval>
+	<fval name="successNode"><value contentType="reference">6728422266897027797</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONAddNodeFilter" entityPK="3655372365138909397" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
@@ -10939,7 +11003,7 @@
 	<fval name="logSuccess"><value>Filter passed</value></fval>
 	<fval name="name"><value>Add Authentication Profile</value></fval>
 	<fval name="objectFieldName"><value>authenticationProfiles</value></fval>
-	<fval name="successNode"><value contentType="reference">-1324940014941444550</value></fval>
+	<fval name="successNode"><value contentType="reference">7429019838209274880</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONAddNodeFilter" entityPK="3803480626737382425" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
@@ -11002,23 +11066,7 @@
 	<fval name="logSuccess"><value>Filter passed</value></fval>
 	<fval name="name"><value>Add CaCerts</value></fval>
 	<fval name="objectFieldName"><value>caCerts</value></fval>
-	<fval name="successNode"><value contentType="reference">906540716807872282</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONAddNodeFilter" entityPK="5213681463277337882" parentPK="-7893051661707146725">
-	<fval name="abortProcessingOnLogError"><value>0</value></fval>
-	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
-	<fval name="content"><value>&quot;${user.frontend.apidescription}&quot;</value></fval>
-	<fval name="expression"><value>$</value></fval>
-	<fval name="expressionType"><value>0</value></fval>
-	<fval name="insertLocationType"><value>1</value></fval>
-	<fval name="logFailure"><value>Filter failed</value></fval>
-	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
-	<fval name="logMask"><value>2</value></fval>
-	<fval name="logMaskType"><value>SERVICE</value></fval>
-	<fval name="logSuccess"><value>Filter passed</value></fval>
-	<fval name="name"><value>Copy of&apos;Modify Front API Version&apos;{1}</value></fval>
-	<fval name="objectFieldName"><value>summary</value></fval>
-	<fval name="successNode"><value contentType="reference">7965343015591426341</value></fval>
+	<fval name="successNode"><value contentType="reference">-3127751903155126004</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="5279570430671556428" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
@@ -11120,6 +11168,38 @@
 	<fval name="maxNumberFiles"><value>500</value></fval>
 	<fval name="name"><value>Persistence Details</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="6728422266897027797" parentPK="-7893051661707146725">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="consumedProperties"></fval>
+	<fval name="engineName"><value>groovy</value></fval>
+	<fval name="generatedProperties"></fval>
+	<fval name="logFailure"><value>Failed script filter</value></fval>
+	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Passed script filter</value></fval>
+	<fval name="name"><value>Extract Outbound Profile from User Provided FE Defintion</value></fval>
+	<fval name="requiredProperties"></fval>
+	<fval name="script"><value>import java.lang.String;&#xD;&#xA;import java.util.ArrayList;&#xD;&#xA;&#xD;&#xA;def invoke(msg) {&#xD;&#xA;&#x9;def var1 = msg.get(&quot;custom.frontendAPIdefinition&quot;);&#xD;&#xA;&#x9;def var2 = var1.lastIndexOf(&quot;\&quot;outboundProfiles\&quot;:&quot;);&#xD;&#xA;&#x9;int startIndex = var2 + 19;&#xD;&#xA;&#x9;def lastIndex = var1.lastIndexOf(&quot;\&quot;caCerts\&quot;&quot;);&#xD;&#xA;&#x9;String output= var1.substring(startIndex,lastIndex-1);&#xD;&#xA;&#x9;msg.put(&quot;custom.outboundProfiles&quot;,output);&#xD;&#xA;&#x9;return true;&#xD;&#xA;}</value></fval>
+	<fval name="successNode"><value contentType="reference">8345854113264674179</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="7429019838209274880" parentPK="-7893051661707146725">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="consumedProperties"></fval>
+	<fval name="engineName"><value>groovy</value></fval>
+	<fval name="generatedProperties"></fval>
+	<fval name="logFailure"><value>Failed script filter</value></fval>
+	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Passed script filter</value></fval>
+	<fval name="name"><value>Extract Security Profile from User provided FE Defintion</value></fval>
+	<fval name="requiredProperties"></fval>
+	<fval name="script"><value>import java.lang.String;&#xD;&#xA;import java.util.ArrayList;&#xD;&#xA;&#xD;&#xA;def invoke(msg) {&#xD;&#xA;&#x9;def var1 = msg.get(&quot;custom.frontendAPIdefinition&quot;);&#xD;&#xA;&#x9;def var2 = var1.lastIndexOf(&quot;\&quot;securityProfiles\&quot;:&quot;);&#xD;&#xA;&#x9;int startIndex = var2 + 19;&#xD;&#xA;&#x9;def lastIndex = var1.lastIndexOf(&quot;\&quot;authenticationProfiles\&quot;&quot;);&#xD;&#xA;&#x9;String output= var1.substring(startIndex,lastIndex-1);&#xD;&#xA;&#x9;&#xD;&#xA;&#x9;msg.put(&quot;custom.securityProfiles&quot;,output);&#xD;&#xA;&#x9;return true;&#xD;&#xA;}</value></fval>
+	<fval name="successNode"><value contentType="reference">-5143347468041123480</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPathFilter" entityPK="7440056283764165365" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
 	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
@@ -11136,22 +11216,6 @@
 	<fval name="expression"><value>$.id</value></fval>
 	<fval name="failOnError"><value>1</value></fval>
 	<fval name="unmarshalType"><value>java.lang.String</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="7831409364271498669" parentPK="-7893051661707146725">
-	<fval name="abortProcessingOnLogError"><value>0</value></fval>
-	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
-	<fval name="consumedProperties"></fval>
-	<fval name="engineName"><value>groovy</value></fval>
-	<fval name="generatedProperties"></fval>
-	<fval name="logFailure"><value>Failed script filter</value></fval>
-	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
-	<fval name="logMask"><value>2</value></fval>
-	<fval name="logMaskType"><value>SERVICE</value></fval>
-	<fval name="logSuccess"><value>Passed script filter</value></fval>
-	<fval name="name"><value>Fix caCerts</value></fval>
-	<fval name="requiredProperties"></fval>
-	<fval name="script"><value>import java.lang.String;&#xD;&#xA;import java.util.ArrayList;&#xD;&#xA;&#xD;&#xA;def invoke(msg) {&#xD;&#xA;&#x9;def corsProfile = msg.get(&quot;custom.caCerts&quot;);&#xD;&#xA;&#x9;def corsProfileIterator = corsProfile.iterator();&#xD;&#xA;&#x9;corsProfile1=new ArrayList();&#xD;&#xA;&#x9;while (corsProfileIterator.hasNext()) {&#xD;&#xA;&#x9;&#x9;String corsProfileIteratorValue = corsProfileIterator.next();&#xD;&#xA;&#x9;&#x9;String custom0 = corsProfileIteratorValue.replaceAll(&quot;\\s+&quot;, &quot;&quot;);&#xD;&#xA;&#x9;&#x9;String custom1= custom0.replace(&quot;{&quot;,&quot;{\&quot;&quot;);&#xD;&#xA;&#x9;&#x9;String custom2= custom1.replace(&quot;}&quot;,&quot;\&quot;}&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom3= custom2.replace(&quot;,&quot;,&quot;\&quot;,\&quot;&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom4= custom3.replace(&quot;=&quot;,&quot;\&quot;:\&quot;&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;String custom6= custom4.replace(&quot;\&quot;true\&quot;&quot;,&quot;true&quot;);&#xD;&#xA;&#x9;&#x9;String custom7= custom6.replace(&quot;\&quot;false\&quot;&quot;,&quot;false&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom8= custom7.replace(&quot;\&quot;[&quot;,&quot;[&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom9= custom8.replace(&quot;]\&quot;&quot;,&quot;]&quot;);&#xD;&#xA;&#x9;&#x9;String custom10= custom9.replace(&quot;[&quot;,&quot;[\&quot;&quot;);&#xD;&#xA;&#x9;&#x9;String custom11= custom10.replace(&quot;]&quot;,&quot;\&quot;]&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom12= custom11.replace(&quot;\&quot;{&quot;,&quot;{&quot;);&#x9;&#xD;&#xA;&#x9;&#x9;String custom13= custom12.replace(&quot;}\&quot;&quot;,&quot;}&quot;);&#xD;&#xA;String custom14= custom13.replace(&quot;{\&quot;\&quot;}&quot;,&quot;{}&quot;);&#xD;&#xA;&#xD;&#xA;String custom15= custom14.replace(&quot;[\&quot;\&quot;]&quot;,&quot;[]&quot;);&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#xD;&#xA;&#x9;       corsProfile1.add(custom15);&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;msg.put(&quot;custom.caCerts&quot;,corsProfile1);&#xD;&#xA;&#x9;return true;&#xD;&#xA;}</value></fval>
-	<fval name="successNode"><value contentType="reference">4300633510014150460</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="TraceFilter" entityPK="7848857597680928419" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
@@ -11183,7 +11247,7 @@
 	<fval name="logSuccess"><value>Filter passed</value></fval>
 	<fval name="name"><value>Add Front end API Checksum to user definition</value></fval>
 	<fval name="objectFieldName"><value>cksum</value></fval>
-	<fval name="successNode"><value contentType="reference">5279570430671556428</value></fval>
+	<fval name="successNode"><value contentType="reference">-9068652401006676829</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONAddNodeFilter" entityPK="8345854113264674179" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
@@ -11219,7 +11283,7 @@
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SetAttributeFilter" entityPK="8988652405010317935" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
-	<fval name="attributeValue"><value>&quot;/api//${user.frontend.apititle}/${user.frontend.apiversion}&quot;</value></fval>
+	<fval name="attributeValue"><value>&quot;/api/${user.frontend.apititle}/${user.frontend.apiversion}&quot;</value></fval>
 	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
 	<fval name="logFailure"><value>Failed to set the attribute value</value></fval>
 	<fval name="logFatal"><value>Error while setting the attribute value. Error: ${circuit.exception}</value></fval>

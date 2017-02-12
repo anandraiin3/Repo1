@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "host" : "172.31.58.124:8065",
   "basePath" : "/api",
-  "schemes" : [ "http" ],
+  "schemes" : [ "https" ],
   "consumes" : [ "application/json", "application/x-www-form-urlencoded", "multipart/form-data" ],
   "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
   "paths" : {
