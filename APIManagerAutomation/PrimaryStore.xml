@@ -11004,6 +11004,22 @@
 	<fval name="objectFieldName"><value>caCerts</value></fval>
 	<fval name="successNode"><value contentType="reference">906540716807872282</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONAddNodeFilter" entityPK="5213681463277337882" parentPK="-7893051661707146725">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="content"><value>&quot;${user.frontend.apidescription}&quot;</value></fval>
+	<fval name="expression"><value>$</value></fval>
+	<fval name="expressionType"><value>0</value></fval>
+	<fval name="insertLocationType"><value>1</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="name"><value>Copy of&apos;Modify Front API Version&apos;{1}</value></fval>
+	<fval name="objectFieldName"><value>summary</value></fval>
+	<fval name="successNode"><value contentType="reference">7965343015591426341</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="5279570430671556428" parentPK="-7893051661707146725">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
 	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
@@ -11270,6 +11286,12 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="-3279808085166859007" parentPK="-7360119955604412314">
 	<fval name="attributeName"><value>user.frontend.apititle</value></fval>
 	<fval name="expression"><value>$.info.title</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.lang.String</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="727812373956379793" parentPK="-7360119955604412314">
+	<fval name="attributeName"><value>user.frontend.apidescription</value></fval>
+	<fval name="expression"><value>$.info.description</value></fval>
 	<fval name="failOnError"><value>0</value></fval>
 	<fval name="unmarshalType"><value>java.lang.String</value></fval>
 </entity>
