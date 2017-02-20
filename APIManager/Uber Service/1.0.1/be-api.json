@@ -1,0 +1,831 @@
+{
+  "swagger" : "2.0",
+  "host" : "172.31.58.124:8065",
+  "basePath" : "/api",
+  "schemes" : [ "http" ],
+  "consumes" : [ "application/json", "application/x-www-form-urlencoded", "multipart/form-data" ],
+  "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+  "paths" : {
+    "/testuser/count" : {
+      "get" : {
+        "description" : "Count testusers",
+        "operationId" : "findTestuserCount",
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "parameters" : [ {
+          "description" : "The number of records to fetch. The value must be greater than 0, and no greater than 1000.",
+          "required" : false,
+          "in" : "query",
+          "name" : "limit",
+          "type" : "number"
+        }, {
+          "description" : "The number of records to skip. The value must not be less than 0.",
+          "required" : false,
+          "in" : "query",
+          "name" : "skip",
+          "type" : "number"
+        }, {
+          "description" : "Constrains values for fields. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "where",
+          "type" : "string"
+        }, {
+          "description" : "A dictionary of one or more fields specifying sorting of results. In general, you can sort based on any predefined field that you can query using the where operator, as well as on custom fields. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "order",
+          "type" : "string"
+        }, {
+          "description" : "Selects which fields to return from the query. Others are excluded. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "sel",
+          "type" : "string"
+        }, {
+          "description" : "Selects which fields to not return from the query. Others are included. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "unsel",
+          "type" : "string"
+        }, {
+          "description" : "Request page number starting from 1.",
+          "required" : false,
+          "in" : "query",
+          "name" : "page",
+          "type" : "number"
+        }, {
+          "description" : "Number of results per page.",
+          "required" : false,
+          "in" : "query",
+          "name" : "per_page",
+          "type" : "number"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The count succeeded, and the results are available.",
+            "schema" : {
+              "type" : "integer"
+            }
+          },
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      }
+    },
+    "/testuser/query" : {
+      "get" : {
+        "description" : "Query testusers",
+        "operationId" : "findTestuserQuery",
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "parameters" : [ {
+          "description" : "The number of records to fetch. The value must be greater than 0, and no greater than 1000.",
+          "required" : false,
+          "in" : "query",
+          "name" : "limit",
+          "type" : "number"
+        }, {
+          "description" : "The number of records to skip. The value must not be less than 0.",
+          "required" : false,
+          "in" : "query",
+          "name" : "skip",
+          "type" : "number"
+        }, {
+          "description" : "Constrains values for fields. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "where",
+          "type" : "string"
+        }, {
+          "description" : "A dictionary of one or more fields specifying sorting of results. In general, you can sort based on any predefined field that you can query using the where operator, as well as on custom fields. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "order",
+          "type" : "string"
+        }, {
+          "description" : "Selects which fields to return from the query. Others are excluded. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "sel",
+          "type" : "string"
+        }, {
+          "description" : "Selects which fields to not return from the query. Others are included. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "unsel",
+          "type" : "string"
+        }, {
+          "description" : "Request page number starting from 1.",
+          "required" : false,
+          "in" : "query",
+          "name" : "page",
+          "type" : "number"
+        }, {
+          "description" : "Number of results per page.",
+          "required" : false,
+          "in" : "query",
+          "name" : "per_page",
+          "type" : "number"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "The query succeeded, and the results are available.",
+            "schema" : {
+              "items" : {
+                "$ref" : "#/definitions/testuser"
+              },
+              "type" : "array"
+            }
+          },
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      }
+    },
+    "/testuser/findAndModify" : {
+      "put" : {
+        "description" : "Find and modify testusers",
+        "operationId" : "updateTestuserFindAndModify",
+        "consumes" : [ "application/json", "application/x-www-form-urlencoded", "multipart/form-data" ],
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "parameters" : [ {
+          "description" : "The number of records to fetch. The value must be greater than 0, and no greater than 1000.",
+          "required" : false,
+          "in" : "query",
+          "name" : "limit",
+          "type" : "number"
+        }, {
+          "description" : "The number of records to skip. The value must not be less than 0.",
+          "required" : false,
+          "in" : "query",
+          "name" : "skip",
+          "type" : "number"
+        }, {
+          "description" : "Constrains values for fields. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "where",
+          "type" : "string"
+        }, {
+          "description" : "A dictionary of one or more fields specifying sorting of results. In general, you can sort based on any predefined field that you can query using the where operator, as well as on custom fields. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "order",
+          "type" : "string"
+        }, {
+          "description" : "Selects which fields to return from the query. Others are excluded. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "sel",
+          "type" : "string"
+        }, {
+          "description" : "Selects which fields to not return from the query. Others are included. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "unsel",
+          "type" : "string"
+        }, {
+          "description" : "Request page number starting from 1.",
+          "required" : false,
+          "in" : "query",
+          "name" : "page",
+          "type" : "number"
+        }, {
+          "description" : "Number of results per page.",
+          "required" : false,
+          "in" : "query",
+          "name" : "per_page",
+          "type" : "number"
+        }, {
+          "description" : "Find and Modify body",
+          "required" : false,
+          "in" : "body",
+          "name" : "Find and Modify",
+          "schema" : {
+            "properties" : {
+              "first_name" : {
+                "description" : "first_name field",
+                "type" : "string"
+              },
+              "last_name" : {
+                "description" : "last_name field",
+                "type" : "string"
+              },
+              "email" : {
+                "description" : "email field",
+                "type" : "string"
+              }
+            },
+            "type" : "object"
+          }
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "204" : {
+            "description" : "The find and modify succeeded."
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      }
+    },
+    "/testuser/{id}" : {
+      "get" : {
+        "description" : "Find one testuser by ID",
+        "operationId" : "findTestuserByID",
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "parameters" : [ {
+          "description" : "The find succeeded, and the results are available.",
+          "required" : true,
+          "in" : "path",
+          "name" : "id",
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "testuser Response",
+            "schema" : {
+              "$ref" : "#/definitions/testuser"
+            }
+          },
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      },
+      "put" : {
+        "description" : "Update a specific testuser",
+        "operationId" : "updateTestuserByID",
+        "consumes" : [ "application/json", "application/x-www-form-urlencoded", "multipart/form-data" ],
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "parameters" : [ {
+          "description" : "The testuser ID",
+          "required" : true,
+          "in" : "path",
+          "name" : "id",
+          "type" : "string"
+        }, {
+          "description" : "Update body",
+          "required" : false,
+          "in" : "body",
+          "name" : "Update",
+          "schema" : {
+            "properties" : {
+              "first_name" : {
+                "description" : "first_name field",
+                "type" : "string"
+              },
+              "last_name" : {
+                "description" : "last_name field",
+                "type" : "string"
+              },
+              "email" : {
+                "description" : "email field",
+                "type" : "string"
+              }
+            },
+            "type" : "object"
+          }
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "204" : {
+            "description" : "The update succeeded."
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "description" : "Delete a specific testuser",
+        "operationId" : "deleteTestuserByID",
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "parameters" : [ {
+          "description" : "The testuser ID",
+          "required" : true,
+          "in" : "path",
+          "name" : "id",
+          "type" : "string"
+        } ],
+        "responses" : {
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "204" : {
+            "description" : "The delete succeeded."
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      }
+    },
+    "/testuser/upsert" : {
+      "post" : {
+        "description" : "Create or update a testuser",
+        "operationId" : "createTestuserUpsert",
+        "consumes" : [ "application/json", "application/x-www-form-urlencoded", "multipart/form-data" ],
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "parameters" : [ {
+          "description" : "Upsert body",
+          "required" : false,
+          "in" : "body",
+          "name" : "Upsert",
+          "schema" : {
+            "properties" : {
+              "first_name" : {
+                "description" : "first_name field",
+                "type" : "string"
+              },
+              "last_name" : {
+                "description" : "last_name field",
+                "type" : "string"
+              },
+              "email" : {
+                "description" : "email field",
+                "type" : "string"
+              },
+              "id" : {
+                "description" : "The testuser ID",
+                "type" : "string"
+              }
+            },
+            "type" : "object"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "The upsert succeeded, and resulted in an insert."
+          },
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "204" : {
+            "description" : "The upsert succeeded, and resulted in an update."
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      }
+    },
+    "/testuser" : {
+      "get" : {
+        "description" : "Find all testusers",
+        "operationId" : "findTestuser",
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "responses" : {
+          "200" : {
+            "description" : "The find all succeeded, and the results are available.",
+            "schema" : {
+              "items" : {
+                "$ref" : "#/definitions/testuser"
+              },
+              "type" : "array"
+            }
+          },
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      },
+      "post" : {
+        "description" : "Create a testuser",
+        "operationId" : "createTestuser",
+        "consumes" : [ "application/json", "application/x-www-form-urlencoded", "multipart/form-data" ],
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "parameters" : [ {
+          "description" : "Create body",
+          "required" : false,
+          "in" : "body",
+          "name" : "Create",
+          "schema" : {
+            "properties" : {
+              "first_name" : {
+                "description" : "first_name field",
+                "type" : "string"
+              },
+              "last_name" : {
+                "description" : "last_name field",
+                "type" : "string"
+              },
+              "email" : {
+                "description" : "email field",
+                "type" : "string"
+              }
+            },
+            "type" : "object"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "The create succeeded."
+          },
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "description" : "Deletes all testusers",
+        "operationId" : "deleteTestuser",
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "responses" : {
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "204" : {
+            "description" : "The delete succeeded."
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      }
+    },
+    "/testuser/distinct/{field}" : {
+      "get" : {
+        "description" : "Find distinct testusers",
+        "operationId" : "findTestuserDistinctByFIELD",
+        "produces" : [ "application/json", "application/xml", "text/yaml", "text/csv", "text/plain" ],
+        "parameters" : [ {
+          "description" : "The number of records to fetch. The value must be greater than 0, and no greater than 1000.",
+          "required" : false,
+          "in" : "query",
+          "name" : "limit",
+          "type" : "number"
+        }, {
+          "description" : "The number of records to skip. The value must not be less than 0.",
+          "required" : false,
+          "in" : "query",
+          "name" : "skip",
+          "type" : "number"
+        }, {
+          "description" : "Constrains values for fields. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "where",
+          "type" : "string"
+        }, {
+          "description" : "A dictionary of one or more fields specifying sorting of results. In general, you can sort based on any predefined field that you can query using the where operator, as well as on custom fields. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "order",
+          "type" : "string"
+        }, {
+          "description" : "Selects which fields to return from the query. Others are excluded. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "sel",
+          "type" : "string"
+        }, {
+          "description" : "Selects which fields to not return from the query. Others are included. The value should be encoded JSON.",
+          "required" : false,
+          "in" : "query",
+          "name" : "unsel",
+          "type" : "string"
+        }, {
+          "description" : "Request page number starting from 1.",
+          "required" : false,
+          "in" : "query",
+          "name" : "page",
+          "type" : "number"
+        }, {
+          "description" : "Number of results per page.",
+          "required" : false,
+          "in" : "query",
+          "name" : "per_page",
+          "type" : "number"
+        }, {
+          "description" : "The field name that must be distinct.",
+          "required" : true,
+          "in" : "path",
+          "name" : "field",
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Distinct fields response.",
+            "schema" : {
+              "items" : {
+                "type" : "string"
+              },
+              "type" : "array"
+            }
+          },
+          "401" : {
+            "description" : "This request requires user authentication, as configured by the server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "500" : {
+            "description" : "Something went wrong during the request; check out the logs on your server.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "404" : {
+            "description" : "No results were found.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          },
+          "504" : {
+            "description" : "The request took too long to process, and the server timed it out.",
+            "schema" : {
+              "$ref" : "#/definitions/ErrorModel"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ResponseModel" : {
+      "required" : [ "code", "success", "request-id" ],
+      "properties" : {
+        "code" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "success" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "request-id" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "testuser" : {
+      "properties" : {
+        "first_name" : {
+          "type" : "string"
+        },
+        "last_name" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    },
+    "ErrorModel" : {
+      "required" : [ "message", "code", "success", "request-id" ],
+      "properties" : {
+        "code" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "success" : {
+          "default" : false,
+          "type" : "boolean"
+        },
+        "request-id" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "url" : {
+          "type" : "string"
+        }
+      },
+      "type" : "object"
+    }
+  },
+  "securityDefinitions" : {
+    "API Key" : {
+      "type" : "apiKey",
+      "description" : "API Key",
+      "name" : "key",
+      "in" : "header"
+    }
+  },
+  "security" : [ {
+    "API Key" : [ ]
+  } ],
+  "info" : {
+    "title" : "Uber Products Microservice 1.0.1",
+    "description" : "",
+    "version" : "0.0.1"
+  },
+  "x-axway" : {
+    "corsEnabled" : true,
+    "basePaths" : [ "" ],
+    "serviceType" : "rest",
+    "deprecated" : false,
+    "tags" : { }
+  }
+}
