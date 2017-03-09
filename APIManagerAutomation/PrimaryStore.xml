@@ -10579,6 +10579,583 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CircuitContainer" entityPK="4264383692757183469" parentPK="0">
 	<fval name="name"><value>Policy Library</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CircuitContainer" entityPK="-2173824697511684736" parentPK="4264383692757183469">
+	<fval name="name"><value>TBD</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="FilterCircuit" entityPK="4504293490983126562" parentPK="-2173824697511684736">
+	<fval name="category"><value contentType="reference">7358285282752311048</value></fval>
+	<fval name="description"><value></value></fval>
+	<fval name="logMask"><value>3</value></fval>
+	<fval name="name"><value>Transfer File</value></fval>
+	<fval name="start"><value contentType="reference">6115700283417081418</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="-7675422912293900890" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="consumedProperties"></fval>
+	<fval name="engineName"><value>groovy</value></fval>
+	<fval name="generatedProperties"></fval>
+	<fval name="logFailure"><value>Failed script filter</value></fval>
+	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Passed script filter</value></fval>
+	<fval name="name"><value>Extract file from attachment</value></fval>
+	<fval name="requiredProperties"></fval>
+	<fval name="script"><value>import com.vordel.common.base64.Encoder;&#xD;&#xA;import com.vordel.trace.Trace;&#xD;&#xA;import java.lang.StringBuilder;&#xD;&#xA;import java.util.*;&#xD;&#xA;import java.io.InputStreamReader;&#xD;&#xA;import java.io.BufferedReader;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;def invoke(msg)         &#xD;&#xA;{        &#xD;&#xA;    def data = msg.get(&quot;content.body&quot;);&#xD;&#xA;&#xD;&#xA;//RawBody&#xD;&#xA;    def iter1=data.getParts();&#xD;&#xA;    def iter=iter1.iterator(); &#x9;&#xD;&#xA;    int i=1;&#xD;&#xA;    String req=&quot;REQ&quot;;&#xD;&#xA;&#xD;&#xA;  while(iter.hasNext())&#xD;&#xA;    {&#xD;&#xA;&#x9;def body=iter.next();&#xD;&#xA;&#x9;def headers = body.getHeaders();&#xD;&#xA;&#x9;String header=headers.getHeader(&quot;Content-Disposition&quot;);&#xD;&#xA;&#x9;&#xD;&#xA;&#xD;&#xA;if(header.contains(&quot;file&quot;))&#xD;&#xA;&#x9;{&#xD;&#xA;&#x9;&#x9;String line = null;&#xD;&#xA;&#x9;&#x9;StringBuilder responseData = new StringBuilder();&#xD;&#xA;      &#x9;&#x9;def in1 = new BufferedReader(new InputStreamReader(body.getSource().getInputStream() )   ) ;&#xD;&#xA;&#x9;&#x9;while((line = in1.readLine()) != null)&#xD;&#xA;&#x9;&#x9; {&#xD;&#xA;    &#x9;&#x9;&#x9;responseData.append(line);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;in1.close();&#xD;&#xA;&#x9;&#x9;msg.put(&quot;custom.file&quot;,responseData.toString());&#xD;&#xA;&#x9;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#x9;&#xD;&#xA;  &#xD;&#xA; return true;        &#xD;&#xA;}</value></fval>
+	<fval name="successNode"><value contentType="reference">-242001525977524020</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CompareAttributeFilter" entityPK="-4103710512454193302" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="failureNode"><value contentType="reference">6480953547431781521</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="matchingRule"><value>MATCH_ALL</value></fval>
+	<fval name="name"><value>Check if Duplicate API with different checksum</value></fval>
+	<fval name="successNode"><value contentType="reference">2662280140074839593</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AttributeCompare" entityPK="-7381270369997850541" parentPK="-4103710512454193302">
+	<fval name="attrName"><value>finalmessage</value></fval>
+	<fval name="expression"><value>DUPLICATE</value></fval>
+	<fval name="matchType"><value>IS</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="-3541523008532699649" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="consumedProperties"></fval>
+	<fval name="engineName"><value>groovy</value></fval>
+	<fval name="generatedProperties"></fval>
+	<fval name="logFailure"><value>Failed script filter</value></fval>
+	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Passed script filter</value></fval>
+	<fval name="name"><value>Copy of&apos;Extract front end api defintion and checksum&apos;{1}</value></fval>
+	<fval name="requiredProperties"></fval>
+	<fval name="script"><value>import com.vordel.common.base64.Encoder;&#xD;&#xA;import com.vordel.trace.Trace;&#xD;&#xA;import java.lang.StringBuilder;&#xD;&#xA;import java.util.*;&#xD;&#xA;import java.io.InputStreamReader;&#xD;&#xA;import java.io.BufferedReader;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;def invoke(msg)         &#xD;&#xA;{        &#xD;&#xA;    def data = msg.get(&quot;content.body&quot;);&#xD;&#xA;&#xD;&#xA;//RawBody&#xD;&#xA;    def iter1=data.getParts();&#xD;&#xA;    def iter=iter1.iterator(); &#x9;&#xD;&#xA;    int i=1;&#xD;&#xA;    String req=&quot;REQ&quot;;&#xD;&#xA;&#xD;&#xA;  while(iter.hasNext())&#xD;&#xA;    {&#xD;&#xA;&#x9;def body=iter.next();&#xD;&#xA;&#x9;def headers = body.getHeaders();&#xD;&#xA;&#x9;String header=headers.getHeader(&quot;Content-Disposition&quot;);&#xD;&#xA;&#x9;if(header.contains(&quot;name&quot;))&#xD;&#xA;&#x9;{&#xD;&#xA;&#x9;&#x9;String line = null;&#xD;&#xA;&#x9;&#x9;StringBuilder responseData = new StringBuilder();&#xD;&#xA;      &#x9;&#x9;def in1 = new BufferedReader(new InputStreamReader(body.getSource().getInputStream() )   ) ;&#xD;&#xA;&#x9;&#x9;while((line = in1.readLine()) != null)&#xD;&#xA;&#x9;&#x9; {&#xD;&#xA;    &#x9;&#x9;&#x9;responseData.append(line);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;in1.close();&#xD;&#xA;&#x9;&#x9;msg.put(&quot;custom.frontendAPIdefinition&quot;,responseData.toString());&#xD;&#xA;&#x9;}&#xD;&#xA;else&#xD;&#xA;{&#x9;if(header.contains(&quot;fe-cksum&quot;))&#xD;&#xA;&#x9;{&#xD;&#xA;&#x9;&#x9;String line = null;&#xD;&#xA;&#x9;&#x9;StringBuilder responseData = new StringBuilder();&#xD;&#xA;      &#x9;&#x9;def in1 = new BufferedReader(new InputStreamReader(body.getSource().getInputStream() )   ) ;&#xD;&#xA;&#x9;&#x9;while((line = in1.readLine()) != null)&#xD;&#xA;&#x9;&#x9; {&#xD;&#xA;    &#x9;&#x9;&#x9;responseData.append(line);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;in1.close();&#xD;&#xA;&#x9;&#x9;msg.put(&quot;user.frontend.apicksum&quot;,responseData.toString());&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;}&#x9;&#xD;&#xA;  &#xD;&#xA; return true;        &#xD;&#xA;}</value></fval>
+	<fval name="successNode"><value contentType="reference">-2234439592866163568</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPathFilter" entityPK="-2934309128411400759" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="name"><value>Extract API definitions from Front APIs information</value></fval>
+	<fval name="successNode"><value contentType="reference">2490551143816265939</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="666510081603549561" parentPK="-2934309128411400759">
+	<fval name="attributeName"><value>fe.id</value></fval>
+	<fval name="expression"><value>$.*.id</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.util.List</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="2894452435608736589" parentPK="-2934309128411400759">
+	<fval name="attributeName"><value>fe.version</value></fval>
+	<fval name="expression"><value>$.*.version</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.util.List</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="3543029080242153244" parentPK="-2934309128411400759">
+	<fval name="attributeName"><value>fe.name</value></fval>
+	<fval name="expression"><value>$.*.name</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.util.List</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="8288276570400151471" parentPK="-2934309128411400759">
+	<fval name="attributeName"><value>be.id</value></fval>
+	<fval name="expression"><value>$.*.apiId</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.util.List</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="8957865975421058608" parentPK="-2934309128411400759">
+	<fval name="attributeName"><value>fe.tags</value></fval>
+	<fval name="expression"><value>$.*.tags</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.util.List</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ConnectToURLFilter" entityPK="-2234439592866163568" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>${content.body}</value></fval>
+	<fval name="caCerts"></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="ciphers"><value>DEFAULT</value></fval>
+	<fval name="connectionFailurePolicy"><value contentType="reference">-1</value></fval>
+	<fval name="forwardClientHostHeader"><value>0</value></fval>
+	<fval name="handleRedirects"><value>1</value></fval>
+	<fval name="logFailure"><value>Failed to route request to endpoint.</value></fval>
+	<fval name="logFatal"><value>Error occurred while routing request to endpoint. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully routed request to endpoint</value></fval>
+	<fval name="method"><value>POST</value></fval>
+	<fval name="name"><value>Connect to API Manager to create Backend API</value></fval>
+	<fval name="performRetries"><value>0</value></fval>
+	<fval name="profile"><value contentType="reference">
+<key type='AuthProfilesGroup'><id field='name' value='Auth Profiles'/><key type='BasicAuthGroup'><id field='name' value='HTTP Basic'/><key type='BasicProfile'><id field='name' value='API MANAGER CREDENTIALS'/></key></key></key>	</value></fval>
+	<fval name="protoHeaders"><value>${store.http.headers}</value></fval>
+	<fval name="proxyServer"><value contentType="reference">-1</value></fval>
+	<fval name="retryCount"><value>5</value></fval>
+	<fval name="retryHTTPRanges"><value contentType="reference">-1</value></fval>
+	<fval name="retryLatency"><value>500</value></fval>
+	<fval name="runPolicyOnConnectionFailure"><value>0</value></fval>
+	<fval name="saveTransactionOnFailure"><value>0</value></fval>
+	<fval name="sendProxyMode"><value>0</value></fval>
+	<fval name="sendReceivedContentHeaders"><value>0</value></fval>
+	<fval name="slaBreachAsFailure"><value>0</value></fval>
+	<fval name="sslUsers"><value contentType="reference">-1</value></fval>
+	<fval name="stickyCookieDomain"><value></value></fval>
+	<fval name="stickyCookieExpiry"><value>600000</value></fval>
+	<fval name="stickyCookieName"><value>unnamed</value></fval>
+	<fval name="stickyCookiePath"><value></value></fval>
+	<fval name="stickyness"><value>0</value></fval>
+	<fval name="successNode"><value contentType="reference">6648865441785681906</value></fval>
+	<fval name="transparentProxy"><value>0</value></fval>
+	<fval name="url"><value>https://apimanager/api/portal/v1.3/apirepo/import</value></fval>
+	<fval name="useRootCerts"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SaveToFileFilter" entityPK="-7256941087570564659" parentPK="-2234439592866163568">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="directory"><value>${environment.VINSTDIR}/message-archive</value></fval>
+	<fval name="fileName"><value>${id}.out</value></fval>
+	<fval name="includeHeaders"><value>0</value></fval>
+	<fval name="includeRequestLine"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="maxFileSize"><value>1000</value></fval>
+	<fval name="maxNumberFiles"><value>500</value></fval>
+	<fval name="name"><value>Persistence Details</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="TraceFilter" entityPK="-2011582115748463315" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="doIndent"><value>0</value></fval>
+	<fval name="logFailure"><value>Failed to trace the message properties</value></fval>
+	<fval name="logFatal"><value>Error while tracing the message properties. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Traced the message properties</value></fval>
+	<fval name="name"><value>Log Duplicates or Pre-existing</value></fval>
+	<fval name="successNode"><value contentType="reference">7685306134522154636</value></fval>
+	<fval name="traceAttributes"><value>1</value></fval>
+	<fval name="traceBody"><value>0</value></fval>
+	<fval name="traceLevel"><value>6</value></fval>
+	<fval name="traceMsg"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="TraceFilter" entityPK="-997959120637651281" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="doIndent"><value>0</value></fval>
+	<fval name="logFailure"><value>Failed to trace the message properties</value></fval>
+	<fval name="logFatal"><value>Error while tracing the message properties. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Traced the message properties</value></fval>
+	<fval name="name"><value>Log if API not found</value></fval>
+	<fval name="successNode"><value contentType="reference">8627917296459489805</value></fval>
+	<fval name="traceAttributes"><value>1</value></fval>
+	<fval name="traceBody"><value>0</value></fval>
+	<fval name="traceLevel"><value>5</value></fval>
+	<fval name="traceMsg"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="TraceFilter" entityPK="-940237641340588587" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="doIndent"><value>0</value></fval>
+	<fval name="logFailure"><value>Failed to trace the message properties</value></fval>
+	<fval name="logFatal"><value>Error while tracing the message properties. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Traced the message properties</value></fval>
+	<fval name="name"><value>Log details</value></fval>
+	<fval name="successNode"><value contentType="reference">-242001525977524020</value></fval>
+	<fval name="traceAttributes"><value>1</value></fval>
+	<fval name="traceBody"><value>0</value></fval>
+	<fval name="traceLevel"><value>6</value></fval>
+	<fval name="traceMsg"><value>Logging FE defintion:   ${content.body.fe-desc}&#xD;&#xA;${http.querystring.fe-desc}</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="Reflector" entityPK="-727519945191714587" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="httpResponseStatus"><value>200</value></fval>
+	<fval name="logFailure"><value>Failed to echo back the message</value></fval>
+	<fval name="logFatal"><value>Error occurred while echoing the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully echoed back the message</value></fval>
+	<fval name="name"><value>Reflect Message</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ChangeMessageFilter" entityPK="-242001525977524020" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>${custom.file}</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="logFailure"><value>Failed in setting the message</value></fval>
+	<fval name="logFatal"><value>Error in setting the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in setting the message</value></fval>
+	<fval name="name"><value>return attachment in readable format </value></fval>
+	<fval name="outputContentType"><value>application/json</value></fval>
+	<fval name="successNode"><value contentType="reference">-727519945191714587</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="StoreContentBodyToAttributeFilter" entityPK="2292736678398699203" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="attributeToUse"><value>store.content.body</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="logFailure"><value>Failed to store the message in attribute</value></fval>
+	<fval name="logFatal"><value>Error in storing the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in storing the message to attribute </value></fval>
+	<fval name="name"><value>Store Original Message</value></fval>
+	<fval name="successNode"><value contentType="reference">9000399384011221505</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="2490551143816265939" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="consumedProperties"></fval>
+	<fval name="engineName"><value>groovy</value></fval>
+	<fval name="failureNode"><value contentType="reference">-997959120637651281</value></fval>
+	<fval name="generatedProperties"></fval>
+	<fval name="logFailure"><value>Failed script filter</value></fval>
+	<fval name="logFatal"><value>Error while attempt to run script filter. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Passed script filter</value></fval>
+	<fval name="name"><value>Search for matching front end api definition</value></fval>
+	<fval name="requiredProperties"></fval>
+	<fval name="script"><value>import com.vordel.common.base64.Encoder;&#xD;&#xA;import com.vordel.trace.Trace;&#xD;&#xA;import java.lang.StringBuilder;&#xD;&#xA;import java.lang.String;&#xD;&#xA;import java.util. * ;&#xD;&#xA;import java.io.InputStreamReader;&#xD;&#xA;import java.io.BufferedReader;&#xD;&#xA;&#xD;&#xA;def invoke(msg) {&#xD;&#xA;&#x9;def listOfFrontEndApiNamesFromAPIManager = msg.get(&quot;fe.name&quot;);&#xD;&#xA;&#x9;def frontAPITitleRequestedByUser = msg.get(&quot;user.frontend.apititle&quot;);&#xD;&#xA;&#x9;def frontlistOfFrontEndApiVersionsFromAPIManagerRequestedByUser = msg.get(&quot;user.frontend.apiversion&quot;);&#xD;&#xA;&#x9;String frontAPIChecksumProvidedByUser = msg.get(&quot;user.frontend.apicksum&quot;);&#xD;&#xA;&#x9;def listOfFrontEndApiNamesFromAPIManagerIterator = listOfFrontEndApiNamesFromAPIManager.iterator();&#xD;&#xA;&#x9;def listOfFrontEndApiIDsFromAPIManager = msg.get(&quot;fe.id&quot;);&#xD;&#xA;&#x9;def listOfFrontEndApiVersionsFromAPIManager = msg.get(&quot;fe.version&quot;);&#xD;&#xA;&#x9;def listOfFrontEndApiTagsFromAPIManager = msg.get(&quot;fe.tags&quot;);&#xD;&#xA;&#x9;def listOfBackEndApiTagsFromAPIManager = msg.get(&quot;be.id&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;int i = 0;&#xD;&#xA;&#x9;while (listOfFrontEndApiNamesFromAPIManagerIterator.hasNext()) {&#xD;&#xA;&#x9;&#x9;String frontEndAPIName = listOfFrontEndApiNamesFromAPIManagerIterator.next();&#xD;&#xA;&#x9;&#x9;if (frontEndAPIName != null &amp;&amp; frontEndAPIName.equalsIgnoreCase(frontAPITitleRequestedByUser)) {&#xD;&#xA;&#x9;&#x9;&#x9;String frontEndAPIVersion = listOfFrontEndApiVersionsFromAPIManager.get(i);&#xD;&#xA;&#x9;&#x9;&#x9;if (frontEndAPIVersion != null &amp;&amp; frontEndAPIVersion.equalsIgnoreCase(frontlistOfFrontEndApiVersionsFromAPIManagerRequestedByUser)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;def frontEndAPITags = listOfFrontEndApiTagsFromAPIManager.get(i);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;msg.put(&quot;finaltags&quot;, frontEndAPITags);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (frontEndAPITags!=null &amp;&amp; frontEndAPITags.size()&gt;0) {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;//&#x9;msg.put(&quot;finalid&quot;,listOfFrontEndApiIDsFromAPIManager.get(i));&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;msg.put(&quot;finaltags&quot;, frontEndAPITags);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;String cksum = frontEndAPITags.get(&quot;cksum&quot;)get(0);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;msg.put(&quot;finalcksum&quot;, frontEndAPITags.get(&quot;cksum&quot;));&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;if (cksum != null &amp;&amp; cksum.equalsIgnoreCase(frontAPIChecksumProvidedByUser)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;msg.put(&quot;finalmessage&quot;, &quot;FOUND&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;msg.put(&quot;finalid&quot;, listOfFrontEndApiIDsFromAPIManager.get(i));&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return true;&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;msg.put(&quot;finalmessage&quot;, &quot;DUPLICATE&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;msg.put(&quot;finalfeid&quot;, listOfFrontEndApiIDsFromAPIManager.get(i));&#xD;&#xA;msg.put(&quot;finalbeid&quot;, listOfBackEndApiTagsFromAPIManager.get(i));&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;return true;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;i++;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return false;&#xD;&#xA;}</value></fval>
+	<fval name="successNode"><value contentType="reference">-2011582115748463315</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ConnectToURLFilter" entityPK="2662280140074839593" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>${content.body}</value></fval>
+	<fval name="caCerts"></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="ciphers"><value>DEFAULT</value></fval>
+	<fval name="connectionFailurePolicy"><value contentType="reference">-1</value></fval>
+	<fval name="forwardClientHostHeader"><value>0</value></fval>
+	<fval name="handleRedirects"><value>1</value></fval>
+	<fval name="logFailure"><value>Failed to route request to endpoint.</value></fval>
+	<fval name="logFatal"><value>Error occurred while routing request to endpoint. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully routed request to endpoint</value></fval>
+	<fval name="method"><value>DELETE</value></fval>
+	<fval name="name"><value>Delete Front End API</value></fval>
+	<fval name="performRetries"><value>0</value></fval>
+	<fval name="profile"><value contentType="reference">
+<key type='AuthProfilesGroup'><id field='name' value='Auth Profiles'/><key type='BasicAuthGroup'><id field='name' value='HTTP Basic'/><key type='BasicProfile'><id field='name' value='API MANAGER CREDENTIALS'/></key></key></key>	</value></fval>
+	<fval name="protoHeaders"><value>${http.headers}</value></fval>
+	<fval name="proxyServer"><value contentType="reference">-1</value></fval>
+	<fval name="retryCount"><value>5</value></fval>
+	<fval name="retryHTTPRanges"><value contentType="reference">-1</value></fval>
+	<fval name="retryLatency"><value>500</value></fval>
+	<fval name="runPolicyOnConnectionFailure"><value>0</value></fval>
+	<fval name="saveTransactionOnFailure"><value>0</value></fval>
+	<fval name="sendProxyMode"><value>0</value></fval>
+	<fval name="sendReceivedContentHeaders"><value>0</value></fval>
+	<fval name="slaBreachAsFailure"><value>0</value></fval>
+	<fval name="sslUsers"><value contentType="reference">-1</value></fval>
+	<fval name="stickyCookieDomain"><value></value></fval>
+	<fval name="stickyCookieExpiry"><value>600000</value></fval>
+	<fval name="stickyCookieName"><value>unnamed</value></fval>
+	<fval name="stickyCookiePath"><value></value></fval>
+	<fval name="stickyness"><value>0</value></fval>
+	<fval name="successNode"><value contentType="reference">5130048711473290934</value></fval>
+	<fval name="transparentProxy"><value>0</value></fval>
+	<fval name="url"><value>https://apimanager/api/portal/v1.3/proxies/${finalfeid}</value></fval>
+	<fval name="useRootCerts"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SaveToFileFilter" entityPK="6495861759181998949" parentPK="2662280140074839593">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="directory"><value>${environment.VINSTDIR}/message-archive</value></fval>
+	<fval name="fileName"><value>${id}.out</value></fval>
+	<fval name="includeHeaders"><value>0</value></fval>
+	<fval name="includeRequestLine"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="maxFileSize"><value>1000</value></fval>
+	<fval name="maxNumberFiles"><value>500</value></fval>
+	<fval name="name"><value>Persistence Details</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ConnectToURLFilter" entityPK="5130048711473290934" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>${content.body}</value></fval>
+	<fval name="caCerts"></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="ciphers"><value>DEFAULT</value></fval>
+	<fval name="connectionFailurePolicy"><value contentType="reference">-1</value></fval>
+	<fval name="forwardClientHostHeader"><value>0</value></fval>
+	<fval name="handleRedirects"><value>1</value></fval>
+	<fval name="logFailure"><value>Failed to route request to endpoint.</value></fval>
+	<fval name="logFatal"><value>Error occurred while routing request to endpoint. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully routed request to endpoint</value></fval>
+	<fval name="method"><value>DELETE</value></fval>
+	<fval name="name"><value>Delete backend API</value></fval>
+	<fval name="performRetries"><value>0</value></fval>
+	<fval name="profile"><value contentType="reference">
+<key type='AuthProfilesGroup'><id field='name' value='Auth Profiles'/><key type='BasicAuthGroup'><id field='name' value='HTTP Basic'/><key type='BasicProfile'><id field='name' value='API MANAGER CREDENTIALS'/></key></key></key>	</value></fval>
+	<fval name="protoHeaders"><value>${http.headers}</value></fval>
+	<fval name="proxyServer"><value contentType="reference">-1</value></fval>
+	<fval name="retryCount"><value>5</value></fval>
+	<fval name="retryHTTPRanges"><value contentType="reference">-1</value></fval>
+	<fval name="retryLatency"><value>500</value></fval>
+	<fval name="runPolicyOnConnectionFailure"><value>0</value></fval>
+	<fval name="saveTransactionOnFailure"><value>0</value></fval>
+	<fval name="sendProxyMode"><value>0</value></fval>
+	<fval name="sendReceivedContentHeaders"><value>0</value></fval>
+	<fval name="slaBreachAsFailure"><value>0</value></fval>
+	<fval name="sslUsers"><value contentType="reference">-1</value></fval>
+	<fval name="stickyCookieDomain"><value></value></fval>
+	<fval name="stickyCookieExpiry"><value>600000</value></fval>
+	<fval name="stickyCookieName"><value>unnamed</value></fval>
+	<fval name="stickyCookiePath"><value></value></fval>
+	<fval name="stickyness"><value>0</value></fval>
+	<fval name="successNode"><value contentType="reference">8627917296459489805</value></fval>
+	<fval name="transparentProxy"><value>0</value></fval>
+	<fval name="url"><value>https://apimanager/api/portal/v1.3/apirepo/${finalbeid}</value></fval>
+	<fval name="useRootCerts"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SaveToFileFilter" entityPK="7415808754052625654" parentPK="5130048711473290934">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="directory"><value>${environment.VINSTDIR}/message-archive</value></fval>
+	<fval name="fileName"><value>${id}.out</value></fval>
+	<fval name="includeHeaders"><value>0</value></fval>
+	<fval name="includeRequestLine"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="maxFileSize"><value>1000</value></fval>
+	<fval name="maxNumberFiles"><value>500</value></fval>
+	<fval name="name"><value>Persistence Details</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ConnectToURLFilter" entityPK="5619436276092391309" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value> </value></fval>
+	<fval name="caCerts"></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="ciphers"><value>DEFAULT</value></fval>
+	<fval name="connectionFailurePolicy"><value contentType="reference">-1</value></fval>
+	<fval name="forwardClientHostHeader"><value>0</value></fval>
+	<fval name="handleRedirects"><value>1</value></fval>
+	<fval name="logFailure"><value>Failed to route request to endpoint.</value></fval>
+	<fval name="logFatal"><value>Error occurred while routing request to endpoint. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully routed request to endpoint</value></fval>
+	<fval name="method"><value>GET</value></fval>
+	<fval name="name"><value>Get Front-end API definitions</value></fval>
+	<fval name="performRetries"><value>0</value></fval>
+	<fval name="profile"><value contentType="reference">
+<key type='AuthProfilesGroup'><id field='name' value='Auth Profiles'/><key type='BasicAuthGroup'><id field='name' value='HTTP Basic'/><key type='BasicProfile'><id field='name' value='API MANAGER CREDENTIALS'/></key></key></key>	</value></fval>
+	<fval name="protoHeaders"><value>${http.headers}</value></fval>
+	<fval name="proxyServer"><value contentType="reference">-1</value></fval>
+	<fval name="retryCount"><value>5</value></fval>
+	<fval name="retryHTTPRanges"><value contentType="reference">-1</value></fval>
+	<fval name="retryLatency"><value>500</value></fval>
+	<fval name="runPolicyOnConnectionFailure"><value>0</value></fval>
+	<fval name="saveTransactionOnFailure"><value>0</value></fval>
+	<fval name="sendProxyMode"><value>0</value></fval>
+	<fval name="sendReceivedContentHeaders"><value>0</value></fval>
+	<fval name="slaBreachAsFailure"><value>0</value></fval>
+	<fval name="sslUsers"><value contentType="reference">-1</value></fval>
+	<fval name="stickyCookieDomain"><value></value></fval>
+	<fval name="stickyCookieExpiry"><value>600000</value></fval>
+	<fval name="stickyCookieName"><value>unnamed</value></fval>
+	<fval name="stickyCookiePath"><value></value></fval>
+	<fval name="stickyness"><value>0</value></fval>
+	<fval name="successNode"><value contentType="reference">-2934309128411400759</value></fval>
+	<fval name="transparentProxy"><value>0</value></fval>
+	<fval name="url"><value>https://apimanager/api/portal/v1.3/proxies/ </value></fval>
+	<fval name="useRootCerts"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SaveToFileFilter" entityPK="3057848612942458848" parentPK="5619436276092391309">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="directory"><value>${environment.VINSTDIR}/message-archive</value></fval>
+	<fval name="fileName"><value>${id}.out</value></fval>
+	<fval name="includeHeaders"><value>0</value></fval>
+	<fval name="includeRequestLine"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="maxFileSize"><value>1000</value></fval>
+	<fval name="maxNumberFiles"><value>500</value></fval>
+	<fval name="name"><value>Persistence Details</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ExtractRESTAttributesFilter" entityPK="6115700283417081418" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">-9132374868297881826</value></fval>
+	<fval name="decode"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="name"><value>Extract REST Request Attributes</value></fval>
+	<fval name="queryAttributePrefix"><value>params.query</value></fval>
+	<fval name="successNode"><value contentType="reference">2292736678398699203</value></fval>
+	<fval name="useHeaders"><value>1</value></fval>
+	<fval name="useQueryString"><value>1</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CircuitDelegateFilter" entityPK="6157690999653280808" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="circuitPK"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='Policy Library'/><key type='CircuitContainer'><id field='name' value='API Manager Automation '/><key type='FilterCircuit'><id field='name' value='CreateFrontEndAPIProxy'/></key></key></key>	</value></fval>
+	<fval name="logFailure"><value>Failed in calling policy shortcut</value></fval>
+	<fval name="logFatal"><value>Error in calling policy shortcut circuit. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in calling policy shortcut</value></fval>
+	<fval name="name"><value>Policy Shortcut</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="TraceFilter" entityPK="6304119544445504412" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="doIndent"><value>0</value></fval>
+	<fval name="logFailure"><value>Failed to trace the message properties</value></fval>
+	<fval name="logFatal"><value>Error while tracing the message properties. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Traced the message properties</value></fval>
+	<fval name="name"><value>Trace Filter{2}</value></fval>
+	<fval name="successNode"><value contentType="reference">2490551143816265939</value></fval>
+	<fval name="traceAttributes"><value>1</value></fval>
+	<fval name="traceBody"><value>0</value></fval>
+	<fval name="traceLevel"><value>6</value></fval>
+	<fval name="traceMsg"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="Reflector" entityPK="6480953547431781521" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="httpResponseStatus"><value>409</value></fval>
+	<fval name="logFailure"><value>Failed to echo back the message</value></fval>
+	<fval name="logFatal"><value>Error occurred while echoing the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully echoed back the message</value></fval>
+	<fval name="name"><value>No need to do anything. API already exists with same checksum.</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPathFilter" entityPK="6648865441785681906" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="name"><value>Extract BackEndAPIId</value></fval>
+	<fval name="successNode"><value contentType="reference">6157690999653280808</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="7835845591264092473" parentPK="6648865441785681906">
+	<fval name="attributeName"><value>BackendAPIId</value></fval>
+	<fval name="expression"><value>$.id</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.lang.String</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoveAttributeFilter" entityPK="7685306134522154636" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="logFailure"><value>Failed to remove the attribute</value></fval>
+	<fval name="logFatal"><value>Error while removing the attribute. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Removed the attribute</value></fval>
+	<fval name="messageAttribute"><value>content.body</value></fval>
+	<fval name="name"><value>Remove any content in body</value></fval>
+	<fval name="successNode"><value contentType="reference">-4103710512454193302</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPathFilter" entityPK="8464825315217998368" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="name"><value>Extract api title, organization and version from fron api defintion provided by user</value></fval>
+	<fval name="successNode"><value contentType="reference">5619436276092391309</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="-4666960617459832620" parentPK="8464825315217998368">
+	<fval name="attributeName"><value>user.frontend.apiorganization</value></fval>
+	<fval name="expression"><value>$.info.organization</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.lang.String</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="-3341019063455944436" parentPK="8464825315217998368">
+	<fval name="attributeName"><value>user.frontend.apititle</value></fval>
+	<fval name="expression"><value>$.info.title</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.lang.String</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="-2905153739959529191" parentPK="8464825315217998368">
+	<fval name="attributeName"><value>user.frontend.apiversion</value></fval>
+	<fval name="expression"><value>$.info.version</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.lang.String</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPath" entityPK="831901680103682721" parentPK="8464825315217998368">
+	<fval name="attributeName"><value>user.frontend.apidescription</value></fval>
+	<fval name="expression"><value>$.info.description</value></fval>
+	<fval name="failOnError"><value>0</value></fval>
+	<fval name="unmarshalType"><value>java.lang.String</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RestoreContentBodyFromAttributeFilter" entityPK="8627917296459489805" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="attributeToUse"><value>${store.content.body}</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="logFailure"><value>Failed to restore the message</value></fval>
+	<fval name="logFatal"><value>Error in restoring the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in restoring the message</value></fval>
+	<fval name="name"><value>Restore Message</value></fval>
+	<fval name="successNode"><value contentType="reference">-2234439592866163568</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CopyAttributeFilter" entityPK="9000399384011221505" parentPK="4504293490983126562">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="logFailure"><value>Failed to copy attributes</value></fval>
+	<fval name="logFatal"><value>Error occurred while copying attributes. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Copied attributes successfully</value></fval>
+	<fval name="name"><value>Copy / Modify Attributes</value></fval>
+	<fval name="successNode"><value contentType="reference">-7675422912293900890</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CopyAttribute" entityPK="1809826097522624206" parentPK="9000399384011221505">
+	<fval name="attributeValue"><value></value></fval>
+	<fval name="fromAttributeLocation"><value>1</value></fval>
+	<fval name="fromAttributeName"><value>http.headers</value></fval>
+	<fval name="fromAttributeNamespace"><value></value></fval>
+	<fval name="toAttributeLocation"><value>1</value></fval>
+	<fval name="toAttributeName"><value>store.http.headers</value></fval>
+	<fval name="toAttributeNamespace"><value></value></fval>
+	<fval name="toListAttribute"><value>0</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CircuitContainer" entityPK="2046269959491921103" parentPK="4264383692757183469">
 	<fval name="name"><value>API Manager Automation </value></fval>
 </entity>

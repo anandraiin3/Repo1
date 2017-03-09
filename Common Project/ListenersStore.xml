@@ -1673,7 +1673,7 @@
 	<fval name="name"><value>OAuth 2.0 Interface</value></fval>
 	<fval name="opsSettingsUsage"><value>SYSTEM</value></fval>
 	<fval name="outputEncodings"><value>.inherit</value></fval>
-	<fval name="port"><value>${env.PORT.OAUTH2.SERVICES}</value></fval>
+	<fval name="port"><value>8089</value></fval>
 	<fval name="protocol"><value>ipv4</value></fval>
 	<fval name="recordCircuitPath"><value>1</value></fval>
 	<fval name="recordInboundTxns"><value>1</value></fval>
@@ -1687,11 +1687,12 @@
 <key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=Change this for production'/></key></key>	</value></fval>
 	<fval name="sessionCacheSize"><value>32</value></fval>
 	<fval name="ssloptions">
-		<value>nosslv3</value>
 		<value>nosslv2</value>
+		<value>nosslv3</value>
 	</fval>
 	<fval name="tracelevel"><value>INHERIT</value></fval>
 	<fval name="transparentProxy"><value>0</value></fval>
+	<fval name="wafProfile"><value contentType="reference">-1</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="StaticContent" entityPK="938937620885694889" parentPK="-8028199253577672480">
 	<fval name="corsUsage"><value>HTTP</value></fval>
@@ -1954,9 +1955,96 @@
 	<fval name="name"><value>CUSTOM_POLICY_REQ</value></fval>
 	<fval name="priority"><value>1</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CoreAPIBroker" entityPK="7754775635673331297" parentPK="-7000318114060511745">
+	<fval name="apiVersion"><value>1.0</value></fval>
+	<fval name="corsProfile"><value contentType="reference">-1</value></fval>
+	<fval name="corsUsage"><value xsi:nil="true"></value></fval>
+	<fval name="description"><value></value></fval>
+	<fval name="descriptionLocation"><value>INTERNAL</value></fval>
+	<fval name="destination"><value xsi:nil="true"></value></fval>
+	<fval name="enableAccessLogging"><value>0</value></fval>
+	<fval name="enabled"><value>1</value></fval>
+	<fval name="evaluate"><value>1</value></fval>
+	<fval name="httpMethod"><value>*</value></fval>
+	<fval name="id"><value>2557e563-a8b3-4f38-bdc6-6f2ad0288049</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="markdownFile"><value></value></fval>
+	<fval name="name"><value>TESTAPI</value></fval>
+	<fval name="pathMatching"><value>LONGEST</value></fval>
+	<fval name="payloadMask"><value>0</value></fval>
+	<fval name="routingType"><value>CUSTOM</value></fval>
+	<fval name="summary"><value></value></fval>
+	<fval name="uriprefix"><value>/test</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CoreAPIMethod" entityPK="-1374773610335752584" parentPK="7754775635673331297">
+	<fval name="blockUnspecifiedParams"><value>true</value></fval>
+	<fval name="checkSourceContentType"><value>false</value></fval>
+	<fval name="copyContentType"><value>INBOUND</value></fval>
+	<fval name="copyQueryParams"><value>true</value></fval>
+	<fval name="corsProfile"><value contentType="reference">-1</value></fval>
+	<fval name="corsUsage"><value xsi:nil="true"></value></fval>
+	<fval name="description"><value></value></fval>
+	<fval name="descriptionLocation"><value>INTERNAL</value></fval>
+	<fval name="destinationContentType"><value>application/x-www-form-urlencoded</value></fval>
+	<fval name="destinationHttpVerb"><value>*</value></fval>
+	<fval name="destinationPath"><value xsi:nil="true"></value></fval>
+	<fval name="enableAccessLogging"><value>0</value></fval>
+	<fval name="enabled"><value>1</value></fval>
+	<fval name="evaluate"><value>1</value></fval>
+	<fval name="filterCircuit"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='Generated Policies'/><key type='CircuitContainer'><id field='name' value='REST API&apos;s'/><key type='CircuitContainer'><id field='name' value='TESTAPI'/><key type='FilterCircuit'><id field='name' value='Ping'/></key></key></key></key>	</value></fval>
+	<fval name="httpMethod"><value>GET</value></fval>
+	<fval name="id"><value>e2b016a2-b5a0-4489-a33e-b98deb012227</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="markdownFile"><value></value></fval>
+	<fval name="name"><value>Ping</value></fval>
+	<fval name="notes"><value></value></fval>
+	<fval name="pathMatching"><value>EXACT</value></fval>
+	<fval name="payloadMask"><value>0</value></fval>
+	<fval name="responseSchema"><value contentType="reference">-1</value></fval>
+	<fval name="uriprefix"><value>/ping</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="HTTP" entityPK="-2531197672476497241" parentPK="-4285712696025034360">
 	<fval name="corsProfile"><value contentType="reference">-1</value></fval>
 	<fval name="name"><value>API Manager Traffic</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="XMLFirewall" entityPK="-4252575850281135816" parentPK="-2531197672476497241">
+	<fval name="corsProfile"><value contentType="reference">-1</value></fval>
+	<fval name="corsUsage"><value>HTTP</value></fval>
+	<fval name="enableAccessLogging"><value>0</value></fval>
+	<fval name="enabled"><value>1</value></fval>
+	<fval name="evaluate"><value>1</value></fval>
+	<fval name="filterCircuit"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='Policy Library'/><key type='CircuitContainer'><id field='name' value='TBD'/><key type='FilterCircuit'><id field='name' value='Transfer File'/></key></key></key>	</value></fval>
+	<fval name="httpMethod"><value>POST</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="pathMatching"><value>LONGEST</value></fval>
+	<fval name="payloadMask"><value>0</value></fval>
+	<fval name="uriprefix"><value>/filetransfer</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SoftCircuitReference" entityPK="-6295554918575221094" parentPK="-4252575850281135816">
+	<fval name="circuitPK"><value>system.policy.request</value></fval>
+	<fval name="evaluate"><value>1</value></fval>
+	<fval name="name"><value>GLOBAL_POLICY_REQ</value></fval>
+	<fval name="priority"><value>0</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="PortableCircuitReference" entityPK="-5188770158406641372" parentPK="-4252575850281135816">
+	<fval name="circuitPK"><value contentType="reference">-1</value></fval>
+	<fval name="evaluate"><value>true</value></fval>
+	<fval name="name"><value>CUSTOM_POLICY_RSP</value></fval>
+	<fval name="priority"><value>3</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SoftCircuitReference" entityPK="-3375985020777492813" parentPK="-4252575850281135816">
+	<fval name="circuitPK"><value>system.policy.response</value></fval>
+	<fval name="evaluate"><value>1</value></fval>
+	<fval name="name"><value>GLOBAL_POLICY_RSP</value></fval>
+	<fval name="priority"><value>4</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="PortableCircuitReference" entityPK="-867947829585906677" parentPK="-4252575850281135816">
+	<fval name="circuitPK"><value contentType="reference">-1</value></fval>
+	<fval name="evaluate"><value>true</value></fval>
+	<fval name="name"><value>CUSTOM_POLICY_REQ</value></fval>
+	<fval name="priority"><value>1</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SSLInterface" entityPK="3692622085771899845" parentPK="-2531197672476497241">
 	<fval name="activetimeout"><value>60000</value></fval>
