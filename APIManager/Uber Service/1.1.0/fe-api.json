@@ -1,0 +1,109 @@
+{
+	
+ 	"corsProfiles": [{
+			"name": "_default",
+			"isDefault": true,
+			"origins": ["*"],
+			"allowedHeaders": [],
+			"exposedHeaders": ["X-CorrelationID"],
+			"supportCredentials": false,
+			"maxAgeSeconds": 0
+		}
+	],
+	"securityProfiles": [{
+			"name": "_default",
+			"isDefault": true,
+			"devices": [{
+					"name": "OAuth",
+					"type": "oauth",
+					"order": 1,
+					"properties": {
+						"tokenStore": "<key type='OAuth2StoresGroup'><id field='name' value='OAuth2 Stores'/><key type='AccessTokenStoreGroup'><id field='name' value='Access Token Stores'/><key type='AccessTokenPersist'><id field='name' value='OAuth Access Token Store'/></key></key></key>",
+						"accessTokenLocation": "HEADER",
+						"authorizationHeaderPrefix": "Bearer",
+						"accessTokenLocationQueryString": "",
+						"scopesMustMatch": "Any",
+						"scopes": "resource.WRITE, resource.READ",
+						"removeCredentialsOnSuccess": "true",
+						"implicitGrantEnabled": "true",
+						"implicitGrantLoginEndpointUrl": "http://localhost:8089/api/oauth/authorize",
+						"implicitGrantLoginTokenName": "access_token",
+						"authCodeGrantTypeEnabled": "true",
+						"authCodeGrantTypeRequestEndpointUrl": "http://localhost:8089/api/oauth/authorize",
+						"authCodeGrantTypeRequestClientIdName": "client_id",
+						"authCodeGrantTypeRequestSecretName": "client_secret",
+						"authCodeGrantTypeTokenEndpointUrl": "http://localhost:8089/api/oauth/token",
+						"authCodeGrantTypeTokenEndpointTokenName": "access_code"
+					}
+				}
+			]
+		},
+		{
+			"name": "default-apikey",
+			"isDefault": false,
+			"devices": [{
+					"type": "apiKey",
+					"name": "API Key",
+					"order": 1,
+					"properties": {
+						"apiKeyFieldName": "key",
+						"takeFrom": "HEADER",
+						"removeCredentialsOnSuccess": true
+					}
+				}
+	],
+	"authenticationProfiles": [{
+			"name": "_default",
+			"isDefault": true,
+			"parameters": {},
+			"type": "none"
+		}
+	],
+	"inboundProfiles": {
+		"_default": {
+			"securityProfile": "default-apikey",
+			"corsProfile": "_default",
+			"monitorAPI": true,
+			"monitorSubject": "authentication.subject.id"
+		}
+	},
+	"outboundProfiles": {
+		"_default": {
+			"authenticationProfile": "_default",
+			"routeType": "proxy",
+			"requestPolicy": null,
+			"responsePolicy": null,
+			"routePolicy": null,
+			"apiId": null,
+			"apiMethodId": null,
+			"parameters": []
+		}
+	},
+   "caCerts": [{
+			"certBlob": "MIIDfzCCAmcCBgFYaGI57TANBgkqhkiG9w0BAQUFADCBgjEXMBUGA1UEAxMOYXBpZ2F0ZXdheS5jb20xHTAbBgkqhkiG9w0BCQETDmFyYWlAYXh3YXkuY29tMQwwCgYDVQQLEwNQU08xDjAMBgNVBAoTBUF4d2F5MQ8wDQYDVQQHEwZTWURORVkxDDAKBgNVBAgTA05TVzELMAkGA1UEBhMCQVUwHhcNMTYxMTE1MTQyNjAwWhcNMTcxMTE1MTQyNjAwWjCBgjEXMBUGA1UEAxMOYXBpZ2F0ZXdheS5jb20xHTAbBgkqhkiG9w0BCQETDmFyYWlAYXh3YXkuY29tMQwwCgYDVQQLEwNQU08xDjAMBgNVBAoTBUF4d2F5MQ8wDQYDVQQHEwZTWURORVkxDDAKBgNVBAgTA05TVzELMAkGA1UEBhMCQVUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCmYpPwEbNk84U/4xUfO1wruB7y8M0s7mw3v5HNoQD8t4kEMQhIeZNcnTPRI8qzaGnmGrpV88B+iL9iYtr5hpLDpQZLkg0iKst1QL3SZp7c1XOCe/+8oUV92mygBzOqNLr9+5yTw3BZWA+9mPcZlwY7VWUNQbXDtgRHAG94bBSUdpkWFjNKW1t/8trD2Os6hlY63R6qL+szspkakFd/73FPrPo7KljgEsxcmrCugwkXjSlcZ5s9HKnp5idZxDy4yR8mbzuAcjGIRm6NOoL/wRPWtGQZTk3JUsPPCfhkKc+AeXcuHDVZtlC3MBhuc4xctoMdY404bX81jP5Jpw8BqSVtAgMBAAEwDQYJKoZIhvcNAQEFBQADggEBADk0yyB5SNQtdJSLr0+jHh9Rw7R0V6l3Xv8sh4MkHuL3CBAyQ/GHNZ3fc0Eyr0tIee5VaClcT/nzz7c6DAYAMvwMTI8ZZD+bAHcxQK9aHiobD4VFXfrRfaUPN6DO1OfuvA4rwRAKu6VB9I6mYfMGKfeIvCHTPOmV9mvxGNqoEFVM1NoC0tXEWgKMmAqP9nqwefp0nRfLk2d7NnHnqgWSA6+j4pwTKoNTyRcL7JPuxTCKs9GCK0X/LJ6a7Hajg4TbyoVgOyHw/EvV53xHmoah5zJbgQ205/XJHer21ocUTK7VryJq+wTvmxh3Mb4mZ2cFNmP+p2M+b38yqBxahu3vaAo=",
+			"name": "C=AU,ST=NSW,L=SYDNEY,O=Axway,OU=PSO,emailAddress=arai@axway.com,CN=apigateway.com",
+			"alias": "C=AU,ST=NSW,L=SYDNEY,O=Axway,OU=PSO,emailAddress=arai@axway.com,CN=apigateway.com",
+			"subject": "C=AU,ST=NSW,L=SYDNEY,O=Axway,OU=PSO,emailAddress=arai@axway.com,CN=apigateway.com",
+			"issuer": "C=AU,ST=NSW,L=SYDNEY,O=Axway,OU=PSO,emailAddress=arai@axway.com,CN=apigateway.com",
+			"version": 1,
+			"notValidBefore": 1479219960000,
+			"notValidAfter": 1510755960000,
+			"signatureAlgorithm": "RSA (2048 bits)",
+			"sha1Fingerprint": "63:44:A5:82:76:D9:E0:36:CA:89:14:09:88:C7:A0:02:8E:4F:86:AF",
+			"md5Fingerprint": "FF:94:1F:B1:FE:8C:71:2D:6B:F6:59:3E:2F:58:0B:1E",
+			"expired": false,
+			"notYetValid": false,
+			"inbound": false,
+			"outbound": true
+		}
+	],
+	"info": {
+    "title" : "Uber Service RAVEE",
+    "description" : "Hi There!",
+    "version" : "1.1.0",
+	"organization" : "20734ea6-b6ac-44ba-941e-4a83cbda3225",
+	"tags":{
+		
+	}
+  }
+}
