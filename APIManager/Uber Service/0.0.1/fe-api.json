@@ -85,8 +85,8 @@
 		}
 	],
 	"info": {
-    "title" : "Uber Service Beta1",
-    "description" : "Hi There YOU!",
+    "title" : "Uber Service Beta",
+    "description" : "Hi There!",
     "version" : "0.0.1",
 	"organization" : "20734ea6-b6ac-44ba-941e-4a83cbda3225",
 	"tags":{
