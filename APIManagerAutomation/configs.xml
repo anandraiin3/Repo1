@@ -1,4 +1,4 @@
-<configuration activeAssembly='DEFAULT'>
+<configuration activeAssembly='UPGRADED'>
  <storeType name='CertStore'>
   <branch>
    <node>/[Certificates]name=Certificate Store</node>
@@ -144,64 +144,64 @@
    <node>/[UserStore]name=Default User Store</node>
   </branch>
  </storeType>
- <store id='DEFAULT_CERTSTORE_VordelGateway_7.5.1' type='CertStore'>
-  <name>Default Certificate Store</name>
-  <description>Certificate Store provided with standard installation.</description>
+ <store id='CertStore-fd1a3f53-4442-436e-ac76-4027487659c5' type='CertStore'>
+  <name>Upgraded CertStore Store</name>
+  <description>Store generated from upgrade task</description>
   <connectionCredentials>
-   <credential name='url'>CertStore.xml</credential>
+   <credential name='url'>CertStore-fd1a3f53-4442-436e-ac76-4027487659c5.xml</credential>
   </connectionCredentials>
  </store>
- <store id='DEFAULT_ENVSETTINGS_VordelGateway_7.5.1' type='EnvSettingsStore'>
-  <name>Default Group-Level Environment Settings</name>
-  <description>Environmentalized settings</description>
+ <store id='EnvSettingsStore-5001a2f3-cea4-40f9-b91f-d71c50a82cd5' type='EnvSettingsStore'>
+  <name>Upgraded EnvSettingsStore Store</name>
+  <description>Store generated from upgrade task</description>
   <connectionCredentials>
-   <credential name='url'>EnvSettingsStore.xml</credential>
+   <credential name='url'>EnvSettingsStore-5001a2f3-cea4-40f9-b91f-d71c50a82cd5.xml</credential>
   </connectionCredentials>
  </store>
- <store id='DEFAULT_EXTCONNS_VordelGateway_7.5.1' type='ExtConnsStore'>
-  <name>Default External Connections</name>
-  <description>External connections configuration provided with standard install image</description>
+ <store id='ExtConnsStore-548fd40c-7f86-4338-a8be-39e3c780f679' type='ExtConnsStore'>
+  <name>Upgraded ExtConnsStore Store</name>
+  <description>Store generated from upgrade task</description>
   <connectionCredentials>
-   <credential name='url'>ExtConnsStore.xml</credential>
+   <credential name='url'>ExtConnsStore-548fd40c-7f86-4338-a8be-39e3c780f679.xml</credential>
   </connectionCredentials>
  </store>
- <store id='DEFAULT_LISTENERS_VordelGateway_7.5.1' type='ListenersStore'>
-  <name>Default Listeners Store</name>
-  <description>Listening interfaces provided with standard install image</description>
+ <store id='ListenersStore-5be4b1f2-39aa-4ebf-b911-ea50773e13e9' type='ListenersStore'>
+  <name>Upgraded ListenersStore Store</name>
+  <description>Store generated from upgrade task</description>
   <connectionCredentials>
-   <credential name='url'>ListenersStore.xml</credential>
+   <credential name='url'>ListenersStore-5be4b1f2-39aa-4ebf-b911-ea50773e13e9.xml</credential>
   </connectionCredentials>
  </store>
- <store id='DEFAULT_PRIMARY_VordelGateway_7.5.1' type='PrimaryStore'>
-  <name>Default Core Configuration</name>
-  <description>Core configuration provided with standard install</description>
+ <store id='PrimaryStore-f332c2d4-1d4a-4136-8d72-10f73e391915' type='PrimaryStore'>
+  <name>Upgraded PrimaryStore Store</name>
+  <description>Store generated from upgrade task</description>
   <connectionCredentials>
-   <credential name='url'>PrimaryStore.xml</credential>
+   <credential name='url'>PrimaryStore-f332c2d4-1d4a-4136-8d72-10f73e391915.xml</credential>
   </connectionCredentials>
  </store>
- <store id='DEFAULT_RR_VordelGateway_7.5.1' type='ResourceRepository'>
-  <name>Default Resource Repository</name>
-  <description>Tracked Resources</description>
+ <store id='ResourceRepository-2d3e91c0-e2f5-4dad-b84c-32e074c0646c' type='ResourceRepository'>
+  <name>Upgraded ResourceRepository Store</name>
+  <description>Store generated from upgrade task</description>
   <connectionCredentials>
-   <credential name='url'>ResourceRepository.xml</credential>
+   <credential name='url'>ResourceRepository-2d3e91c0-e2f5-4dad-b84c-32e074c0646c.xml</credential>
   </connectionCredentials>
  </store>
- <store id='DEFAULT_USER_VordelGateway_7.5.1' type='UserStore'>
-  <name>Default User Store</name>
-  <description>User configuration provided with standard install image</description>
+ <store id='UserStore-f04d1824-26f7-46f6-bd5d-6148573aadf7' type='UserStore'>
+  <name>Upgraded UserStore Store</name>
+  <description>Store generated from upgrade task</description>
   <connectionCredentials>
-   <credential name='url'>UserStore.xml</credential>
+   <credential name='url'>UserStore-f04d1824-26f7-46f6-bd5d-6148573aadf7.xml</credential>
   </connectionCredentials>
  </store>
- <assembly id='DEFAULT'>
-  <name>Default Environmental Profile</name>
-  <description>The standard installation Environmental Profile.</description>
-  <component id='DEFAULT_CERTSTORE_VordelGateway_7.5.1'/>
-  <component id='DEFAULT_ENVSETTINGS_VordelGateway_7.5.1'/>
-  <component id='DEFAULT_EXTCONNS_VordelGateway_7.5.1'/>
-  <component id='DEFAULT_LISTENERS_VordelGateway_7.5.1'/>
-  <component id='DEFAULT_PRIMARY_VordelGateway_7.5.1'/>
-  <component id='DEFAULT_RR_VordelGateway_7.5.1'/>
-  <component id='DEFAULT_USER_VordelGateway_7.5.1'/>
+ <assembly id='UPGRADED'>
+  <name>Upgraded Configuration</name>
+  <description>Upgraded Assembly, generated Fri Feb 09 11:07:52 AEDT 2018</description>
+  <component id='CertStore-fd1a3f53-4442-436e-ac76-4027487659c5'/>
+  <component id='EnvSettingsStore-5001a2f3-cea4-40f9-b91f-d71c50a82cd5'/>
+  <component id='ExtConnsStore-548fd40c-7f86-4338-a8be-39e3c780f679'/>
+  <component id='ListenersStore-5be4b1f2-39aa-4ebf-b911-ea50773e13e9'/>
+  <component id='PrimaryStore-f332c2d4-1d4a-4136-8d72-10f73e391915'/>
+  <component id='ResourceRepository-2d3e91c0-e2f5-4dad-b84c-32e074c0646c'/>
+  <component id='UserStore-f04d1824-26f7-46f6-bd5d-6148573aadf7'/>
  </assembly>
 </configuration>
