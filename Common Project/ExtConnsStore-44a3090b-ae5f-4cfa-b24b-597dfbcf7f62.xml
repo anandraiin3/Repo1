@@ -1342,10 +1342,10 @@
 	<fval name="connectionType"><value>NONE</value></fval>
 	<fval name="mailDebugOn"><value>0</value></fval>
 	<fval name="name"><value>Portal SMTP</value></fval>
-	<fval name="password"><value></value></fval>
-	<fval name="smtpPort"><value>2525</value></fval>
-	<fval name="smtpServer"><value>172.16.1.103</value></fval>
-	<fval name="username"><value></value></fval>
+	<fval name="password"><value>OTQ2MmNjYWJjOGUyMWNjODE5ZWIwYTMyNTQ1ZDJiMjM=</value></fval>
+	<fval name="smtpPort"><value>25</value></fval>
+	<fval name="smtpServer"><value>in-v3.mailjet.com</value></fval>
+	<fval name="username"><value>765a96a0d0f04e00bb3f07c531780d5e</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="GSSPrincipals" entityPK="-7749638535962838434" parentPK="0">
 	<fval name="name"><value>GSS Principals</value></fval>
