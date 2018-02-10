@@ -1519,7 +1519,7 @@
 	<fval name="timeBetweenEvictionRunsMillis"><value>-1</value></fval>
 	<fval name="timezoneAware"><value>0</value></fval>
 	<fval name="url"><value>jdbc:mysql://172.31.39.2:3306/ANALYTCS</value></fval>
-	<fval name="username"><value>root</value></fval>
+	<fval name="username"><value>apiportal</value></fval>
 	<fval name="wildcardPassword"><value></value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="DbConnection" entityPK="1373685151323585315" parentPK="-3541815812056132468">
