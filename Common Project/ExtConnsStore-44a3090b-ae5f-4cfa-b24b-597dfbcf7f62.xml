@@ -1513,12 +1513,12 @@
 	<fval name="minIdle"><value>0</value></fval>
 	<fval name="name"><value>MYSQLMONIORING DATABASE</value></fval>
 	<fval name="numTestsPerEvictionRun"><value>3</value></fval>
-	<fval name="password"><value>Y2hhbmdlbWU=</value></fval>
+	<fval name="password"><value>Q2hhbmdlbWUxMjMh</value></fval>
 	<fval name="passwordType"><value>entered</value></fval>
 	<fval name="setPoolPreparedStatements"><value>0</value></fval>
 	<fval name="timeBetweenEvictionRunsMillis"><value>-1</value></fval>
 	<fval name="timezoneAware"><value>0</value></fval>
-	<fval name="url"><value>jdbc:mysql://172.16.1.103:3306/test</value></fval>
+	<fval name="url"><value>jdbc:mysql://172.31.39.2:3306/ANALYTCS</value></fval>
 	<fval name="username"><value>root</value></fval>
 	<fval name="wildcardPassword"><value></value></fval>
 </entity>
