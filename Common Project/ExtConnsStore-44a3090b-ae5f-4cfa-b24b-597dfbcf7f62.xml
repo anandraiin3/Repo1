@@ -1518,7 +1518,7 @@
 	<fval name="setPoolPreparedStatements"><value>0</value></fval>
 	<fval name="timeBetweenEvictionRunsMillis"><value>-1</value></fval>
 	<fval name="timezoneAware"><value>0</value></fval>
-	<fval name="url"><value>jdbc:mysql://172.31.39.2:3306/ANALYTCS</value></fval>
+	<fval name="url"><value>jdbc:mysql://172.31.39.2:3306/ANALYTCS?useSSL=false</value></fval>
 	<fval name="username"><value>apiportal</value></fval>
 	<fval name="wildcardPassword"><value></value></fval>
 </entity>
