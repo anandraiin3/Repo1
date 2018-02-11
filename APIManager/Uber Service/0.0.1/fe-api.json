@@ -89,8 +89,8 @@
     "description" : "Hi There!!",
     "version" : "0.0.1",
 	"organization" : "57d7b5f2-9697-4f42-addc-757b132c1e2f",
-	"tags":{
-		
-	}
+	"tags": {
+				"type": ["transportation"]
+			}
   }
 }
