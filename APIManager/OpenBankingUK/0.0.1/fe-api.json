@@ -1,51 +1,48 @@
 {
-	
- 	"corsProfiles": [{
-			"name": "_default",
-			"isDefault": true,
-			"origins": ["*"],
-			"allowedHeaders": [],
-			"exposedHeaders": ["X-CorrelationID"],
-			"supportCredentials": false,
-			"maxAgeSeconds": 0
-		}
-	],
+	"corsProfiles": [{
+		"name": "_default",
+		"isDefault": true,
+		"origins": ["*"],
+		"allowedHeaders": [],
+		"exposedHeaders": ["X-CorrelationID"],
+		"supportCredentials": false,
+		"maxAgeSeconds": 0
+	}],
 	"securityProfiles": [{
-			"name": "_default",
-			"isDefault": true,
-			"devices": [{
-					"name": "OAuth",
-					"type": "oauth",
-					"order": 1,
-					"properties": {
-						"tokenStore": "<key type='OAuth2StoresGroup'><id field='name' value='OAuth2 Stores'/><key type='AccessTokenStoreGroup'><id field='name' value='Access Token Stores'/><key type='AccessTokenPersist'><id field='name' value='OAuth Access Token Store'/></key></key></key>",
-						"accessTokenLocation": "HEADER",
-						"authorizationHeaderPrefix": "Bearer",
-						"accessTokenLocationQueryString": "",
-						"scopesMustMatch": "Any",
-						"scopes": "resource.WRITE, resource.READ",
-						"removeCredentialsOnSuccess": "true",
-						"implicitGrantEnabled": "true",
-						"implicitGrantLoginEndpointUrl": "http://localhost:8089/api/oauth/authorize",
-						"implicitGrantLoginTokenName": "access_token",
-						"authCodeGrantTypeEnabled": "true",
-						"authCodeGrantTypeRequestEndpointUrl": "http://localhost:8089/api/oauth/authorize",
-						"authCodeGrantTypeRequestClientIdName": "client_id",
-						"authCodeGrantTypeRequestSecretName": "client_secret",
-						"authCodeGrantTypeTokenEndpointUrl": "http://localhost:8089/api/oauth/token",
-						"authCodeGrantTypeTokenEndpointTokenName": "access_code"
-					}
-				}
-			]
-		}
-	],
+		"name": "_default",
+		"isDefault": true,
+		"devices": [{
+			"name": "OAuth",
+			"type": "oauth",
+			"order": 1,
+			"properties": {
+				"tokenStore": "<key type='OAuth2StoresGroup'><id field='name' value='OAuth2 Stores'/><key type='AccessTokenStoreGroup'><id field='name' value='Access Token Stores'/><key type='AccessTokenPersist'><id field='name' value='OAuth Access Token Store'/></key></key></key>",
+				"accessTokenLocation": "HEADER",
+				"authorizationHeaderPrefix": "Bearer",
+				"accessTokenLocationQueryString": "",
+				"scopesMustMatch": "Any",
+				"scopes": "resource.WRITE, resource.READ",
+				"removeCredentialsOnSuccess": "true",
+				"implicitGrantEnabled": "true",
+				"implicitGrantLoginEndpointUrl": "http://localhost:8089/api/oauth/authorize",
+				"implicitGrantLoginTokenName": "access_token",
+				"authCodeGrantTypeEnabled": "true",
+				"authCodeGrantTypeRequestEndpointUrl": "http://localhost:8089/api/oauth/authorize",
+				"authCodeGrantTypeRequestClientIdName": "client_id",
+				"authCodeGrantTypeRequestSecretName": "client_secret",
+				"authCodeGrantTypeTokenEndpointUrl": "http://localhost:8089/api/oauth/token",
+				"authCodeGrantTypeTokenEndpointTokenName": "access_code"
+			}
+		}]
+	}],
 	"authenticationProfiles": [{
-			"name": "_default",
-			"isDefault": true,
-			"parameters": {},
-			"type": "none"
-		}
-	],
+		"name": "_default",
+		"isDefault": true,
+		"parameters": {
+			
+		},
+		"type": "none"
+	}],
 	"inboundProfiles": {
 		"_default": {
 			"securityProfile": "_default",
@@ -67,12 +64,11 @@
 		}
 	},
 	"info": {
-    "title" : "OpenData",
-    "description" : "The Open Data API specifications allow API providers (e.g. banks, building societies and ATM providers) to develop API endpoints which can then be accessed by API users (e.g. third party developers) to build mobile and web applications for banking customers.These specifications allow providers to supply up to date, standardised, information about the latest available products and services so that, for example, a comparison website can more easily and accurately gather information, and thereby develop better services for end customers.",
-    "version" : "0.0.1",
-	"organization" : "57d7b5f2-9697-4f42-addc-757b132c1e2f",
-	"tags":{ "OpenBanking"
-		
+		"title": "OpenData",
+		"description": "The Open Data API specifications allow API providers (e.g. banks, building societies and ATM providers) to develop API endpoints which can then be accessed by API users (e.g. third party developers) to build mobile and web applications for banking customers.These specifications allow providers to supply up to date, standardised, information about the latest available products and services so that, for example, a comparison website can more easily and accurately gather information, and thereby develop better services for end customers.",
+		"version": "0.0.1",
+		"organization": "57d7b5f2-9697-4f42-addc-757b132c1e2f",
+		"tags": {
+			}
 	}
-  }
 }
