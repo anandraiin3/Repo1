@@ -15199,6 +15199,27 @@
 	<fval name="maxNumberFiles"><value>500</value></fval>
 	<fval name="name"><value>Persistence Details</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="SLAFilter" entityPK="-3168116163207615324" parentPK="-1285035477942046717">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="alertSystem"><value contentType="reference">
+<key type='AlertManager'><id field='name' value='Default Alert Configuration'/><key type='EmailAlertSystem'><id field='name' value='API Manager Email Alerts'/></key></key>	</value></fval>
+	<fval name="category"><value contentType="reference">-1010357480816540880</value></fval>
+	<fval name="dataAge"><value>600000</value></fval>
+	<fval name="logFailure"><value>Set SLA failed</value></fval>
+	<fval name="logFatal"><value>Set SLA aborted: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Set SLA success</value></fval>
+	<fval name="name"><value>SLA Filter</value></fval>
+	<fval name="pollRate"><value>30000</value></fval>
+	<fval name="sampleSize"><value>12</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CommsFailureRequirement" entityPK="-6887961578136195317" parentPK="-3168116163207615324">
+	<fval name="breachAlertMessage"><value> Raising a Comms Failure SLA Alert. Alert details are as follows:- SLA Name: ${sla.name}. Requirement: No more than ${sla.threshold}% of requests may result in a comms failure. Percentage: ${sla.value}%. Time: ${sla.time}.</value></fval>
+	<fval name="clearAlertMessage"><value> Clearing a Comms Failure SLA Alert. Alert details are as follows:- SLA Name: ${sla.name}. Requirement: No more than ${sla.threshold}% of requests may result in a comms failure. Current Percentage: ${sla.value}%. Clearance Time: ${sla.time}.</value></fval>
+	<fval name="percentage"><value>20</value></fval>
+	<fval name="thresholdType"><value>2</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="Reflector" entityPK="-2731882138299011336" parentPK="-1285035477942046717">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>
 	<fval name="category"><value contentType="reference">-1010357480816540880</value></fval>
@@ -15220,6 +15241,7 @@
 	<fval name="logMaskType"><value>SERVICE</value></fval>
 	<fval name="logSuccess"><value>Successfully echoed back the message</value></fval>
 	<fval name="name"><value>3B. Set HTTP Response Code to 200</value></fval>
+	<fval name="successNode"><value contentType="reference">-3168116163207615324</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="MaximumNumberMsgsFilter" entityPK="445333743755817977" parentPK="-1285035477942046717">
 	<fval name="abortProcessingOnLogError"><value>0</value></fval>

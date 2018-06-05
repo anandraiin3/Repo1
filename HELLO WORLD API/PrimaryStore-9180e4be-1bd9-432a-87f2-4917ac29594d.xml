@@ -6170,6 +6170,121 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSRoot" entityPK="-7784231536876641845" parentPK="0">
 	<fval name="name"><value>Key Property Stores</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSPackage" entityPK="7632809597884998630" parentPK="-7784231536876641845">
+	<fval name="alias"><value>quiz</value></fval>
+	<fval name="dataSource"><value contentType="reference">
+<key type='KPSRoot'><id field='name' value='Key Property Stores'/><key type='KPSPackage'><id field='name' value='Quiz'/><key type='KPSDataSourceGroup'><id field='name' value='Data Sources'/><key type='KPSCassandraDataSource'><id field='name' value='Cassandra Storage'/></key></key></key></key>	</value></fval>
+	<fval name="description"><value>For Quiz</value></fval>
+	<fval name="internal"><value>0</value></fval>
+	<fval name="name"><value>Quiz</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeGroup" entityPK="-576115394313752391" parentPK="7632809597884998630">
+	<fval name="name"><value>Type Group</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSType" entityPK="-2227625397420044831" parentPK="-576115394313752391">
+	<fval name="name"><value>pcpnt</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="-3834149202578426854" parentPK="-2227625397420044831">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>response</value></fval>
+	<fval name="type"><value>java.lang.String</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="565915561892746989" parentPK="-2227625397420044831">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>Key</value></fval>
+	<fval name="type"><value>java.lang.String</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="689122221235846500" parentPK="-2227625397420044831">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>Id</value></fval>
+	<fval name="type"><value>java.lang.String</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="4453123343623077098" parentPK="-2227625397420044831">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>Name</value></fval>
+	<fval name="type"><value>java.lang.String</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSType" entityPK="889262118416259568" parentPK="-576115394313752391">
+	<fval name="name"><value>Questions</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="-8601636771320150787" parentPK="889262118416259568">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>Option3</value></fval>
+	<fval name="type"><value>java.lang.String</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="-6386311804194502296" parentPK="889262118416259568">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>answer</value></fval>
+	<fval name="type"><value>java.lang.String</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="-5563931810384658593" parentPK="889262118416259568">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>Option4</value></fval>
+	<fval name="type"><value>java.lang.String</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="-2135437742839674386" parentPK="889262118416259568">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>Option2</value></fval>
+	<fval name="type"><value>java.lang.String</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="-1691995450640558283" parentPK="889262118416259568">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>id</value></fval>
+	<fval name="type"><value>java.lang.Integer</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="3657532220799272676" parentPK="889262118416259568">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>Option1</value></fval>
+	<fval name="type"><value>java.lang.String</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSTypeProperty" entityPK="7669392687711189197" parentPK="889262118416259568">
+	<fval name="key"><value></value></fval>
+	<fval name="name"><value>Questions</value></fval>
+	<fval name="type"><value>java.lang.String</value></fval>
+	<fval name="value"><value></value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSStoreGroup" entityPK="994387200143408944" parentPK="7632809597884998630">
+	<fval name="name"><value>Store Group</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSReadWriteStore" entityPK="-4945851666205461896" parentPK="994387200143408944">
+	<fval name="aliases"><value>pcp</value></fval>
+	<fval name="dataSource"><value contentType="reference">-1</value></fval>
+	<fval name="description"><value>Participant</value></fval>
+	<fval name="key"><value>Id</value></fval>
+	<fval name="name"><value>pcpnt</value></fval>
+	<fval name="readKey"><value></value></fval>
+	<fval name="type"><value contentType="reference">
+<key type='KPSRoot'><id field='name' value='Key Property Stores'/><key type='KPSPackage'><id field='name' value='Quiz'/><key type='KPSTypeGroup'><id field='name' value='Type Group'/><key type='KPSType'><id field='name' value='pcpnt'/></key></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSReadWriteStore" entityPK="2784918262513358409" parentPK="994387200143408944">
+	<fval name="aliases"><value>quest</value></fval>
+	<fval name="dataSource"><value contentType="reference">-1</value></fval>
+	<fval name="description"><value>Question be be asked</value></fval>
+	<fval name="key"><value>id</value></fval>
+	<fval name="name"><value>Questions</value></fval>
+	<fval name="readKey"><value></value></fval>
+	<fval name="type"><value contentType="reference">
+<key type='KPSRoot'><id field='name' value='Key Property Stores'/><key type='KPSPackage'><id field='name' value='Quiz'/><key type='KPSTypeGroup'><id field='name' value='Type Group'/><key type='KPSType'><id field='name' value='Questions'/></key></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSDataSourceGroup" entityPK="2770783492485315461" parentPK="7632809597884998630">
+	<fval name="name"><value>Data Sources</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="KPSCassandraDataSource" entityPK="-4997340614115340084" parentPK="2770783492485315461">
+	<fval name="description"><value>Cassandra storage</value></fval>
+	<fval name="name"><value>Cassandra Storage</value></fval>
+	<fval name="readConsistencyLevel"><value>ONE</value></fval>
+	<fval name="writeConsistencyLevel"><value>ONE</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RegistryIdentificationSchemeGroup" entityPK="-7263476256521079865" parentPK="0">
 	<fval name="name"><value>UDDI Registry Identification Schemes</value></fval>
 </entity>
