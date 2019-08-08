@@ -2204,13 +2204,13 @@
 	<fval name="username"><value></value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CassandraSettings" entityPK="5751651540088273732" parentPK="0">
-	<fval name="keySpace"><value>TestCluster</value></fval>
+	<fval name="keySpace"><value>x6e967deb_6a5e_4135_97e7_952ef922482b_group_2</value></fval>
 	<fval name="name"><value>Cassandra Settings</value></fval>
 	<fval name="password"><value>Y2Fzc2FuZHJh</value></fval>
-	<fval name="replication"><value>2</value></fval>
+	<fval name="replication"><value>1</value></fval>
 	<fval name="replicationStrategy"><value>org.apache.cassandra.locator.SimpleStrategy</value></fval>
 	<fval name="sslProtocolOptionsMask"><value>1</value></fval>
-	<fval name="throttlingKeySpace"><value>t${DOMAINID}_${GROUPID}</value></fval>
+	<fval name="throttlingKeySpace"><value>x6e967deb_6a5e_4135_97e7_952ef922482b_group_2</value></fval>
 	<fval name="throttlingReadConsistencyLevel"><value>ONE</value></fval>
 	<fval name="throttlingReplication"><value>1</value></fval>
 	<fval name="throttlingReplicationStrategy"><value>org.apache.cassandra.locator.SimpleStrategy</value></fval>

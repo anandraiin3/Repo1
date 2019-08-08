@@ -4464,7 +4464,7 @@
 	<fval name="name"><value>API Portal Port</value></fval>
 	<fval name="opsSettingsUsage"><value>PORT</value></fval>
 	<fval name="outputEncodings"><value>.inherit</value></fval>
-	<fval name="port"><value>443</value></fval>
+	<fval name="port"><value>8075</value></fval>
 	<fval name="protocol"><value>ipv4</value></fval>
 	<fval name="recordCircuitPath"><value>0</value></fval>
 	<fval name="recordInboundTxns"><value>0</value></fval>

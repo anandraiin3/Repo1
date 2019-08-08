@@ -117,23 +117,6 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntities" entityPK="3321167512246155927" parentPK="0">
 	<fval name="name"><value>Environmentalized Entities Metadata</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-9152806904560981555" parentPK="3321167512246155927">
-	<fval name="entityPk"><value contentType="reference">
-<key type='CassandraSettings'><id field='name' value='Cassandra Settings'/><key type='CassandraServer'><id field='name' value='Local Cassandra server'/></key></key>	</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldInteger" entityPK="-3286464204187286476" parentPK="-9152806904560981555">
-	<fval name="displayName"><value>Port</value></fval>
-	<fval name="entityFieldName"><value>port</value></fval>
-	<fval name="index"><value>0</value></fval>
-	<fval name="value"><value>9042</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldString" entityPK="6685134890026682944" parentPK="-9152806904560981555">
-	<fval name="displayName"><value>Host</value></fval>
-	<fval name="entityFieldName"><value>host</value></fval>
-	<fval name="index"><value>0</value></fval>
-	<fval name="multiline"><value>0</value></fval>
-	<fval name="value"><value>172.16.1.106</value></fval>
-</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-8085264817224181818" parentPK="3321167512246155927">
 	<fval name="entityPk"><value contentType="reference">
 <key type='NetService'><id field='name' value='Service'/><key type='HTTP'><id field='name' value='API Manager Traffic'/><key type='SSLInterface'><id field='name' value='Portal Traffic HTTPS Interface'/></key></key></key>	</value></fval>
@@ -296,16 +279,5 @@
 	<fval name="selectorType"><value>false</value></fval>
 	<fval name="value"><value contentType="reference">
 <key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=Change this for production'/></key></key>	</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="7437687759269019142" parentPK="3321167512246155927">
-	<fval name="entityPk"><value contentType="reference">
-<key type='CassandraSettings'><id field='name' value='Cassandra Settings'/></key>	</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldString" entityPK="-2282431735898138369" parentPK="7437687759269019142">
-	<fval name="displayName"><value>Keyspace</value></fval>
-	<fval name="entityFieldName"><value>keySpace</value></fval>
-	<fval name="index"><value>0</value></fval>
-	<fval name="multiline"><value>0</value></fval>
-	<fval name="value"><value>TestCluster</value></fval>
 </entity>
 </entityStoreData>
