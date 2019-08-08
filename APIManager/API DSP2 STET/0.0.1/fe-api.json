@@ -88,7 +88,7 @@
     "title" : "PSD2-STET",
     "description" : "This API intends to provide an interface between\n- Account Servicing Payment Service Providers (ASPSP)\n- Third Party (Payment Service) Providers (TPP)\n\nTPP may act with different roles as described below:\n- Account Information Service Providers (AISP)\n- Payment Initiation Service Providers (PISP)\n- Payment Instrument Issuer Service Providers (PIISP)\n\nThe Payment Service User (PSU) is the owner of the accounts held by the ASPSP and gives accreditations to the TPP in order to access his accounts information or initiates payment from these accounts\n\nThe API is designed on a REST model using JSON structures.\n\nThe Richardson Maturity Model is applied on level three using HAL HYPERMEDIA links\n",
     "version" : "0.0.1",
-	"organization" : "57d7b5f2-9697-4f42-addc-757b132c1e2f",
+	"organization" : "8f9df726-99a3-4baf-842a-4b278629f377",
 	"tags":{
 		
 	}

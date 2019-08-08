@@ -76,7 +76,7 @@
 		
 		"description": "The Open Data API specifications allow API providers (e.g. banks, building societies and ATM providers) to develop API endpoints which can then be accessed by API users (e.g. third party developers) to build mobile and web applications for banking customers.These specifications allow providers to supply up to date, standardised, information about the latest available products and services so that, for example, a comparison website can more easily and accurately gather information, and thereby develop better services for end customers.",
 		"version": "0.0.1",
-		"organization": "57d7b5f2-9697-4f42-addc-757b132c1e2f",
+		"organization": "8f9df726-99a3-4baf-842a-4b278629f377",
 		"tags": {
 				"type": ["open banking "]
 			}
