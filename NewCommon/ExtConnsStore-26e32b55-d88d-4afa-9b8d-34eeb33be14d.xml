@@ -2002,7 +2002,7 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="NetService" entityPK="4029998068040948886" parentPK="0">
 	<fval name="name"><value>Service</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoteHost" entityPK="-8676472512857861661" parentPK="4029998068040948886">
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoteHost" entityPK="-355060279590218087" parentPK="4029998068040948886">
 	<fval name="activetimeout"><value>30000</value></fval>
 	<fval name="addressCacheTime"><value>300000</value></fval>
 	<fval name="alias"><value>apimanager</value></fval>
@@ -2015,54 +2015,23 @@
 	<fval name="inputBufSize"><value>8192</value></fval>
 	<fval name="inputEncodings"><value>.inherit</value></fval>
 	<fval name="maxConnections"><value>-1</value></fval>
-	<fval name="maxInputLen"><value>10485760</value></fval>
-	<fval name="maxOutputLen"><value>10485760</value></fval>
+	<fval name="maxInputLen"><value>20971520</value></fval>
+	<fval name="maxOutputLen"><value>20971520</value></fval>
 	<fval name="maxTransTimeout"><value>240000</value></fval>
 	<fval name="name"><value>apimanager</value></fval>
 	<fval name="offerTlsServerName"><value>0</value></fval>
 	<fval name="outputBufSize"><value>8192</value></fval>
 	<fval name="outputEncodings"><value>.inherit</value></fval>
-	<fval name="port"><value>8075</value></fval>
+	<fval name="port"><value>443</value></fval>
 	<fval name="sessionCacheSize"><value>32</value></fval>
 	<fval name="verifyServerHostname"><value>0</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="3012372131787095819" parentPK="-8676472512857861661">
-	<fval name="name"><value>38d11a1c-cc90-40f5-936f-670eaa3978cd</value></fval>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="-608247291243253758" parentPK="-355060279590218087">
+	<fval name="name"><value>6ca9d8bc-61f0-4fdc-b179-4f9062662782</value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="3851843239892572931" parentPK="-8676472512857861661">
-	<fval name="addresses"><value>localhost</value></fval>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="7131818656303944648" parentPK="-355060279590218087">
+	<fval name="addresses"><value>localhost:8075</value></fval>
 	<fval name="rank"><value>0</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoteHost" entityPK="-6583593569588983524" parentPK="4029998068040948886">
-	<fval name="activetimeout"><value>30000</value></fval>
-	<fval name="addressCacheTime"><value>300000</value></fval>
-	<fval name="alias"><value>apimanager3</value></fval>
-	<fval name="allowHTTP11"><value>0</value></fval>
-	<fval name="connectTimeout"><value>30000</value></fval>
-	<fval name="exportCorrelationId"><value>1</value></fval>
-	<fval name="idletimeout"><value>15000</value></fval>
-	<fval name="includeContentLengthRequest"><value>0</value></fval>
-	<fval name="includeContentLengthResponse"><value>0</value></fval>
-	<fval name="inputBufSize"><value>8192</value></fval>
-	<fval name="inputEncodings"><value>.inherit</value></fval>
-	<fval name="maxConnections"><value>-1</value></fval>
-	<fval name="maxInputLen"><value>10485760</value></fval>
-	<fval name="maxOutputLen"><value>10485760</value></fval>
-	<fval name="maxTransTimeout"><value>240000</value></fval>
-	<fval name="name"><value>apimanager3</value></fval>
-	<fval name="offerTlsServerName"><value>0</value></fval>
-	<fval name="outputBufSize"><value>8192</value></fval>
-	<fval name="outputEncodings"><value>.inherit</value></fval>
-	<fval name="port"><value>8075</value></fval>
-	<fval name="sessionCacheSize"><value>32</value></fval>
-	<fval name="verifyServerHostname"><value>0</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="4096902991260144348" parentPK="-6583593569588983524">
-	<fval name="addresses"><value>GW-UAT-LB-371846769.us-east-1.elb.amazonaws.com:443</value></fval>
-	<fval name="rank"><value>0</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="7861847331850025137" parentPK="-6583593569588983524">
-	<fval name="name"><value>0d0fe58d-3c94-47b3-aa10-4a8679eabea2</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoteHost" entityPK="30968266404312505" parentPK="4029998068040948886">
 	<fval name="activetimeout"><value>30000</value></fval>
@@ -2094,68 +2063,6 @@
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="-294018001613723583" parentPK="30968266404312505">
 	<fval name="name"><value>0da0e121-6002-44f1-ba12-999a29bfbb56</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoteHost" entityPK="4288382825264349499" parentPK="4029998068040948886">
-	<fval name="activetimeout"><value>30000</value></fval>
-	<fval name="addressCacheTime"><value>300000</value></fval>
-	<fval name="alias"><value>apimanager1</value></fval>
-	<fval name="allowHTTP11"><value>0</value></fval>
-	<fval name="connectTimeout"><value>30000</value></fval>
-	<fval name="exportCorrelationId"><value>1</value></fval>
-	<fval name="idletimeout"><value>15000</value></fval>
-	<fval name="includeContentLengthRequest"><value>0</value></fval>
-	<fval name="includeContentLengthResponse"><value>0</value></fval>
-	<fval name="inputBufSize"><value>8192</value></fval>
-	<fval name="inputEncodings"><value>.inherit</value></fval>
-	<fval name="maxConnections"><value>-1</value></fval>
-	<fval name="maxInputLen"><value>10485760</value></fval>
-	<fval name="maxOutputLen"><value>10485760</value></fval>
-	<fval name="maxTransTimeout"><value>240000</value></fval>
-	<fval name="name"><value>apimanager1</value></fval>
-	<fval name="offerTlsServerName"><value>0</value></fval>
-	<fval name="outputBufSize"><value>8192</value></fval>
-	<fval name="outputEncodings"><value>.inherit</value></fval>
-	<fval name="port"><value>8075</value></fval>
-	<fval name="sessionCacheSize"><value>32</value></fval>
-	<fval name="verifyServerHostname"><value>0</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="-1650007409713490369" parentPK="4288382825264349499">
-	<fval name="addresses"><value>GW-LB-141042998.us-east-1.elb.amazonaws.com:443</value></fval>
-	<fval name="rank"><value>0</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="-66236530376067353" parentPK="4288382825264349499">
-	<fval name="name"><value>0d0fe58d-3c94-47b3-aa10-4a8679eabea2</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoteHost" entityPK="7753895376002075502" parentPK="4029998068040948886">
-	<fval name="activetimeout"><value>30000</value></fval>
-	<fval name="addressCacheTime"><value>300000</value></fval>
-	<fval name="alias"><value>apimanager2</value></fval>
-	<fval name="allowHTTP11"><value>0</value></fval>
-	<fval name="connectTimeout"><value>30000</value></fval>
-	<fval name="exportCorrelationId"><value>1</value></fval>
-	<fval name="idletimeout"><value>15000</value></fval>
-	<fval name="includeContentLengthRequest"><value>0</value></fval>
-	<fval name="includeContentLengthResponse"><value>0</value></fval>
-	<fval name="inputBufSize"><value>8192</value></fval>
-	<fval name="inputEncodings"><value>.inherit</value></fval>
-	<fval name="maxConnections"><value>-1</value></fval>
-	<fval name="maxInputLen"><value>10485760</value></fval>
-	<fval name="maxOutputLen"><value>10485760</value></fval>
-	<fval name="maxTransTimeout"><value>240000</value></fval>
-	<fval name="name"><value>apimanager2</value></fval>
-	<fval name="offerTlsServerName"><value>0</value></fval>
-	<fval name="outputBufSize"><value>8192</value></fval>
-	<fval name="outputEncodings"><value>.inherit</value></fval>
-	<fval name="port"><value>8075</value></fval>
-	<fval name="sessionCacheSize"><value>32</value></fval>
-	<fval name="verifyServerHostname"><value>0</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RoundRobinLbCfg" entityPK="-150607882126170409" parentPK="7753895376002075502">
-	<fval name="name"><value>717c5254-3873-4042-a95a-26d729cf2df0</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="AddressRank" entityPK="2240569774136209330" parentPK="7753895376002075502">
-	<fval name="addresses"><value>SIT-LB-1702413593.us-east-1.elb.amazonaws.com:443</value></fval>
-	<fval name="rank"><value>0</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="RemoteHost" entityPK="9217061720234034243" parentPK="4029998068040948886">
 	<fval name="activetimeout"><value>30000</value></fval>
