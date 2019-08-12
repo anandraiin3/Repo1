@@ -134,7 +134,8 @@ elif [ ! -f "$2" ]; then
 fi
 APIGW_INSTALLER="$1"
 LICENSE="$2"
-FED=$3
+POL=$3
+ENV=$4
 
 echo "APIGW INSTALLER" $APIGW_INSTALLER
 echo "LICENSE" $LICENSE
