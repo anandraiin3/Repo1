@@ -94,7 +94,7 @@ build_gateway_image() {
     echo "***************************************************"
     echo "*** Building and starting API Manager container ***"
     echo "***************************************************"
-    ./build_gw_image.py --license=$LICENSE  --merge-dir="$gw_merge_dir" --default-cert --fed=$FED
+    ./build_gw_image.py --license=$LICENSE  --merge-dir="$gw_merge_dir" --default-cert --pol=$POL --env=$ENV
 
     # docker run -d --name=apimgr --network=api-gateway-domain \
     #           -p 8075:8075 -p 8065:8065 -p 8080:8080 -v $events_dir:/opt/Axway/apigateway/events \
