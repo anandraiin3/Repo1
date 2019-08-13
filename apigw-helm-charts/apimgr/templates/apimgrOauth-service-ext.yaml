@@ -15,4 +15,3 @@ spec:
     protocol: TCP
     nodePort: {{ .Values.apimgr.Oauth.nodePort }}
 {{- end }}
-s
