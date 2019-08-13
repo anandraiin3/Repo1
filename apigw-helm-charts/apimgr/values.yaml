@@ -22,7 +22,7 @@ namespace: axwayapim
 
 # Same TAG for all Images
 apigw:
-   imageTag: v1
+   imageTag: v2
 
 # Most of these values should only be changed if necessary.
 # Admin Node Manager related values
