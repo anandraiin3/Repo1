@@ -7,12 +7,13 @@ metadata:
   name: apimgmt
   namespace: {{ .Values.namespace }}
 spec:
+  serviceName: {{ .Values.apimgmt.name }}-ext
   replicas: {{ .Values.apimgmt.replicaCount }}
   selector:
     matchLabels:
       app: apimgmt
-  strategy:
-    type: Recreate
+  #strategy:
+  #  type: Recreate
   updateStrategy:
     type: RollingUpdate
   template:
@@ -101,7 +102,7 @@ spec:
       - name: init-anm
         image: {{ .Values.global.initImageTag }}
         command: ['sh', '-c', 'until nc -w 3 -v {{ .Values.anm.name }}-int {{ .Values.anm.trafficPort }}; do echo waiting for anm; sleep 2; done;']
-        dnsPolicy: ClusterFirst
+        #dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext:

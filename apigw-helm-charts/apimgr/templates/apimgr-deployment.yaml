@@ -13,8 +13,8 @@ spec:
       app: {{ .Values.apimgr.name }}
   strategy:
     type: Recreate
-  updateStrategy:
-    type: RollingUpdate
+ # updateStrategy:
+ #  type: RollingUpdate
   template:
     metadata:
       labels:
