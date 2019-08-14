@@ -44,6 +44,7 @@ anm:
    emt_topology_ttl: 10
    # Set to true when healthcheck is added to ANM Image
    probes: false
+   serviceType: NodePort
 
 # Most of these values should only be changed if necessary.
 # API Manager UI related values
@@ -64,6 +65,7 @@ apimgmt:
    logTraceJSONtoSTDOUT: "true"
    logOpenTrafficOutput: "stdout"
    emt_heap_size_mb: "1024"
+   serviceType: NodePort
 
 # Most of these values should only be changed if necessary.
 # API Gateway Traffic related values
@@ -86,6 +88,7 @@ apimgr:
    logOpenTrafficOutput: "stdout"
    emt_heap_size_mb: "1512"
    test_import: false
+   serviceType: NodePort
 
 mysql:
   enabled: false

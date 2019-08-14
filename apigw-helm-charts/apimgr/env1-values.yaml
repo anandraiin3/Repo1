@@ -12,17 +12,19 @@ global:
   #  - "RollingUpdate" is the default value
   updateStrategy: "RollingUpdate"
   # Defines when to Pull images. This can be "Always", "IfNotPresent" or "Never".
-  pullPolicy: Never
+  pullPolicy: IfNotPresent
   # Docker registry where images are stored.
-  dockerRegistry: https://docker-registry.demo.axway.com
-
-# This is used as the namespace. It is also combined with environ.id and domain to form the cluster name and domain names.
-# It usually defines a user or customer.
-namespace: axwayapim
-
+  #dockerRegistry: https://docker-registry.demo.axway.com
+  dockerRegistry: 286171702468.dkr.ecr.ap-southeast-2.amazonaws.com
+  # This is used as the namespace. It is also combined with environ.id and domain to form the cluster name and domain names.
+  # It usually defines a user or customer.
+  namespace: axwayapim
+  #kubernetes secret for docker registry
+  imagePullSecret: axway-registry
+  remoteregistry: true
 # Same TAG for all Images
 apigw:
-   imageTag: v1
+   imageTag: DEV.8.14.4
 
 # Most of these values should only be changed if necessary.
 # Admin Node Manager related values
@@ -32,7 +34,9 @@ anm:
    adminUsername: admin
    adminUserPw: changeme
    # The name of the image stored in your repository
+   #imageName: apac-ci-images/admin-node-manager
    imageName: admin-node-manager
+   
    # Should always be 1
    replicaCount: 1
    trafficPort: 8090
@@ -44,6 +48,7 @@ anm:
    emt_topology_ttl: 10
    # Set to true when healthcheck is added to ANM Image
    probes: false
+   serviceType: LoadBalancer
 
 # Most of these values should only be changed if necessary.
 # API Manager UI related values
@@ -54,7 +59,9 @@ apimgmt:
    adminUserPw: changeme
    enabled: true
    # The name of the image stored in your repository. Same for apimgmt and apimgr
-   imageName: apac-ci-images/api-gateway-defaultgroup
+   #imageName: apac-ci-images/api-gateway-defaultgroup
+   imageName: api-gateway-defaultgroup
+  
    # Can be scaled to more if needed for HA.
    replicaCount: 1
    trafficPort: 8075
@@ -64,6 +71,7 @@ apimgmt:
    logTraceJSONtoSTDOUT: "true"
    logOpenTrafficOutput: "stdout"
    emt_heap_size_mb: "1024"
+   serviceType: LoadBalancer
 
 # Most of these values should only be changed if necessary.
 # API Gateway Traffic related values
@@ -71,7 +79,9 @@ apimgr:
    name: apimgr
    enabled: true
    # The name of the image stored in your repository. Same for apimgmt and apimgr
+   #imageName: apac-ci-images/api-gateway-defaultgroup
    imageName: api-gateway-defaultgroup
+   
    trafficPort: 8065
    nodePort: 30065
    # Whether to make Oauth port available or not. Must be configured in fed as well.
@@ -86,6 +96,7 @@ apimgr:
    logOpenTrafficOutput: "stdout"
    emt_heap_size_mb: "1512"
    test_import: false
+   serviceType: LoadBalancer
 
 mysql:
   enabled: false

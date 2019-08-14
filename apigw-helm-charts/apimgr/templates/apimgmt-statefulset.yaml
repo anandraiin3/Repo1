@@ -34,6 +34,10 @@ spec:
                     - apimgmt
               topologyKey: kubernetes.io/hostname
       containers:
+#{{- if eq .Values.global.remoteregistry true }}
+#      imagePullSecrets: 
+#        - name: {{ .Values.global.imagePullSecret }}
+#{{- end }}
       - args:
         - {{ .Values.global.gwdir }}/posix/bin/start-emt-instance
         env:
@@ -53,7 +57,12 @@ spec:
           value: "{{ .Values.apimgmt.logOpenTrafficOutput }}"
         - name: EMT_DEPLOYMENT_ENABLED
           value: "{{ .Values.emtDeployment.enabled }}"
+{{- if eq .Values.global.remoteregistry true }}
+        image: {{ .Values.global.dockerRegistry }}/{{ .Values.apimgmt.imageName }}:{{ .Values.apigw.imageTag }}
+{{- else -}}
         image: {{ .Values.apimgmt.imageName }}:{{ .Values.apigw.imageTag }}
+{{- end }}
+    
         imagePullPolicy: {{ .Values.pullPolicy }}
         name: apimgmt
         ports:

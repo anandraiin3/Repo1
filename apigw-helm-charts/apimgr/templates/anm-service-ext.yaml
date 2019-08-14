@@ -6,7 +6,7 @@ metadata:
   name: {{ .Values.anm.name }}-ext
   namespace: {{ .Values.namespace }}
 spec:
-  type: NodePort
+  type: {{ .Values.anm.serviceType }}
   selector:
     app: {{ .Values.anm.name }}
   ports:

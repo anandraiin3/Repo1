@@ -20,6 +20,10 @@ spec:
         app: {{ .Values.anm.name }}
     spec:
       containers:
+#{{- if eq .Values.global.remoteregistry true }}
+#      imagePullSecrets: 
+#        - name: {{ .Values.global.imagePullSecret }}
+#{{- end }}
       - args:
         - {{ .Values.global.gwdir }}/posix/bin/start-emt-nodemanager
         env:
@@ -36,7 +40,11 @@ spec:
         - name: APIGW_LOG_TRACE_JSON_TO_STDOUT
           value: "{{ .Values.anm.logTraceJSONtoSTDOUT }}"
         name: {{ .Values.anm.name }}
-        image: {{ .Values.anm.imageName }}:{{ .Values.apigw.imageTag }}
+{{- if eq .Values.global.remoteregistry true }}
+        image: {{ .Values.global.dockerRegistry }}/{{ .Values.anm.imageName }}:{{ .Values.apigw.imageTag }}
+{{- else -}}
+      image: {{ .Values.anm.imageName }}:{{ .Values.apigw.imageTag }}  
+{{- end }}
         imagePullPolicy: {{ .Values.global.pullPolicy }}
         ports:
         - containerPort: {{ .Values.anm.trafficPort }}

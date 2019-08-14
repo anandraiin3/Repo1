@@ -7,7 +7,7 @@ metadata:
   name: {{ .Values.apimgmt.name }}-ext
   namespace: {{ .Values.namespace }}
 spec:
-  type: NodePort
+  type: {{ .Values.apimgmt.serviceType }}
   selector:
     app: {{ .Values.apimgmt.name }}
   ports:
