@@ -63,7 +63,7 @@ apimgmt:
    imageName: api-gateway-defaultgroup
   
    # Can be scaled to more if needed for HA.
-   replicaCount: 2
+   replicaCount: 1
    trafficPort: 8075
    nodePort: 30075
    logTraceToFile: "true"
