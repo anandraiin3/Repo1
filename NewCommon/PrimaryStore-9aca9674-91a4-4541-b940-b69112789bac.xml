@@ -18093,7 +18093,7 @@
 	<fval name="apiregOAuthTokenStores"><value contentType="reference">
 <key type='OAuth2StoresGroup'><id field='name' value='OAuth2 Stores'/><key type='AccessTokenStoreGroup'><id field='name' value='Access Token Stores'/><key type='AccessTokenPersist'><id field='name' value='OAuth Access Token Store'/></key></key></key>	</value></fval>
 	<fval name="apiregResponsePolicies"><value contentType="reference">
-<key type='CircuitContainer'><id field='name' value='Weather'/><key type='FilterCircuit'><id field='name' value='Connect to open weather '/></key></key>	</value></fval>
+<key type='CircuitContainer'><id field='name' value='API Manager Policies'/><key type='FilterCircuit'><id field='name' value='OpenWeatherTrans'/></key></key>	</value></fval>
 	<fval name="applicationQuotaWarnThresholdPercent"><value>80</value></fval>
 	<fval name="asyncExecutorStopWaitMs"><value>5000</value></fval>
 	<fval name="communityName"><value>Community</value></fval>
