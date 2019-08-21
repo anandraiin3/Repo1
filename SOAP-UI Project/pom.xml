@@ -34,7 +34,7 @@
 								<configuration>
 
 									<!-- <projectFile>${scm.repo}/SOAP-UI Project/HelloWorldTestSuite.xml</projectFile> -->
-									<projectFile>${scm.repo}/SOAP-UI Project/WeatherAPI-2.xml</projectFile>
+									<projectFile>${scm.repo}/SOAP-UI Project/NewWeatherAPI.xml</projectFile>
 									<outputFolder>target/surefire-reports</outputFolder>
 									<testSuite>WeatherAPITestSuite-Functional</testSuite>
 									<junitReport>true</junitReport>
