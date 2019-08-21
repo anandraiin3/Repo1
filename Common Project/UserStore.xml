@@ -198,6 +198,11 @@
 	<fval name="type"><value>String</value></fval>
 	<fval name="value"><value>true</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="User" entityPK="2956272625235202522" parentPK="-1345114282461940754">
+	<fval name="certificate"><value contentType="reference">-1</value></fval>
+	<fval name="name"><value>test</value></fval>
+	<fval name="password"><value>dGVzdA==</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ESConfiguration" entityPK="2225577189532476678" parentPK="0">
 	<fval name="name"><value>Entity Store Configuration</value></fval>
 	<fval name="passphraseTest"><value>aHR0cDsvL3d3dy52b3JkZWwuY29t</value></fval>

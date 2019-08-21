@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+VersionComment: First version of upgraded configuration (Policy)
+ChangedBy: admin
+Name: Upgraded (Policy)
+Description: Upgraded configuration (Policy)
+Version: v1 (Policy)
+

@@ -1,0 +1,2777 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.2.3",
+    "title": "PSD2 ASPSP services for AISP, PISP and PIISP.",
+    "description": "This API intends to provide an interface between\n- Account Servicing Payment Service Providers (ASPSP)\n- Third Party (Payment Service) Providers (TPP)\n\nTPP may act with different roles as described below:\n- Account Information Service Providers (AISP)\n- Payment Initiation Service Providers (PISP)\n- Payment Instrument Issuer Service Providers (PIISP)\n\nThe Payment Service User (PSU) is the owner of the accounts held by the ASPSP and gives accreditations to the TPP in order to access his accounts information or initiates payment from these accounts\n\nThe API is designed on a REST model using JSON structures.\n\nThe Richardson Maturity Model is applied on level three using HAL HYPERMEDIA links\n",
+    "license": {
+      "name": "MIT",
+      "url": "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
+    }
+  },
+  "host": "example.com",
+  "basePath": "/v1",
+  "securityDefinitions": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "authorizationUrl": "https://oauth2.aspsp/authorization",
+      "tokenUrl": "https://oauth2.aspsp/token",
+      "scopes": {
+        "aisp": "Access by a AISP to one given PSU's account",
+        "piisp": "Access by a PIISP to one given PSU's account to chack payment coverage"
+      },
+      "x-skip-client-authentication": false
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/accounts": {
+      "get": {
+        "description": "Returns all accounts that the PSU made accessible to the TPP.\n\nThanks to HYPERMEDIA, each account is returned with the links aiming to ease access to the relevant transactions and balances.\n\nThe ASPSP takes into account the access token that establishes the link between the PSU and the AISP.\n\nThe result may be subject to pagination (i.e. retrieving a partial result in case of having too many results) through a set of pages by the ASPSP. Thereafter, the AISP may ask for the first, next, previous or last page of results.\n",
+        "summary": "Accounts",
+        "tags": [
+          "AISP"
+        ],
+        "operationId": "AccountsGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Access token to be passed as a header"
+          },
+          {
+            "name": "Psu-Ip-Address",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP address used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Ip-Port",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP port used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Http-Method",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Http method for the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-TimeStamp",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Timestamp of the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“User-Agent” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Referer",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Referer” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Charset",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Charset” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Encoding",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Encoding” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Language",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Language” header field sent by the PSU terminal when connecting to the TPP"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The ASPSP return a PSU context \n- listing the accounts that have been made available to the AISP by the PSU and, \n- for each of these accounts, the further transactions that have been enabled by the PSU through HYPERMEDIA links.\n",
+            "schema": {
+              "$ref": "#/definitions/HalAccounts"
+            },
+            "examples": {}
+          },
+          "401": {
+            "description": "Unauthorized, authentification failure.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "403": {
+            "description": "Forbidden, authentication successful but access to resource is not allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "404": {
+            "description": "Not found, no account available.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": [
+              "aisp"
+            ]
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/accounts/{id}/balances-report": {
+      "get": {
+        "description": "Returns a set of balances for a given PSU account that is specified by the AISP through a logical ID\n- The ASPSP must provide at least  the accounting balance on the account. \n- The ASPSP can provide other balance restitutions, e.g. instant balance, as well, if possible.\n",
+        "summary": "AccountsBalancesReportById",
+        "tags": [
+          "AISP"
+        ],
+        "operationId": "AccountsBalancesReportByIdGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Access token to be passed as a header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of account to fetch"
+          },
+          {
+            "name": "Psu-Ip-Address",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP address used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Ip-Port",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP port used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Http-Method",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Http method for the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-TimeStamp",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Timestamp of the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“User-Agent” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Referer",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Referer” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Charset",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Charset” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Encoding",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Encoding” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Language",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Language” header field sent by the PSU terminal when connecting to the TPP"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "The ASPSP answers with a list of account balances",
+            "schema": {
+              "$ref": "#/definitions/HalBalances"
+            },
+            "examples": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "schema": {}
+          },
+          "401": {
+            "description": "Unauthorized, authentification failure.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "403": {
+            "description": "Forbidden, authentication successful but access to resource is not allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "404": {
+            "description": "Not found, no account available.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": [
+              "aisp"
+            ]
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/accounts/{id}/transactions": {
+      "get": {
+        "description": "Returns transactions for an account for a given PSU account that is specified by the AISP through a logical ID.\nThe request may use some filter parameter in order to restrict the query \n- on a given imputation date range\n- past a given incremental technical id\n\nThe result may be subject to pagination (i.e. retrieving a partial result in case of having too many results) through a set of pages by the ASPSP. Thereafter, the AISP may ask for the first, next, previous or last page of results.\n\n \n",
+        "summary": "AccountsTransactionsById",
+        "tags": [
+          "AISP"
+        ],
+        "operationId": "AccountsTransactionsByIdGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Access token to be passed as a header"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of account to fetch"
+          },
+          {
+            "name": "fromImputationDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time",
+            "description": "Inclusive minimal imputation date of the transactions. \n\nTransactions having an imputation date equal to this parameter are included within the result."
+          },
+          {
+            "name": "toImputationDate",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "date-time",
+            "description": "Exclusive maximal imputation date of the transactions. \n\nTransactions having an imputation date equal to this parameter are not included within the result."
+          },
+          {
+            "name": "afterTransactionId",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "maxLength": 16,
+            "description": "Specifies the value on which the result has to be computed. \n\nOnly the transaction having a technical identification greater than this value must be included within the result"
+          },
+          {
+            "name": "Psu-Ip-Address",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP address used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Ip-Port",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP port used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Http-Method",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Http method for the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-TimeStamp",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Timestamp of the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“User-Agent” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Referer",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Referer” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Charset",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Charset” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Encoding",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Encoding” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Language",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Language” header field sent by the PSU terminal when connecting to the TPP"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Complete transactions response",
+            "schema": {
+              "$ref": "#/definitions/HalTransactions"
+            },
+            "examples": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "schema": {}
+          },
+          "401": {
+            "description": "Unauthorized, authentification failure.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "403": {
+            "description": "Forbidden, authentication successful but access to resource is not allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "404": {
+            "description": "Not found, no account available.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": [
+              "aisp"
+            ]
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/accounts/coverage-control": {
+      "post": {
+        "description": "The PISP can ask an ASPSP to check if a given amount can be covered by the liquidity that is available on a PSU cash account or payment card.\n\nThe ASPSP anwsers with a structure embedding the orginal request and the result as a boolean.       \n",
+        "summary": "AccountsCoverageControl",
+        "tags": [
+          "PIISP"
+        ],
+        "operationId": "AccountsCoverageControlPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Access token to be passed as a header"
+          },
+          {
+            "name": "paymentCoverage",
+            "in": "body",
+            "required": true,
+            "description": "parameters of a payment coverage request",
+            "schema": {
+              "$ref": "#/definitions/PaymentCoverageRequest"
+            }
+          },
+          {
+            "name": "Psu-Ip-Address",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP address used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Ip-Port",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP port used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Http-Method",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Http method for the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-TimeStamp",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Timestamp of the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“User-Agent” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Referer",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Referer” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Charset",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Charset” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Encoding",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Encoding” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Language",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Language” header field sent by the PSU terminal when connecting to the TPP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "payment coverage request",
+            "schema": {
+              "$ref": "#/definitions/HalCreditorPaymentCoverageReport"
+            },
+            "examples": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "schema": {}
+          },
+          "401": {
+            "description": "Unauthorized, authentification failure.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "403": {
+            "description": "Forbidden, authentication successful but access to resource is not allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": [
+              "piisp"
+            ]
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/payment-requests": {
+      "post": {
+        "description": "The PISP sends a ISO20022 pain.013 based structure that specifies the payment activation request that i related to a commercial transaction between a PSU and the merchant.\n",
+        "summary": "PaymentRequests",
+        "tags": [
+          "PISP"
+        ],
+        "operationId": "PaymentRequestsPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Access token to be passed as a header"
+          },
+          {
+            "name": "paymentInitiation",
+            "in": "body",
+            "required": true,
+            "description": "ISO20022 based payment Initiation Request",
+            "schema": {
+              "$ref": "#/definitions/CreditorPaymentActivationRequest"
+            }
+          },
+          {
+            "name": "Digest",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Digest of the body"
+          },
+          {
+            "name": "Signature",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "http-signature of the request (cf. https://datatracker.ietf.org/doc/draft-cavage-http-signatures/)"
+          },
+          {
+            "name": "Psu-Ip-Address",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP address used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Ip-Port",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP port used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Http-Method",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Http method for the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-TimeStamp",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Timestamp of the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“User-Agent” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Referer",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Referer” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Charset",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Charset” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Encoding",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Encoding” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Language",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Language” header field sent by the PSU terminal when connecting to the TPP"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Invalid status value",
+            "schema": {}
+          },
+          "401": {
+            "description": "Unauthorized, authentification failure.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "403": {
+            "description": "Forbidden, authentication successful but access to resource is not allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/payment-requests/{paymentInformationId}": {
+      "get": {
+        "description": "The PISP has sent a payment request through a POST command. \nThe ASPSP has registered the payment request, updated if necessary the relevant identifiers in order to avoid duplicates and returned the location of the updated payment request.\nThe PISP may get the updated payment request through a GET command.\n",
+        "summary": "PaymentRequestsByPaymentInformationId",
+        "tags": [
+          "PISP"
+        ],
+        "operationId": "PaymentRequestsByPaymentInformationIdGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Access token to be passed as a header"
+          },
+          {
+            "name": "paymentInformationId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the payment information within the Payment activation Request"
+          },
+          {
+            "name": "Psu-Ip-Address",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP address used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Ip-Port",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP port used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Http-Method",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Http method for the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-TimeStamp",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Timestamp of the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“User-Agent” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Referer",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Referer” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Charset",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Charset” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Encoding",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Encoding” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Language",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Language” header field sent by the PSU terminal when connecting to the TPP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "register Payment Activation Request",
+            "schema": {
+              "$ref": "#/definitions/HalCreditorPaymentActivationRequest"
+            },
+            "examples": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "schema": {}
+          },
+          "401": {
+            "description": "Unauthorized, authentification failure.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "403": {
+            "description": "Forbidden, authentication successful but access to resource is not allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "404": {
+            "description": "Not found, no request available.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/payment-requests/{paymentInformationId}/report": {
+      "get": {
+        "description": "The PISP ask for the status report of a previous payment activation request.\n\nThe ASPSP answers with an ISO20022 pain.014 based structure\n",
+        "summary": "PaymentRequestsReport",
+        "tags": [
+          "PISP"
+        ],
+        "operationId": "PaymentRequestsReportByPaymentInformationIdGet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Access token to be passed as a header"
+          },
+          {
+            "name": "paymentInformationId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the payment information within the Payment activation Request"
+          },
+          {
+            "name": "Psu-Ip-Address",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP address used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Ip-Port",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP port used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Http-Method",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Http method for the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-TimeStamp",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Timestamp of the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“User-Agent” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Referer",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Referer” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Charset",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Charset” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Encoding",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Encoding” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Language",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Language” header field sent by the PSU terminal when connecting to the TPP"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "pain.014 based payment initiation request status report",
+            "schema": {
+              "$ref": "#/definitions/HalCreditorPaymentActivationRequestStatusReport"
+            },
+            "examples": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "schema": {}
+          },
+          "401": {
+            "description": "Unauthorized, authentification failure.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "403": {
+            "description": "Forbidden, authentication successful but access to resource is not allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "404": {
+            "description": "Not found, no report available.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    },
+    "/payment-requests/{paymentInformationId}/confirmation": {
+      "post": {
+        "description": "The PISP confirms The previously posted payment initiation request.\n\nThe ASPSP answers with a status of the relevant request.\n",
+        "summary": "PaymentRequestsConfirmation",
+        "tags": [
+          "PISP"
+        ],
+        "operationId": "PaymentRequestsConfirmationByPaymentInformationIdPost",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "Access token to be passed as a header"
+          },
+          {
+            "name": "paymentInformationId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "ID of the payment information within the Payment activation Request"
+          },
+          {
+            "name": "Psu-Ip-Address",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP address used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Ip-Port",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "IP port used by the PSU's terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Http-Method",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Http method for the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-TimeStamp",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "Timestamp of the most relevant PSU’s terminal request to the TTP"
+          },
+          {
+            "name": "Psu-User-Agent",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“User-Agent” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Referer",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Referer” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Charset",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Charset” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Encoding",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Encoding” header field sent by the PSU terminal when connecting to the TPP"
+          },
+          {
+            "name": "Psu-Accept-Language",
+            "in": "header",
+            "required": false,
+            "type": "string",
+            "description": "“Accept-Language” header field sent by the PSU terminal when connecting to the TPP"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "pain.014 based transaction status report",
+            "schema": {
+              "$ref": "#/definitions/HalCreditorPaymentActivationRequestStatusReport"
+            },
+            "examples": {}
+          },
+          "400": {
+            "description": "Invalid status value",
+            "schema": {}
+          },
+          "401": {
+            "description": "Unauthorized, authentification failure.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "403": {
+            "description": "Forbidden, authentication successful but access to resource is not allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "405": {
+            "description": "Method Not Allowed.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "406": {
+            "description": "Not Acceptable.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "429": {
+            "description": "Too many requests.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          },
+          "default": {
+            "description": "Internal server error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorModel"
+            }
+          }
+        },
+        "security": [
+          {
+            "auth": []
+          }
+        ],
+        "x-unitTests": [],
+        "x-operation-settings": {
+          "CollectParameters": false,
+          "AllowDynamicQueryParameters": false,
+          "AllowDynamicFormParameters": false,
+          "IsMultiContentStreaming": false
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AccountIdentificationChoice": {
+      "title": "AccountIdentificationChoice",
+      "description": "Unique and unambiguous identification for the account between the account owner and the account servicer.",
+      "type": "object",
+      "properties": {
+        "Iban": {
+          "description": "ISO20022: International Bank Account Number (IBAN) - identification used internationally by financial institutions to uniquely identify the account of a customer. \n\nFurther specifications of the format and content of the IBAN can be found in the standard ISO 13616 \"Banking and related financial services - International Bank Account Number (IBAN)\" version 1997-10-01, or later revisions.",
+          "type": "string",
+          "pattern": "^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$"
+        },
+        "Othr": {
+          "$ref": "#/definitions/GenericAccountIdentification"
+        }
+      }
+    },
+    "GenericAccountIdentification": {
+      "title": "GenericAccountIdentification",
+      "description": "ISO20022: Unique identification of an account, as assigned by the account servicer, using an identification scheme.\n",
+      "type": "object",
+      "properties": {
+        "Id": {
+          "description": "API: alias of an account",
+          "type": "string",
+          "maxLength": 70
+        },
+        "Issr": {
+          "description": "ISO20022: Entity that assigns the identification.",
+          "type": "string",
+          "maxLength": 35
+        }
+      },
+      "required": [
+        "Id",
+        "Issr"
+      ]
+    },
+    "AmountTypeChoice": {
+      "title": "AmountTypeChoice",
+      "description": "ISO20022: structure aiming to carry either an intructed amount or equivalent amount. Both structures embed the amount and the currency to be used.\n\nAPI: only instructed amount can be used",
+      "type": "object",
+      "properties": {
+        "InstdAmt": {
+          "description": "ISO20022: Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.",
+          "type": "string",
+          "pattern": "^[0-9]{1,13}(\\.[0-9]{0,5}){0,1}$"
+        },
+        "Ccy": {
+          "description": "ISO20022: Specifies the currency of the to be transferred amount, which is different from the currency of the debtor's account. A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
+          "type": "string",
+          "pattern": "^[A-Z]{3,3}$"
+        }
+      },
+      "required": [
+        "InstdAmt",
+        "Ccy"
+      ]
+    },
+    "BranchAndFinancialInstitutionIdentification": {
+      "title": "BranchAndFinancialInstitutionIdentification",
+      "description": "ISO20022: Set of elements used to uniquely and unambiguously identify a financial institution or a branch of a financial institution.\n\nAPI: Only financial institution can be used.",
+      "type": "object",
+      "properties": {
+        "FinInstnId": {
+          "$ref": "#/definitions/FinancialInstitutionIdentification"
+        }
+      },
+      "required": [
+        "FinInstnId"
+      ]
+    },
+    "FinancialInstitutionIdentification": {
+      "title": "FinancialInstitutionIdentification",
+      "description": "ISO20022: Unique and unambiguous identification of a financial institution, as assigned under an internationally recognised or proprietary identification scheme.\n\nAPI: Only <Bicfi> element is allowed\n",
+      "type": "object",
+      "properties": {
+        "Bicfi": {
+          "description": "ISO20022: Code allocated to a financial institution by the ISO 9362 Registration Authority as described in ISO 9362 \"Banking - Banking telecommunication messages - Business identification code (BIC)\".",
+          "type": "string",
+          "pattern": "^[A-Z]{6,6}[A-Z2-9][A-NP-Z0-9]([A-Z0-9]{3,3}){0,1}$"
+        }
+      },
+      "required": [
+        "Bicfi"
+      ]
+    },
+    "CashAccount": {
+      "title": "CashAccount",
+      "description": "ISO20022: Provides the details to identify an account.",
+      "type": "object",
+      "properties": {
+        "Id": {
+          "$ref": "#/definitions/AccountIdentificationChoice"
+        }
+      },
+      "required": [
+        "Id"
+      ]
+    },
+    "CategoryPurposeChoice": {
+      "title": "CategoryPurposeChoice",
+      "description": "ISO20022: Specifies the high level purpose of the instruction based on a set of pre-defined categories. This is used by the initiating party to provide information concerning the processing of the payment. It is likely to trigger special processing by any of the agents involved in the payment chain.",
+      "type": "object",
+      "properties": {
+        "Cd": {
+          "description": "API: Only \"DVPM\" value (Delivery against Payment) is allowed.",
+          "example": "DVPM",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Cd"
+      ]
+    },
+    "GenericOrganisationIdentification": {
+      "title": "GenericOrganisationIdentification",
+      "description": "ISO20022: Unique identification of an organisation, as assigned by an institution, using an identification scheme.",
+      "type": "object",
+      "properties": {
+        "Id": {
+          "description": "ISO20022: Identification assigned by an institution.",
+          "type": "string",
+          "maxLength": 35
+        },
+        "Issr": {
+          "description": "ISO20022: Entity that assigns the identification.",
+          "type": "string",
+          "maxLength": 35
+        }
+      },
+      "required": [
+        "Id",
+        "Issr"
+      ]
+    },
+    "OrganisationIdentification": {
+      "title": "OrganisationIdentification",
+      "description": "ISO20022: Unique and unambiguous way to identify an organisation.",
+      "type": "object",
+      "properties": {
+        "Othr": {
+          "$ref": "#/definitions/GenericOrganisationIdentification"
+        }
+      },
+      "required": [
+        "Othr"
+      ]
+    },
+    "PartyChoice": {
+      "title": "PartyChoice",
+      "description": "ISO20022: Unique and unambiguous identification of a party.\n\nAPI: Only organizations can be specified within this structures",
+      "type": "object",
+      "properties": {
+        "OrgId": {
+          "$ref": "#/definitions/OrganisationIdentification"
+        }
+      },
+      "required": [
+        "OrgId"
+      ]
+    },
+    "PostalAddress": {
+      "title": "PostalAddress",
+      "description": "ISO20022 : Information that locates and identifies a specific address, as defined by postal services.",
+      "type": "object",
+      "properties": {
+        "Ctry": {
+          "description": "ISO20022: Country in which a person resides (the place of a person's home). In the case of a company, it is the country from which the affairs of that company are directed.\n\nAPI: Country of the PISP.",
+          "type": "string",
+          "pattern": "^([A-Z]{2,2})$"
+        },
+        "AdrLine": {
+          "description": "Unstructured address. The two lines must embed zip code and town name",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 70
+          }
+        }
+      },
+      "required": [
+        "Ctry",
+        "AdrLine"
+      ]
+    },
+    "PartyIdentification": {
+      "title": "PartyIdentification",
+      "description": "API : Description of a Party which can be either a person or an organization.",
+      "type": "object",
+      "properties": {
+        "Nm": {
+          "description": "ISO20022: Name by which a party is known and which is usually used to identify that party.\n\nAPI: Name of the PISP",
+          "type": "string",
+          "maxLength": 140
+        },
+        "PstlAdr": {
+          "$ref": "#/definitions/PostalAddress"
+        },
+        "Id": {
+          "$ref": "#/definitions/PartyChoice"
+        }
+      },
+      "required": [
+        "Nm"
+      ]
+    },
+    "PaymentIdentification": {
+      "title": "PaymentIdentification",
+      "description": "ISO20022: Set of elements used to reference a payment instruction.",
+      "type": "object",
+      "properties": {
+        "InstrId": {
+          "description": "ISO20022: Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction.\n\nAPI: Unique identification shared between the PISP and the ASPSP",
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9 /\\-?:\\()\\.,']{1,35})$"
+        },
+        "EndToEndId": {
+          "description": "ISO20022: Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.\n\nAPI: Unique identification shared between the merchant and the PSU",
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9 /\\-?:\\()\\.,']{1,35})$"
+        },
+        "InstrRscId": {
+          "description": "API: dentifier assigned by the ASPSP for further use of the created resource through API calls",
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9 /\\-?:\\()\\.,']{1,35})$"
+        }
+      },
+      "required": [
+        "InstrId",
+        "EndToEndId"
+      ]
+    },
+    "PaymentMethodCode": {
+      "title": "PaymentMethodCode",
+      "description": "ISO20022: Specifies the transfer method that will be used to transfer the cash.\n\nAPI: Only the \"TRF\" value (Credit Transfer) is allowed",
+      "example": "TRF",
+      "x-enum-elements": [
+        {
+          "name": "TRF",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "TRF"
+      ]
+    },
+    "PaymentTypeInformation": {
+      "title": "PaymentTypeInformation",
+      "description": "ISO20022: Set of elements used to further specify the type of transaction.",
+      "type": "object",
+      "properties": {
+        "InstrPrty": {
+          "$ref": "#/definitions/PriorityCode"
+        },
+        "SvcLvl": {
+          "$ref": "#/definitions/ServiceLevelChoice"
+        },
+        "CtgyPurp": {
+          "$ref": "#/definitions/CategoryPurposeChoice"
+        }
+      },
+      "required": [
+        "InstrPrty",
+        "SvcLvl"
+      ]
+    },
+    "PriorityCode": {
+      "title": "PriorityCode",
+      "description": "ISO20022: Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.\n\nAPI: The \"HIGH\" value will be used for Instant Payments. Otherwise the \"NORM\" value must be used\n",
+      "example": "HIGH",
+      "x-enum-elements": [
+        {
+          "name": "HIGH",
+          "description": ""
+        },
+        {
+          "name": "NORM",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "NORM"
+      ]
+    },
+    "ServiceLevelChoice": {
+      "title": "ServiceLevelChoice",
+      "description": "ISO20022: Agreement under which or rules under which the transaction should be processed.\n\nAPI: Only the <Cd> structure is allowed\n",
+      "type": "object",
+      "properties": {
+        "Cd": {
+          "$ref": "#/definitions/Cd"
+        }
+      },
+      "required": [
+        "Cd"
+      ]
+    },
+    "Cd": {
+      "title": "Cd",
+      "example": "NURG",
+      "x-enum-elements": [
+        {
+          "name": "NURG",
+          "description": ""
+        },
+        {
+          "name": "SEPA",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "NURG",
+        "SEPA"
+      ]
+    },
+    "PurposeChoice": {
+      "title": "PurposeChoice",
+      "description": "ISO20022: Underlying reason for the payment transaction.\n\nAPI: Only <Cd> structure is allowed",
+      "type": "object",
+      "properties": {
+        "Cd": {
+          "$ref": "#/definitions/Cd19"
+        }
+      },
+      "required": [
+        "Cd"
+      ]
+    },
+    "Cd19": {
+      "title": "Cd19",
+      "example": "COMC",
+      "x-enum-elements": [
+        {
+          "name": "COMC",
+          "description": ""
+        },
+        {
+          "name": "CPKC",
+          "description": ""
+        },
+        {
+          "name": "TRPT",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "COMC",
+        "CPKC",
+        "TRPT"
+      ]
+    },
+    "RemittanceInformation": {
+      "title": "RemittanceInformation",
+      "description": "ISO20022: Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.\n\nAPI: Only <Ustrd> structure is allowed",
+      "type": "object",
+      "properties": {
+        "Ustrd": {
+          "description": "ISO20022: Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.\n\nAPI: Only one occurrence is allowed",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "maxLength": 140
+          }
+        }
+      },
+      "required": [
+        "Ustrd"
+      ]
+    },
+    "GenericLink": {
+      "title": "GenericLink",
+      "description": "hypertext reference",
+      "type": "object",
+      "properties": {
+        "href": {
+          "description": "URI to be used",
+          "type": "string",
+          "maxLength": 140
+        },
+        "templated": {
+          "description": "specifies \"true\" if href is a URI template, i.e. with parameters. Otherwise, this property is absent or set to false",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "href"
+      ]
+    },
+    "PaginationLinks": {
+      "title": "PaginationLinks",
+      "description": "Links that can be used for further navigation when browsing Account Informations at top level\n- self: link to the list of all available accounts",
+      "type": "object",
+      "properties": {
+        "self": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "first": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "last": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "next": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "prev": {
+          "$ref": "#/definitions/GenericLink"
+        }
+      },
+      "required": [
+        "self"
+      ]
+    },
+    "AccountLinks": {
+      "title": "AccountLinks",
+      "description": "links that can be used for further navigation when browsing Account Informations at one account level\n- balances: link to the balances of a given account\n- transactions: link to the transactions of a given account",
+      "type": "object",
+      "properties": {
+        "balances": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "transactions": {
+          "$ref": "#/definitions/GenericLink"
+        }
+      }
+    },
+    "BalancesLinks": {
+      "title": "BalancesLinks",
+      "description": "links that can be used for further navigation when browsing Account Informations at one account level\n- self: link to the balances of a given account\n- parent-list: link to the list of all available accounts\n- transactions: link to the transactions of a given account",
+      "type": "object",
+      "properties": {
+        "self": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "parent-list": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "transactions": {
+          "$ref": "#/definitions/GenericLink"
+        }
+      },
+      "required": [
+        "self"
+      ]
+    },
+    "TransactionsLinks": {
+      "title": "TransactionsLinks",
+      "description": "links that can be used for further navigation when browsing Account Informations at one account level\n- self: link to the transactions of a given account\n- parent-list: link to the list of all available accounts\n- balances: link to the balances of a given account\n- first: link to the first page of the transactions result\n- last: link to the last page of the transactions result\n- next: link to the next page of the transactions result\n- prev: link to the previous page of the transactions result",
+      "type": "object",
+      "properties": {
+        "self": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "parent-list": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "balances": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "first": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "last": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "next": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "prev": {
+          "$ref": "#/definitions/GenericLink"
+        }
+      },
+      "required": [
+        "self"
+      ]
+    },
+    "PaymentRequestLinks": {
+      "title": "PaymentRequestLinks",
+      "description": "links that can be used for further navigation when having post a payment activation request in order to get the relevant status report.",
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/GenericLink"
+        }
+      }
+    },
+    "PaymentReportLinks": {
+      "title": "PaymentReportLinks",
+      "description": "links that can be used for further navigation.\n- confirmation: link to confirm the payment\n- paymentReport: link to get a status report for the relevant payment",
+      "type": "object",
+      "properties": {
+        "self": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "confirmation": {
+          "$ref": "#/definitions/GenericLink"
+        },
+        "paymentReport": {
+          "$ref": "#/definitions/GenericLink"
+        }
+      },
+      "required": [
+        "self"
+      ]
+    },
+    "Account": {
+      "title": "Account",
+      "description": "PSU account that is made available to the TPP\n",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the account as defined by the PSU and the relevant ASPSP",
+          "type": "string",
+          "maxLength": 70
+        },
+        "name": {
+          "description": "Label of the PSU account\nIn case of a delayed debit card transaction set, the name shall specify the holder name and the imputation date",
+          "type": "string",
+          "maxLength": 70
+        },
+        "type": {
+          "description": "Specifies the type of the account\n- CACC: Cash account",
+          "example": "CACC",
+          "type": "string"
+        },
+        "Ccy": {
+          "description": "Currency used for the account",
+          "type": "string",
+          "maxLength": 3
+        },
+        "_links": {
+          "description": "links that can be used for further navigation when browsing Account Informations at one account level\n- balances: link to the balances of a given account\n- transactions: link to the transactions of a given account",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "Iban": {
+          "description": "IBAN of the account that may be provided by the ASPSP",
+          "type": "string",
+          "pattern": "^[A-Z]{2,2}[0-9]{2,2}[a-zA-Z0-9]{1,30}$"
+        },
+        "details": {
+          "description": "Specifications that might be provided by the ASPSP\n- characteristics of the account\n- characteristics of the relevant card",
+          "type": "string",
+          "maxLength": 140
+        },
+        "linkedAccount": {
+          "description": "Case of a set of pending card transactions, the APSP will provide the relevant cash account the card is set up on.",
+          "type": "string",
+          "maxLength": 70
+        },
+        "usage": {
+          "$ref": "#/definitions/Usage"
+        },
+        "balances": {
+          "description": "list of balances provided by the ASPSP",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Balance"
+          },
+          "minItems": 1
+        },
+        "psuStatus": {
+          "description": "Relationship between the PSU and the account - Account Holder - Co-account Holder - Attorney",
+          "type": "string",
+          "maxLength": 35
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "type",
+        "Ccy",
+        "_links"
+      ]
+    },
+    "Usage": {
+      "title": "Usage",
+      "example": "PRIV",
+      "x-enum-elements": [
+        {
+          "name": "PRIV",
+          "description": ""
+        },
+        {
+          "name": "ORGA",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "PRIV",
+        "ORGA"
+      ]
+    },
+    "Balance": {
+      "title": "Balance",
+      "description": "Structure of an account balance",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Label of the balance",
+          "type": "string",
+          "maxLength": 70
+        },
+        "Amt": {
+          "description": "Amount of the balance",
+          "type": "string",
+          "pattern": "^\\-{0,1}[0-9]{1,13}(\\.[0-9]{0,5}){0,1}$"
+        },
+        "Ccy": {
+          "description": "Currency used for the account",
+          "type": "string",
+          "maxLength": 3
+        },
+        "Sts": {
+          "$ref": "#/definitions/BalanceStatus"
+        },
+        "lastCommitedTransaction": {
+          "description": "Identification of the last commited transaction. This is actually useful for instant balance.",
+          "type": "string",
+          "maxLength": 16
+        }
+      },
+      "required": [
+        "name",
+        "Amt",
+        "Ccy",
+        "Sts"
+      ]
+    },
+    "BalanceStatus": {
+      "title": "BalanceStatus",
+      "description": "Type of balance\n- CLBD: (ISO20022 ClosingBooked) Accounting Balance\n- XPCD: (ISO20022 Expected) Instant Balance\n- VALU: Value-date balance\n- OTHR: Other Balance\n",
+      "example": "CLBD",
+      "x-enum-elements": [
+        {
+          "name": "CLBD",
+          "description": ""
+        },
+        {
+          "name": "XPCD",
+          "description": ""
+        },
+        {
+          "name": "VALU",
+          "description": ""
+        },
+        {
+          "name": "OTHR",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "CLBD",
+        "XPCD",
+        "VALU",
+        "OTHR"
+      ]
+    },
+    "HalAccounts": {
+      "title": "HalAccounts",
+      "description": "HYPERMEDIA structure used for returning the list of the available accounts to the AISP",
+      "type": "object",
+      "properties": {
+        "_embedded": {
+          "$ref": "#/definitions/Embedded"
+        },
+        "_links": {
+          "description": "Links that can be used for further navigation when browsing Account Informations at top level\n- self: link to the list of all available accounts",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "_embedded",
+        "_links"
+      ]
+    },
+    "Embedded": {
+      "title": "Embedded",
+      "type": "object",
+      "properties": {
+        "accounts": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Account"
+          }
+        }
+      }
+    },
+    "HalBalances": {
+      "title": "HalBalances",
+      "description": "HYPERMEDIA structure used for returning the list of the relevant balances for a given account to the AISP",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Alias of the account",
+          "type": "string",
+          "maxLength": 70
+        },
+        "balances": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Balance"
+          },
+          "minItems": 1
+        },
+        "_links": {
+          "description": "links that can be used for further navigation when browsing Account Informations at one account level\n- self: link to the balances of a given account\n- parent-list: link to the list of all available accounts\n- transactions: link to the transactions of a given account",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "timeStampOfValueRef": {
+          "description": "Reference timestamp",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "balances",
+        "_links"
+      ]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "structure of a transaction",
+      "type": "object",
+      "properties": {
+        "Amt": {
+          "description": "Amount of balance ISO20022",
+          "type": "string",
+          "pattern": "^[0-9]{1,13}(\\.[0-9]{0,5}){0,1}$"
+        },
+        "Ccy": {
+          "description": "Currency used for the transaction",
+          "type": "string"
+        },
+        "CdtDbtInd": {
+          "$ref": "#/definitions/CdtDbtInd"
+        },
+        "Sts": {
+          "$ref": "#/definitions/TransactionStatus"
+        },
+        "BookgDt": {
+          "description": "Booking date of the transaction on the account",
+          "type": "string"
+        },
+        "RmtInf": {
+          "$ref": "#/definitions/RemittanceInformation"
+        },
+        "NtryRef": {
+          "description": "Technical incremental identification of the transaction.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Amt",
+        "Ccy",
+        "CdtDbtInd",
+        "Sts",
+        "BookgDt",
+        "RmtInf"
+      ]
+    },
+    "CdtDbtInd": {
+      "title": "CdtDbtInd",
+      "example": "CRDT",
+      "x-enum-elements": [
+        {
+          "name": "CRDT",
+          "description": ""
+        },
+        {
+          "name": "DBIT",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "CRDT",
+        "DBIT"
+      ]
+    },
+    "TransactionStatus": {
+      "title": "TransactionStatus",
+      "description": "Type of Transaction\n- BOOK: (ISO20022 ClosingBooked) Accounted transaction\n- PDNG: (ISO20022 Expected) Instant Balance Transaction\n- OTHR: Other \n",
+      "example": "BOOK",
+      "x-enum-elements": [
+        {
+          "name": "BOOK",
+          "description": ""
+        },
+        {
+          "name": "PDNG",
+          "description": ""
+        },
+        {
+          "name": "OTHR",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "BOOK",
+        "PDNG",
+        "OTHR"
+      ]
+    },
+    "HalTransactions": {
+      "title": "HalTransactions",
+      "description": "HYPERMEDIA structure used for returning the list of the transactions for a given account to the AISP",
+      "type": "object",
+      "properties": {
+        "_embedded": {
+          "$ref": "#/definitions/Embedded40"
+        },
+        "_links": {
+          "description": "links that can be used for further navigation when browsing Account Informations at one account level\n- self: link to the transactions of a given account\n- parent-list: link to the list of all available accounts\n- balances: link to the balances of a given account\n- first: link to the first page of the transactions result\n- last: link to the last page of the transactions result\n- next: link to the next page of the transactions result\n- prev: link to the previous page of the transactions result",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "_embedded",
+        "_links"
+      ]
+    },
+    "Embedded40": {
+      "title": "Embedded40",
+      "type": "object",
+      "properties": {
+        "transactions": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Transaction"
+          }
+        }
+      }
+    },
+    "HalCreditorPaymentActivationRequest": {
+      "title": "HalCreditorPaymentActivationRequest",
+      "description": "HYPERMEDIA structure used for returning the original payment activation request to the PISP",
+      "type": "object",
+      "properties": {
+        "GrpHdr": {
+          "$ref": "#/definitions/GroupHeader"
+        },
+        "PmtInf": {
+          "$ref": "#/definitions/PaymentInformation"
+        },
+        "_links": {
+          "description": "links that can be used for further navigation when having post a payment activation request in order to get the relevant status report.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "SplmtryData": {
+          "$ref": "#/definitions/SupplementaryData"
+        }
+      },
+      "required": [
+        "GrpHdr",
+        "PmtInf",
+        "_links"
+      ]
+    },
+    "GroupHeader": {
+      "title": "GroupHeader",
+      "description": "ISO20022 : Set of characteristics shared by all individual transactions included in the message.\n",
+      "type": "object",
+      "properties": {
+        "MsgId": {
+          "description": "ISO20022: Point to point reference assigned by the instructing party and sent to the next party in the chain to unambiguously identify the message.",
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9 /\\-?:\\()\\.,']{1,35})$"
+        },
+        "CredDtTm": {
+          "description": "ISO20022: Date and time at which a (group of) payment instruction(s) was created by the instructing party.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "NbOfTxs": {
+          "description": "ISO20022: Number of individual transactions contained in the message.",
+          "type": "integer",
+          "minimum": 1.0,
+          "maximum": 1.0,
+          "format": "int32"
+        },
+        "InitgPty": {
+          "$ref": "#/definitions/PartyIdentification"
+        }
+      },
+      "required": [
+        "MsgId",
+        "CredDtTm",
+        "NbOfTxs",
+        "InitgPty"
+      ]
+    },
+    "PaymentInformation": {
+      "title": "PaymentInformation",
+      "description": "ISO20022: Set of characteristics that applies to the debit side of the payment transactions included in the creditor payment initiation.\n",
+      "type": "object",
+      "properties": {
+        "PmtInfId": {
+          "description": "ISO20022 : Reference assigned by a sending party to unambiguously identify the payment information block within the message.",
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9 /\\-?:\\()\\.,']{1,35})$"
+        },
+        "PmtMtd": {
+          "description": "ISO20022: Specifies the transfer method that will be used to transfer the cash.\n\nAPI: Only the \"TRF\" value (Credit Transfer) is allowed",
+          "example": "TRF",
+          "type": "string"
+        },
+        "PmtTpInf": {
+          "$ref": "#/definitions/PaymentTypeInformation"
+        },
+        "ReqdExctnDt": {
+          "description": "ISO20022: Date at which the initiating party requests the clearing agent to process the payment. If payment by cheque, the date when the cheque must be generated by the bank.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "CdtTrfTx": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CreditTransferTransaction"
+          },
+          "minItems": 1,
+          "maxItems": 1
+        },
+        "PmtInfRscId": {
+          "description": "API: Identifier assigned by the ASPSP for further use of the created resource through API calls",
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9 /\\-?:\\()\\.,']{1,35})$"
+        },
+        "Dbtr": {
+          "$ref": "#/definitions/PartyIdentification"
+        },
+        "DbtrAcct": {
+          "$ref": "#/definitions/CashAccount"
+        },
+        "DbtrAgt": {
+          "$ref": "#/definitions/BranchAndFinancialInstitutionIdentification"
+        },
+        "ChrgBr": {
+          "description": "- ISO2002: Specifies which party/parties will bear the charges associated with the processing of the payment transaction.\n- API: Set to “SLEV” or omitted",
+          "type": "string"
+        }
+      },
+      "required": [
+        "PmtInfId",
+        "PmtMtd",
+        "PmtTpInf",
+        "ReqdExctnDt",
+        "CdtTrfTx"
+      ]
+    },
+    "CreditTransferTransaction": {
+      "title": "CreditTransferTransaction",
+      "description": "ISO20022: Payment processes required to transfer cash from the debtor to the creditor.\n",
+      "type": "object",
+      "properties": {
+        "PmtId": {
+          "$ref": "#/definitions/PaymentIdentification"
+        },
+        "Amt": {
+          "$ref": "#/definitions/AmountTypeChoice"
+        },
+        "Cdtr": {
+          "$ref": "#/definitions/PartyIdentification"
+        },
+        "CdtrAcct": {
+          "$ref": "#/definitions/CashAccount"
+        },
+        "RmtInf": {
+          "$ref": "#/definitions/RemittanceInformation"
+        },
+        "CdtrAgt": {
+          "$ref": "#/definitions/BranchAndFinancialInstitutionIdentification"
+        },
+        "UltmtCdtr": {
+          "$ref": "#/definitions/PartyIdentification"
+        },
+        "Purp": {
+          "$ref": "#/definitions/PurposeChoice"
+        }
+      },
+      "required": [
+        "PmtId",
+        "Amt",
+        "Cdtr",
+        "CdtrAcct",
+        "RmtInf"
+      ]
+    },
+    "SupplementaryData": {
+      "title": "SupplementaryData",
+      "description": "ISO20022: Additional information that cannot be captured in the structured elements and/or any other specific block.\n\nAPI: This structure is used to embed the relevant URLs for returning the status report to the PISP\n",
+      "type": "object",
+      "properties": {
+        "Envlp": {
+          "$ref": "#/definitions/SupplementaryDataEnvelope"
+        }
+      },
+      "required": [
+        "Envlp"
+      ]
+    },
+    "SupplementaryDataEnvelope": {
+      "title": "SupplementaryDataEnvelope",
+      "description": "ISO20022: Technical element wrapping the supplementary data.\n",
+      "type": "object",
+      "properties": {
+        "successfulReportUrl": {
+          "description": "URL to be used by te ASPSP in order to transmit a succesful processing report",
+          "type": "string"
+        },
+        "unsuccessfulReportUrl": {
+          "description": "URL to be used by te ASPSP in order to transmit a unsuccesful processing report",
+          "type": "string"
+        }
+      },
+      "required": [
+        "successfulReportUrl"
+      ]
+    },
+    "CreditorPaymentActivationRequest": {
+      "title": "CreditorPaymentActivationRequest",
+      "description": "ISO20022: The CreditorPaymentActivationRequest message is sent by the Creditor sending party to the Debtor receiving party, directly or through agents. It is used by a Creditor to request movement of funds from the debtor account to a creditor.\n",
+      "type": "object",
+      "properties": {
+        "GrpHdr": {
+          "$ref": "#/definitions/GroupHeader"
+        },
+        "PmtInf": {
+          "$ref": "#/definitions/PaymentInformation"
+        },
+        "SplmtryData": {
+          "$ref": "#/definitions/SupplementaryData"
+        }
+      },
+      "required": [
+        "GrpHdr",
+        "PmtInf"
+      ]
+    },
+    "HalCreditorPaymentActivationRequestStatusReport": {
+      "title": "HalCreditorPaymentActivationRequestStatusReport",
+      "description": "HYPERMEDIA structure used for returning the payment activation request status report to the PISP",
+      "type": "object",
+      "properties": {
+        "OrgnlPmtInfId": {
+          "description": "ISO20022: Unique identification, as assigned by the original sending party, to unambiguously identify the original payment information group",
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9 /\\-?:\\()\\.,']{1,35})$"
+        },
+        "PmtInfSts": {
+          "$ref": "#/definitions/TransactionGroupStatusCode"
+        },
+        "TxInfAndSts": {
+          "description": "",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/PaymentTransactionStatusReport"
+          },
+          "minItems": 1,
+          "maxItems": 1
+        },
+        "_links": {
+          "description": "links that can be used for further navigation.\n- confirmation: link to confirm the payment\n- paymentReport: link to get a status report for the relevant payment",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "OrgnlNbOfTxs": {
+          "description": "ISO20022: Number of individual transactions contained in the original payment information group.",
+          "type": "integer",
+          "minimum": 1.0,
+          "maximum": 1.0,
+          "format": "int32"
+        },
+        "StsRsnInf": {
+          "$ref": "#/definitions/StatusReasonInformation"
+        }
+      },
+      "required": [
+        "OrgnlPmtInfId",
+        "PmtInfSts",
+        "TxInfAndSts",
+        "_links"
+      ]
+    },
+    "TransactionGroupStatusCode": {
+      "title": "TransactionGroupStatusCode",
+      "description": "ISO20022: Specifies the status of the payment information group.\nAPI: Mandatory. The following values are allowed.\n  - ACSC (AcceptedSettlementCompleted): Settlement on the debtor's account has been completed.\n  - ACSP (AcceptedSettlementInProcess): All preceding checks such as technical validation and customer profile were successful. Dynamic risk assessment is now also successful and therefore the payment initiation has been accepted for execution.\n  - RJCT (Rejected): Payment initiation  has been rejected.\n",
+      "example": "ACSC",
+      "x-enum-elements": [
+        {
+          "name": "ACSC",
+          "description": ""
+        },
+        {
+          "name": "ACSP",
+          "description": ""
+        },
+        {
+          "name": "RJCT",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "ACSC",
+        "ACSP",
+        "RJCT"
+      ]
+    },
+    "StatusReasonInformation": {
+      "title": "StatusReasonInformation",
+      "type": "object",
+      "properties": {
+        "Rsn": {
+          "$ref": "#/definitions/StatusReasonChoice"
+        }
+      },
+      "required": [
+        "Rsn"
+      ]
+    },
+    "StatusReasonChoice": {
+      "title": "StatusReasonChoice",
+      "description": "ISO20022: Provides detailed information on the status reason.\n\nAPI: Can only be used in status equal to \"RJCT\". Only the following values are allowed:\n- CUST: The reject is due to the debtor: refusal or lack of liquidity\n- FF01: The reject is due to the original payment activation request which is invalid (syntax, structure or values) \n",
+      "example": "CUST",
+      "x-enum-elements": [
+        {
+          "name": "CUST",
+          "description": ""
+        },
+        {
+          "name": "FF01",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "CUST",
+        "FF01"
+      ]
+    },
+    "PaymentTransactionStatusReport": {
+      "title": "PaymentTransactionStatusReport",
+      "description": "ISO20022: Provides information on the original transactions to which the status report message refers.\n",
+      "type": "object",
+      "properties": {
+        "OrgnlInstrId": {
+          "description": "ISO20022: Unique identification, as assigned by the original instructing party for the original instructed party, to unambiguously identify the original instruction.",
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9 /\\-?:\\()\\.,']{1,35})$"
+        },
+        "OrgnlEndToEndId": {
+          "description": "ISO20022: Unique identification, as assigned by the original initiating party, to unambiguously identify the original transaction.",
+          "type": "string",
+          "pattern": "^([a-zA-Z0-9 /\\-?:\\()\\.,']{1,35})$"
+        },
+        "OrgnlTxRef": {
+          "$ref": "#/definitions/OriginalTransactionReference"
+        },
+        "TxSts": {
+          "$ref": "#/definitions/TransactionIndividualStatusCode"
+        },
+        "StsRsnInf": {
+          "$ref": "#/definitions/StatusReasonInformation"
+        }
+      },
+      "required": [
+        "OrgnlInstrId",
+        "OrgnlEndToEndId",
+        "OrgnlTxRef"
+      ]
+    },
+    "TransactionIndividualStatusCode": {
+      "title": "TransactionIndividualStatusCode",
+      "description": "ISO20022: Specifies the status of the payment information group.\n\nAPI: Only the flowwing values are allowed:\n- RJCT: Payment initiation or individual transaction included in the payment initiation has been rejected.\n- PDNG: (Pending): Payment initiation or individual transaction included in the payment initiation is pending. Further checks and status update will be performed.\n- ACSP: All preceding checks such as technical validation and customer profile were successful and therefore the payment initiation has been accepted for execution.\n- ACSC: Settlement on the debtor's account has been completed\n",
+      "example": "RJCT",
+      "x-enum-elements": [
+        {
+          "name": "RJCT",
+          "description": ""
+        },
+        {
+          "name": "PDNG",
+          "description": ""
+        },
+        {
+          "name": "ACSP",
+          "description": ""
+        },
+        {
+          "name": "ACSC",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "RJCT",
+        "PDNG",
+        "ACSP",
+        "ACSC"
+      ]
+    },
+    "OriginalTransactionReference": {
+      "title": "OriginalTransactionReference",
+      "description": "ISO20022: Key elements used to identify the original transaction that is being referred to.\n\nAPI: Some data must be assigned by the ASPSP after successful processing of the payment activation request\n",
+      "type": "object",
+      "properties": {
+        "Amt": {
+          "$ref": "#/definitions/AmountTypeChoice"
+        },
+        "ReqdExctnDt": {
+          "description": "ISO20022: Date at which the initiating party requests the clearing agent to process the payment.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "PmtTpInf": {
+          "$ref": "#/definitions/PaymentTypeInformation"
+        },
+        "PmtMtd": {
+          "description": "ISO20022: Specifies the transfer method that will be used to transfer the cash.\n\nAPI: Only the \"TRF\" value (Credit Transfer) is allowed",
+          "example": "TRF",
+          "type": "string"
+        },
+        "RmtInf": {
+          "$ref": "#/definitions/RemittanceInformation"
+        },
+        "Dbtr": {
+          "$ref": "#/definitions/PartyIdentification"
+        },
+        "DbtrAgt": {
+          "$ref": "#/definitions/BranchAndFinancialInstitutionIdentification"
+        },
+        "CdtrAgt": {
+          "$ref": "#/definitions/BranchAndFinancialInstitutionIdentification"
+        },
+        "Cdtr": {
+          "$ref": "#/definitions/PartyIdentification"
+        },
+        "CdtrAcct": {
+          "$ref": "#/definitions/CashAccount"
+        },
+        "UltmtCdtr": {
+          "$ref": "#/definitions/PartyIdentification"
+        }
+      },
+      "required": [
+        "Amt",
+        "ReqdExctnDt",
+        "PmtTpInf",
+        "PmtMtd",
+        "RmtInf",
+        "Dbtr",
+        "DbtrAgt",
+        "CdtrAgt",
+        "Cdtr",
+        "CdtrAcct"
+      ]
+    },
+    "PaymentCoverageRequest": {
+      "title": "PaymentCoverageRequest",
+      "description": "Payment coverage request structure. The request must rely either on a cash account or a payment card.",
+      "type": "object",
+      "properties": {
+        "amount": {
+          "$ref": "#/definitions/AmountTypeChoice"
+        },
+        "accountId": {
+          "description": "account Id",
+          "type": "string"
+        },
+        "accountIdType": {
+          "$ref": "#/definitions/AccountIdType"
+        }
+      },
+      "required": [
+        "amount",
+        "accountId",
+        "accountIdType"
+      ]
+    },
+    "AccountIdType": {
+      "title": "AccountIdType",
+      "example": "cardPan",
+      "x-enum-elements": [
+        {
+          "name": "cardPan",
+          "description": ""
+        },
+        {
+          "name": "iban",
+          "description": ""
+        },
+        {
+          "name": "other",
+          "description": ""
+        }
+      ],
+      "type": "string",
+      "enum": [
+        "cardPan",
+        "iban",
+        "other"
+      ]
+    },
+    "HalCreditorPaymentCoverageReport": {
+      "title": "HalCreditorPaymentCoverageReport",
+      "description": "HYPERMEDIA structure used for returning the payment coverage report to the PIISP",
+      "type": "object",
+      "properties": {
+        "request": {
+          "$ref": "#/definitions/PaymentCoverageRequest"
+        },
+        "result": {
+          "description": "Result of the coverage check :\n- true: the payment can be covered\n- false: the payment cannot be covered",
+          "type": "boolean"
+        },
+        "_links": {
+          "description": "links that can be used for further navigation to post another coverage request.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        }
+      },
+      "required": [
+        "request",
+        "result",
+        "_links"
+      ]
+    },
+    "PaymentCoverageReportLinks": {
+      "title": "PaymentCoverageReportLinks",
+      "description": "links that can be used for further navigation to post another coverage request.",
+      "type": "object",
+      "properties": {
+        "self": {
+          "$ref": "#/definitions/GenericLink"
+        }
+      },
+      "required": [
+        "self"
+      ]
+    },
+    "ErrorModel": {
+      "title": "ErrorModel",
+      "description": "Generic error report structure",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "",
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "description": "",
+          "type": "string",
+          "maxLength": 140
+        }
+      },
+      "required": [
+        "code",
+        "message"
+      ]
+    }
+  }
+}

@@ -1,0 +1,273 @@
+<entityStoreData xmlns="http://www.vordel.com/2005/06/24/entityStore">
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="Entity" name="RootChild"/>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="RootChild" name="ESConfiguration">
+        <constant name="_version" type="integer" value="21"/>
+        <!--
+            Give this singleton a key.
+        -->
+        <field isKey="true" name="name" type="string"/>
+        <!-- 
+            We use this field to verify that the passphrase for the 
+            encryped data is synchronized between the server and client, and
+            between multiple invocations of the client
+        -->
+        <field name="passphraseTest" type="encrypted"/>
+        <field name="version" type="string"/>
+        <!-- The product key should never change for the lifetime of the product -->
+        <field name="productKey" type="string"/>
+        <field cardinality="?" name="gitrev" type="string"/>
+    </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="RootChild" name="NamedTopLevelGroup">
+        <constant name="_version" type="integer" value="0"/>
+		<field isKey="true" name="name" type="string"/>
+	</entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="NamedTopLevelGroup" name="EnvironmentalizedEntities">
+    <constant name="_version" type="integer" value="0"/>  
+    <componentType cardinality="*" name="EnvironmentalizedEntity"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" abstract="true" extends="Entity" name="EnvironmentalizedField">
+    <constant name="_version" type="integer" value="1"/>  
+    <field cardinality="1" isKey="true" name="entityFieldName" type="string"/>
+    <field cardinality="1" default="0" isKey="true" name="index" type="integer"/>
+    <field name="displayName" type="string"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="EnvironmentalizedField" name="EnvironmentalizedFieldInteger">
+      <constant name="_version" type="integer" value="0"/>  
+      <constant name="class" type="string" value="com.vordel.api.deployment.model.EnvironmentalizedFieldInteger"/>  
+      <field cardinality="?" name="value" type="integer"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="EnvironmentalizedField" name="EnvironmentalizedFieldLong">
+      <constant name="_version" type="integer" value="0"/>  
+      <constant name="class" type="string" value="com.vordel.api.deployment.model.EnvironmentalizedFieldLong"/>        
+      <field cardinality="?" name="value" type="long"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="EnvironmentalizedField" name="EnvironmentalizedFieldBoolean">
+      <constant name="_version" type="integer" value="0"/>  
+      <constant name="class" type="string" value="com.vordel.api.deployment.model.EnvironmentalizedFieldBoolean"/>  
+      <field cardinality="?" name="value" type="boolean"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="EnvironmentalizedField" name="EnvironmentalizedFieldString">
+      <constant name="_version" type="integer" value="1"/>  
+      <constant name="class" type="string" value="com.vordel.api.deployment.model.EnvironmentalizedFieldString"/>        
+      <field cardinality="?" name="value" type="string"/>
+      <field default="0" name="multiline" type="boolean"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="EnvironmentalizedField" name="EnvironmentalizedFieldBinary">
+      <constant name="_version" type="integer" value="0"/>  
+      <constant name="class" type="string" value="com.vordel.api.deployment.model.EnvironmentalizedFieldBinary"/>  
+      <field cardinality="?" name="value" type="binary"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="EnvironmentalizedField" name="EnvironmentalizedFieldEncrypted">
+      <constant name="_version" type="integer" value="0"/>    
+      <constant name="class" type="string" value="com.vordel.api.deployment.model.EnvironmentalizedFieldEncrypted"/>  
+      <field cardinality="?" name="value" type="encrypted"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="EnvironmentalizedField" name="EnvironmentalizedFieldReference">
+      <constant name="_version" type="integer" value="1"/>  
+      <constant name="class" type="string" value="com.vordel.api.deployment.model.EnvironmentalizedFieldReference"/>        
+      <field cardinality="?" name="value" type="^Entity"/>
+      <field name="selectorAttributeType" type="string"/>
+      <field name="selectorSearch" type="string"/>
+      <field name="selectorType" type="string"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Entity" name="EnvironmentalizedEntity">
+    <constant name="_version" type="integer" value="0"/>  
+    <componentType cardinality="+" name="EnvironmentalizedField"/>
+    <field isKey="true" name="entityPk" type="^Entity"/>
+  </entityType>
+<entityType xmlns="http://www.vordel.com/2005/06/24/entityStore" extends="Entity" name="Root">
+  <componentType cardinality="*" name="RootChild"/>
+  <field isKey="true" name="name" type="string"/>
+
+  <!-- Used by the FileStore implementation, records the last time the store was written -->
+  <field name="lastModificationTime" type="utctime"/>
+
+  <!-- Used by the in-memory ad filestore implementations, records the next integer to use as a PK -->
+  <field name="pkInc" type="integer"/>
+
+  <!-- 
+          Provide a user-extensible means to tag an individual store, that won't interfere with federated store 
+      composition. If it's done in the root node, then there are no synchronization issues across stores in the
+      federated context, as each store naturally has full control of its root node, with only the Primary Store's
+      root being visible via the federated view.
+
+          Provide a pair of multivalued string fields. It is up to the user to ensure that the contents are
+      synchronized. One string list acts as the key, with the entry in the corresponding list at the same index giving
+      the value for that key, e.g.
+      
+          tagName[0] = 'gitrev'
+          tagName[0] = 'e39a0a77b92c5b82e5a662a7de0b33daeadfb170'
+          
+      equates to the mapping 'gitrev' -> 'e39a0a77b92c5b82e5a662a7de0b33daeadfb170'
+  -->
+  <field cardinality="*" name="tagName" type="string"/>
+  <field cardinality="*" name="tagValue" type="string"/>
+</entityType>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="Root" entityPK="0">
+	<fval name="name"><value>System Components</value></fval>
+	<fval name="tagName"><value>gitrev</value></fval>
+	<fval name="tagValue"><value>6e64a42bd225d11efd607268c496fb099e9061d2</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ESConfiguration" entityPK="2349400057222493430" parentPK="0">
+	<fval name="name"><value>Entity Store Configuration</value></fval>
+	<fval name="passphraseTest"><value>aHR0cDsvL3d3dy52b3JkZWwuY29t</value></fval>
+	<fval name="productKey"><value>VordelGateway</value></fval>
+	<fval name="version"><value>7.5.3</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntities" entityPK="6000582372604069585" parentPK="0">
+	<fval name="name"><value>Environmentalized Entities Metadata</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-5387102485472861134" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='NetService'><id field='name' value='Service'/><key type='HTTP'><id field='name' value='API Portal'/><key type='SSLInterface'><id field='name' value='API Portal Port'/></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldReference" entityPK="610992045443025334" parentPK="-5387102485472861134">
+	<fval name="entityFieldName"><value>serverCert</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="selectorAttributeType"><value>com.vordel.client.manager.attr.CertTreeAttribute</value></fval>
+	<fval name="selectorSearch"><value>true</value></fval>
+	<fval name="selectorType"><value>false</value></fval>
+	<fval name="value"><value contentType="reference">
+<key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=Change this for production'/></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-2885312344429865905" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='CassandraSettings'><id field='name' value='Cassandra Settings'/></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldString" entityPK="5956798256417809515" parentPK="-2885312344429865905">
+	<fval name="displayName"><value>Keyspace</value></fval>
+	<fval name="entityFieldName"><value>keySpace</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="multiline"><value>0</value></fval>
+	<fval name="value"><value>TestCluster</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-1810689930439687700" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='NetService'><id field='name' value='Service'/><key type='HTTP'><id field='name' value='OAuth 2.0 Services'/><key type='SSLInterface'><id field='name' value='OAuth 2.0 Interface'/></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldReference" entityPK="-748846440829164809" parentPK="-1810689930439687700">
+	<fval name="entityFieldName"><value>serverCert</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="selectorAttributeType"><value>com.vordel.client.manager.attr.CertTreeAttribute</value></fval>
+	<fval name="selectorSearch"><value>true</value></fval>
+	<fval name="selectorType"><value>false</value></fval>
+	<fval name="value"><value contentType="reference">
+<key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=Change this for production'/></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="-771861115514238577" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='Sample Policies'/><key type='CircuitContainer'><id field='name' value='API Management OAuth Token Info'/><key type='FilterCircuit'><id field='name' value='PingFederate'/><key type='ConnectToURLFilter'><id field='name' value='Call Token Service'/></key></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldReference" entityPK="3054278379136822493" parentPK="-771861115514238577">
+	<fval name="displayName"><value>Trusted Certificates</value></fval>
+	<fval name="entityFieldName"><value>caCerts</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="selectorAttributeType"><value>com.vordel.client.manager.attr.CertTreeAttribute</value></fval>
+	<fval name="selectorSearch"><value>false</value></fval>
+	<fval name="selectorType"><value>true</value></fval>
+	<fval name="value"><value contentType="reference">
+<key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=StartCom Class 2 Primary Intermediate Server CA,OU=Secure Digital Certificate Signing,O=StartCom Ltd.,C=IL'/></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="191983207150389310" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='NetService'><id field='name' value='Service'/><key type='HTTP'><id field='name' value='API Manager Traffic'/><key type='SSLInterface'><id field='name' value='Portal Traffic HTTPS Interface'/></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldReference" entityPK="3926366019114342563" parentPK="191983207150389310">
+	<fval name="entityFieldName"><value>serverCert</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="selectorAttributeType"><value>com.vordel.client.manager.attr.CertTreeAttribute</value></fval>
+	<fval name="selectorSearch"><value>true</value></fval>
+	<fval name="selectorType"><value>false</value></fval>
+	<fval name="value"><value contentType="reference">
+<key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=Change this for production'/></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="2015622596315372019" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='NetService'><id field='name' value='Service'/><key type='HTTP'><id field='name' value='API MANAGER API PROXY'/><key type='SSLInterface'><id field='name' value='API MANAGER API PROXY'/></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldBoolean" entityPK="2994414646268336866" parentPK="2015622596315372019">
+	<fval name="displayName"><value>Enable interface</value></fval>
+	<fval name="entityFieldName"><value>enabled</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="value"><value>0</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldReference" entityPK="4675766253038374365" parentPK="2015622596315372019">
+	<fval name="entityFieldName"><value>serverCert</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="selectorAttributeType"><value>com.vordel.client.manager.attr.CertTreeAttribute</value></fval>
+	<fval name="selectorSearch"><value>true</value></fval>
+	<fval name="selectorType"><value>false</value></fval>
+	<fval name="value"><value contentType="reference">
+<key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=Change this for production'/></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="3506250558664255307" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='Sample Policies'/><key type='CircuitContainer'><id field='name' value='Security'/><key type='FilterCircuit'><id field='name' value='Signature Verification'/><key type='GenerateSignatureFilter'><id field='name' value='3. Sign the Response'/></key></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldReference" entityPK="7357472541963396182" parentPK="3506250558664255307">
+	<fval name="entityFieldName"><value>signingCert</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="selectorAttributeType"><value>com.vordel.client.manager.attr.CertTreeAttribute</value></fval>
+	<fval name="selectorSearch"><value>true</value></fval>
+	<fval name="selectorType"><value>false</value></fval>
+	<fval name="value"><value contentType="reference">
+<key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='Samples Test Certificate'/></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="4390147515989689541" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='OAuth 2.0'/><key type='CircuitContainer'><id field='name' value='Access Token Service'/><key type='FilterCircuit'><id field='name' value='Access Code'/><key type='CreateIDTokenFilter'><id field='name' value='Create an Open ID Connect ID Token'/></key></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldReference" entityPK="-8922214893863820974" parentPK="4390147515989689541">
+	<fval name="entityFieldName"><value>jwtSigner</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="selectorAttributeType"><value>com.vordel.client.manager.attr.CertTreeAttribute</value></fval>
+	<fval name="selectorSearch"><value>true</value></fval>
+	<fval name="selectorType"><value>false</value></fval>
+	<fval name="value"><value contentType="reference">
+<key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=Change this for production'/></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="6306526961639524628" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='CassandraSettings'><id field='name' value='Cassandra Settings'/><key type='CassandraServer'><id field='name' value='Local Cassandra server'/></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldInteger" entityPK="-5565574345349264406" parentPK="6306526961639524628">
+	<fval name="displayName"><value>Port</value></fval>
+	<fval name="entityFieldName"><value>port</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="value"><value>9042</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldString" entityPK="1787522849234074430" parentPK="6306526961639524628">
+	<fval name="displayName"><value>Host</value></fval>
+	<fval name="entityFieldName"><value>host</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="multiline"><value>0</value></fval>
+	<fval name="value"><value>172.16.1.106</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="6821218340416949314" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='OAuth 2.0'/><key type='CircuitContainer'><id field='name' value='Authorization Service'/><key type='FilterCircuit'><id field='name' value='Client Application Logo'/><key type='ConnectToURLFilter'><id field='name' value='Connect to URL'/></key></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldReference" entityPK="4021176512715167151" parentPK="6821218340416949314">
+	<fval name="displayName"><value>Trusted Certificates</value></fval>
+	<fval name="entityFieldName"><value>caCerts</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="selectorAttributeType"><value>com.vordel.client.manager.attr.CertTreeAttribute</value></fval>
+	<fval name="selectorSearch"><value>false</value></fval>
+	<fval name="selectorType"><value>true</value></fval>
+	<fval name="value"><value contentType="reference">
+<key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=Change this for production'/></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedEntity" entityPK="8922830970967923580" parentPK="6000582372604069585">
+	<fval name="entityPk"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='OAuth 2.0'/><key type='CircuitContainer'><id field='name' value='Authorization Service'/><key type='FilterCircuit'><id field='name' value='Authorization Request'/><key type='CreateIDTokenFilter'><id field='name' value='Create an Open ID Connect ID Token'/></key></key></key></key>	</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="EnvironmentalizedFieldReference" entityPK="-2926485920669160327" parentPK="8922830970967923580">
+	<fval name="entityFieldName"><value>jwtSigner</value></fval>
+	<fval name="index"><value>0</value></fval>
+	<fval name="selectorAttributeType"><value>com.vordel.client.manager.attr.CertTreeAttribute</value></fval>
+	<fval name="selectorSearch"><value>true</value></fval>
+	<fval name="selectorType"><value>false</value></fval>
+	<fval name="value"><value contentType="reference">
+<key type='Certificates'><id field='name' value='Certificate Store'/><key type='Certificate'><id field='dname' value='CN=Change this for production'/></key></key>	</value></fval>
+</entity>
+</entityStoreData>

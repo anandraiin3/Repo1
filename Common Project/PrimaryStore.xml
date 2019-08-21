@@ -6901,6 +6901,37 @@
 	<fval name="outputContentType"><value>text/plain</value></fval>
 	<fval name="successNode"><value contentType="reference">-834577560075142470</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="FilterCircuit" entityPK="-3285619066228249681" parentPK="-5888530331198581977">
+	<fval name="category"><value contentType="reference">7358285282752311048</value></fval>
+	<fval name="description"><value></value></fval>
+	<fval name="logMask"><value>3</value></fval>
+	<fval name="name"><value>OAUTH Test</value></fval>
+	<fval name="start"><value contentType="reference">-1451708929196425628</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="Reflector" entityPK="-8793036138738476939" parentPK="-3285619066228249681">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="httpResponseStatus"><value>200</value></fval>
+	<fval name="logFailure"><value>Failed to echo back the message</value></fval>
+	<fval name="logFatal"><value>Error occurred while echoing the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Successfully echoed back the message</value></fval>
+	<fval name="name"><value>Reflect Message</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ChangeMessageFilter" entityPK="-1451708929196425628" parentPK="-3285619066228249681">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="body"><value>Hi ${authentication.subject.id}</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="logFailure"><value>Failed in setting the message</value></fval>
+	<fval name="logFatal"><value>Error in setting the message. Error: ${circuit.exception}</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Success in setting the message</value></fval>
+	<fval name="name"><value>Set Message</value></fval>
+	<fval name="outputContentType"><value>text/plain</value></fval>
+	<fval name="successNode"><value contentType="reference">-8793036138738476939</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="FilterCircuit" entityPK="-585353263700068992" parentPK="-5888530331198581977">
 	<fval name="category"><value contentType="reference">7358285282752311048</value></fval>
 	<fval name="description"><value></value></fval>
@@ -14719,6 +14750,42 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CircuitContainer" entityPK="4620986826929510919" parentPK="654404966592498541">
 	<fval name="name"><value>REST API&apos;s</value></fval>
 </entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CircuitContainer" entityPK="-8794985889456426774" parentPK="4620986826929510919">
+	<fval name="name"><value>TESTAPI</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="FilterCircuit" entityPK="-7309801741484762431" parentPK="-8794985889456426774">
+	<fval name="category"><value contentType="reference">7358285282752311048</value></fval>
+	<fval name="logMask"><value>3</value></fval>
+	<fval name="name"><value>Ping</value></fval>
+	<fval name="start"><value contentType="reference">-7686141815492066531</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="ServiceContextFilter" entityPK="-7686141815492066531" parentPK="-7309801741484762431">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="clientAttributeName"><value>authentication.subject.id</value></fval>
+	<fval name="compositeContext"><value>0</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="metricsMask"><value>1</value></fval>
+	<fval name="name"><value>Set service context</value></fval>
+	<fval name="serviceName"><value>${api.name}</value></fval>
+	<fval name="successNode"><value contentType="reference">-325445183102889902</value></fval>
+</entity>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CircuitDelegateFilter" entityPK="-325445183102889902" parentPK="-7309801741484762431">
+	<fval name="abortProcessingOnLogError"><value>0</value></fval>
+	<fval name="category"><value contentType="reference">1726428431166840499</value></fval>
+	<fval name="circuitPK"><value contentType="reference">
+<key type='CircuitContainer'><id field='name' value='hello world policies'/><key type='FilterCircuit'><id field='name' value='OAUTH Test'/></key></key>	</value></fval>
+	<fval name="logFailure"><value>Filter failed</value></fval>
+	<fval name="logFatal"><value>Filter aborted due to exception</value></fval>
+	<fval name="logMask"><value>2</value></fval>
+	<fval name="logMaskType"><value>SERVICE</value></fval>
+	<fval name="logSuccess"><value>Filter passed</value></fval>
+	<fval name="name"><value>Routing</value></fval>
+</entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CircuitContainer" entityPK="1354596207238075090" parentPK="4620986826929510919">
 	<fval name="name"><value>Templates</value></fval>
 </entity>
@@ -15342,7 +15409,7 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="DatabaseLogger" entityPK="8062499824845825969" parentPK="2299181449758681511">
 	<fval name="connection"><value contentType="reference">
 <key type='DbConnectionGroup'><id field='name' value='Database Connections'/><key type='DbConnection'><id field='name' value='MYSQLMONIORING DATABASE'/></key></key>	</value></fval>
-	<fval name="enabled"><value>1</value></fval>
+	<fval name="enabled"><value>0</value></fval>
 	<fval name="name"><value>Database Logger</value></fval>
 	<fval name="signingCert"><value contentType="reference">-1</value></fval>
 </entity>
@@ -15519,6 +15586,7 @@
 	<fval name="logMaskType"><value>SERVICE</value></fval>
 	<fval name="logSuccess"><value>Successfully echoed back the message</value></fval>
 	<fval name="name"><value>Reflect</value></fval>
+	<fval name="successNode"><value contentType="reference">-1</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="FilterCircuit" entityPK="439114173776866589" parentPK="4264383692757183469">
 	<fval name="category"><value contentType="reference">7358285282752311048</value></fval>
@@ -16042,6 +16110,8 @@
 	<fval name="adminDN"><value>cn=apiadmin,ou=organizations,ou=APIPortal</value></fval>
 	<fval name="adminEmail"><value>apiadmin@localhost</value></fval>
 	<fval name="adminName"><value>apiadmin</value></fval>
+	<fval name="apiregOAuthTokenStores"><value contentType="reference">
+<key type='OAuth2StoresGroup'><id field='name' value='OAuth2 Stores'/><key type='AccessTokenStoreGroup'><id field='name' value='Access Token Stores'/><key type='AccessTokenPersist'><id field='name' value='OAuth Access Token Store'/></key></key></key>	</value></fval>
 	<fval name="applicationQuotaWarnThresholdPercent"><value>80</value></fval>
 	<fval name="asyncExecutorStopWaitMs"><value>5000</value></fval>
 	<fval name="communityName"><value>Community</value></fval>
