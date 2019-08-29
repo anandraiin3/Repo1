@@ -11841,7 +11841,7 @@
 	<fval name="logMaskType"><value>SERVICE</value></fval>
 	<fval name="logSuccess"><value>Filter passed</value></fval>
 	<fval name="name"><value>JSON Add Node</value></fval>
-	<fval name="objectFieldName"><value>temp_feh</value></fval>
+	<fval name="objectFieldName"><value>temp_cel</value></fval>
 	<fval name="successNode"><value contentType="reference">402891395005335628</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="Reflector" entityPK="-4077768554331142538" parentPK="673159351649358859">
@@ -11869,7 +11869,7 @@
 	<fval name="logSuccess"><value>Passed script filter</value></fval>
 	<fval name="name"><value>Scripting Language</value></fval>
 	<fval name="requiredProperties"></fval>
-	<fval name="script"><value>function invoke(msg)         { &#xD;&#xA;var tempInKelvin = msg.get(&quot;main.temp&quot;);&#xD;&#xA; var standardDiff = 273.15;&#xD;&#xA; //var tempInCelsius = tempInKelvin - standardDiff ;&#xD;&#xA; var tempInCelsius = (tempInKelvin - standardDiff)*1.8+32 ;&#xD;&#xA;&#x9; &#xD;&#xA;msg.put(&quot;main.temp.cel&quot;, tempInCelsius.toFixed(3));&#xD;&#xA; return true;&#xD;&#xA;    &#xD;&#xA;}</value></fval>
+	<fval name="script"><value>function invoke(msg)         { &#xD;&#xA;var tempInKelvin = msg.get(&quot;main.temp&quot;);&#xD;&#xA; var standardDiff = 273.15;&#xD;&#xA; var tempInCelsius = tempInKelvin - standardDiff ;&#xD;&#xA;// var tempInCelsius = (tempInKelvin - standardDiff)*1.8+32 ;&#xD;&#xA;&#x9; &#xD;&#xA;msg.put(&quot;main.temp.cel&quot;, tempInCelsius.toFixed(3));&#xD;&#xA; return true;&#xD;&#xA;    &#xD;&#xA;}</value></fval>
 	<fval name="successNode"><value contentType="reference">-8526067074590347426</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JSONPathFilter" entityPK="-2121180749287249392" parentPK="673159351649358859">
