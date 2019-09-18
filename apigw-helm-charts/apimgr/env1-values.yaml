@@ -60,7 +60,7 @@ apimgmt:
    enabled: true
    # The name of the image stored in your repository. Same for apimgmt and apimgr
    #imageName: apac-ci-images/api-gateway-defaultgroup
-   imageName: api-gateway-defaultgroup
+   imageName: api-gateway-defaultgroup1
   
    # Can be scaled to more if needed for HA.
    replicaCount: 1
@@ -90,7 +90,7 @@ apimgr:
      enabled: false
      trafficPort: 8089
      nodePort: 30089
-   replicaCount: 1
+   replicaCount: 2
    logTraceToFile: "true"
    logTraceJSONtoSTDOUT: "true"
    logOpenTrafficOutput: "stdout"
