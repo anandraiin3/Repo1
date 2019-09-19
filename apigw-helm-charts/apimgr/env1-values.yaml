@@ -90,7 +90,7 @@ apimgr:
      enabled: false
      trafficPort: 8089
      nodePort: 30089
-   replicaCount: 2
+   replicaCount: 1
    logTraceToFile: "true"
    logTraceJSONtoSTDOUT: "true"
    logOpenTrafficOutput: "stdout"
