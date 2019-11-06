@@ -1,0 +1,43 @@
+{
+  "id" : "368f9ef3-29cb-419b-b175-2ba10af36e78",
+  "description" : "Access current weather data for any location on Earth including over 200,000 cities! Current weather is frequently updated based on global models and data from more than 40,000 weather stations. Data is available in JSON, XML, or HTML format.",
+  "apiVersion" : "1.0",
+  "swaggerVersion" : "1.1",
+  "basePath" : "http://api.openweathermap.org",
+  "resourcePath" : "/data/2.5",
+  "models" : { },
+  "consumes" : [ ],
+  "produces" : [ ],
+  "name" : "OpenWeatherApi",
+  "summary" : "",
+  "cors" : false,
+  "expired" : false,
+  "deprecated" : false,
+  "retirementDate" : 0,
+  "tags" : { },
+  "apis" : [ {
+    "path" : "/weather",
+    "operations" : [ {
+      "id" : "71aa94e0-c8a8-42fd-ba20-e71f0960976d",
+      "httpMethod" : "GET",
+      "nickname" : "New method",
+      "summary" : "",
+      "notes" : "",
+      "responseClass" : "string",
+      "errorResponses" : [ ],
+      "consumes" : [ ],
+      "produces" : [ ],
+      "tags" : { },
+      "cors" : false,
+      "parameters" : [ {
+        "description" : "name of the city, country",
+        "required" : true,
+        "name" : "q",
+        "dataType" : "string",
+        "paramType" : "query",
+        "allowMultiple" : false
+      } ]
+    } ]
+  } ],
+  "type" : "rest"
+}

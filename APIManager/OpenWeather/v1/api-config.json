@@ -1,0 +1,41 @@
+{
+  "name" : "OpenWeatherApi",
+  "path" : "/api/v1",
+  "state" : "unpublished",
+  "version" : "1.0",
+  "organization" : "API Development",
+  "apiDefinition" : "apiDefinition.json",
+  "securityProfiles" : [ {
+    "name" : "_default",
+    "isDefault" : true,
+    "devices" : [ {
+      "name" : "API Key",
+      "type" : "apiKey",
+      "order" : 1,
+      "properties" : {
+        "apiKeyFieldName" : "KeyId",
+        "takeFrom" : "HEADER",
+        "removeCredentialsOnSuccess" : "true",
+        "scopesMustMatch" : "All"
+      }
+    } ]
+  } ],
+  "outboundProfiles":{
+    "_default":{
+       "responsePolicy":"OpenWeatherTrans"
+    }
+ },
+  "authenticationProfiles" : [ {
+    "name" : "_default",
+    "isDefault" : true,
+    "parameters" : {
+      "apiKey" : "b26c3b8e020abfcc80fe855401d13300",
+      "apiKeyField" : "x-api-key",
+      "httpLocation" : "HEADER"
+    },
+    "type" : "apiKey"
+  } ],
+  "applications" : [ {
+    "name" : "OpenBanking"
+  } ]
+}

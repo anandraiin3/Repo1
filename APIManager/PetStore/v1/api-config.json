@@ -1,0 +1,60 @@
+{
+	"name": "Sample Minimal API",
+	"path": "/sample/minimal/api/v1",
+	"state": "unpublished",
+	"version": "1.0.0",
+	"organization": "API Development" ,
+	"image": "images/sample-api-icon.jpg", 
+   "securityProfiles":[
+      {
+         "name":"_default",
+         "isDefault":true,
+         "devices":[
+            {
+               "name":"API Key",
+               "type":"apiKey",
+               "order":0,
+               "properties":{
+                  "apiKeyFieldName":"KeyId",
+                  "takeFrom":"HEADER",
+                  "removeCredentialsOnSuccess":"false"
+               }
+            }
+         ]
+      }
+   ],
+   "authenticationProfiles":[
+	{
+	   "name":"_default",
+	   "isDefault":"true",
+	   "parameters":{
+		  "apiKey":"4249823490238490",
+		  "apiKeyField":"KeyId",
+		  "httpLocation":"QUERYSTRING_PARAMETER"
+	   },
+	   "type":"apiKey"
+	}
+ ],
+ "caCerts":[
+	{
+	   "certFile":"certificates/swaggerio.crt",
+	   "useForOutbound":true,
+	   "useForInbound":false
+	},
+	{
+	   "certFile":"certificates/GoDaddyRootCertificateAuthority-G2.crt",
+	   "useForOutbound":true,
+	   "useForInbound":false
+	},
+	{
+	   "certFile":"certificates/GoDaddySecureCertificateAuthority-G2.crt",
+	   "useForOutbound":true,
+	   "useForInbound":false
+	},
+	{
+	   "certFile":"certificates/GlobalSignRootCA-R2.crt",
+	   "useForOutbound":false,
+	   "useForInbound":true
+	}
+ ]
+}
