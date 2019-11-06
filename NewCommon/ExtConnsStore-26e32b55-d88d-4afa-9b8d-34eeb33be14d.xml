@@ -2268,7 +2268,7 @@
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CassandraSettings" entityPK="5751651540088273732" parentPK="0">
 	<fval name="keySpace"><value>x6e967deb_6a5e_4135_97e7_952ef922482b_group_2</value></fval>
 	<fval name="name"><value>Cassandra Settings</value></fval>
-	<fval name="password"><value>Y2Fzc2FuZHJh</value></fval>
+	<fval name="password"><value></value></fval>
 	<fval name="replication"><value>1</value></fval>
 	<fval name="replicationStrategy"><value>org.apache.cassandra.locator.SimpleStrategy</value></fval>
 	<fval name="sslProtocolOptionsMask"><value>1</value></fval>
@@ -2278,21 +2278,11 @@
 	<fval name="throttlingReplicationStrategy"><value>org.apache.cassandra.locator.SimpleStrategy</value></fval>
 	<fval name="throttlingWriteConsistencyLevel"><value>ONE</value></fval>
 	<fval name="useSSL"><value>false</value></fval>
-	<fval name="username"><value>cassandra</value></fval>
+	<fval name="username"><value></value></fval>
 </entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CassandraServer" entityPK="-8734505348087574880" parentPK="5751651540088273732">
-	<fval name="host"><value>13.55.239.238</value></fval>
-	<fval name="name"><value>host1</value></fval>
-	<fval name="port"><value>9042</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CassandraServer" entityPK="-8356104128574388061" parentPK="5751651540088273732">
-	<fval name="host"><value>13.55.239.238</value></fval>
-	<fval name="name"><value>host0</value></fval>
-	<fval name="port"><value>9042</value></fval>
-</entity>
-<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CassandraServer" entityPK="553435750579903660" parentPK="5751651540088273732">
-	<fval name="host"><value>13.55.239.238</value></fval>
-	<fval name="name"><value>host2</value></fval>
+<entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CassandraServer" entityPK="-8955585858142920232" parentPK="5751651540088273732">
+	<fval name="host"><value>localhost</value></fval>
+	<fval name="name"><value>cassandra</value></fval>
 	<fval name="port"><value>9042</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="GSSMechanismOidGroup" entityPK="7532462637087339229" parentPK="0">
