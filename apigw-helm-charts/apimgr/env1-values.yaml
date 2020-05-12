@@ -64,7 +64,7 @@ apimgmt:
    #imageName: apac-ci-images/api-gateway-defaultgroup
    imageName: api-gateway-defaultgroup
   
-   # Can be scaled to more if needed for HA.
+   # # Can be scaled to more if needed for HA.
    replicaCount: 1
    trafficPort: 8075
    nodePort: 30075
