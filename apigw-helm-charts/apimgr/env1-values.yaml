@@ -41,6 +41,7 @@ anm:
    replicaCount: 1
    trafficPort: 8090
    nodePort: 30090
+   targetPort: 8090
    logTraceToFile: "true"
    # Trace to stdout. Can also be used to ship logs to external service.
    logTraceJSONtoSTDOUT: "true"
@@ -67,6 +68,7 @@ apimgmt:
    replicaCount: 1
    trafficPort: 8075
    nodePort: 30075
+   targetPort: 8075
    logTraceToFile: "true"
    # Trace to stdout. Required for logs to go to s3 bucket. Can also be used to ship logs to other external service.
    logTraceJSONtoSTDOUT: "true"

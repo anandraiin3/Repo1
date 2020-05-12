@@ -12,4 +12,4 @@ spec:
   ports:
   - port: {{ .Values.anm.trafficPort }}
     protocol: TCP
-    nodePort: {{ .Values.anm.nodePort }}
+    nodePort: {{ .Values.anm.targetPort }}
