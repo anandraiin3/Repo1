@@ -120,6 +120,6 @@ emtDeployment:
 # Cassandra Keyspace and Hostnames. Used for testing hosts are up but also configures them in the FED using
 # environment variables. If not using environment variables in FED these need to match values set in the FED
 cassandra:
-   host0: 13.55.239.238
-   host1: 13.55.239.238
-   host2: 13.55.239.238
+   host0: 13.236.118.184
+   host1: 13.236.118.184
+   host2: 13.236.118.184
