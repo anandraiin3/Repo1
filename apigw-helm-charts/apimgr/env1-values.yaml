@@ -83,9 +83,9 @@ apimgr:
    # The name of the image stored in your repository. Same for apimgmt and apimgr
    #imageName: apac-ci-images/api-gateway-defaultgroup
    imageName: api-gateway-defaultgroup
-   
    trafficPort: 8065
    nodePort: 30065
+   targetPort: 8065
    # Whether to make Oauth port available or not. Must be configured in fed as well.
    Oauth:
      name: apimgr-oauth

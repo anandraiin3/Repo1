@@ -13,5 +13,5 @@ spec:
   ports:
   - port: {{ .Values.apimgr.trafficPort }}
     protocol: TCP
-    nodePort: {{ .Values.apimgr.nodePort }}
+    targetPort: {{ .Values.apimgr.targetPort }}
 {{- end }}
