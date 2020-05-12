@@ -69,18 +69,21 @@ spec:
         - containerPort: 8075
           protocol: TCP
         resources: {}
-        readinessProbe:
+       {{- /*
+              value: readiness.{{ .Values.apimgmt.name }}
+  readinessProbe:
           httpGet:
             httpHeaders:
             - name: k8sprobe
-              value: readiness.{{ .Values.apimgmt.name }}
             path: /healthcheck
             port: {{ .Values.apimgmt.trafficPort }}
             scheme: HTTPS
           initialDelaySeconds: 60
           periodSeconds: 30
-          failureThreshold: 8
-        livenessProbe:
+          failureThreshold: 8 
+*/ -}}
+        {{- /*
+ livenessProbe:
           httpGet:
             httpHeaders:
             - name: k8sprobe
@@ -90,7 +93,8 @@ spec:
             scheme: HTTPS
           initialDelaySeconds: 60
           periodSeconds: 30
-          failureThreshold: 5
+          failureThreshold: 5 
+*/ -}}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
       initContainers:
