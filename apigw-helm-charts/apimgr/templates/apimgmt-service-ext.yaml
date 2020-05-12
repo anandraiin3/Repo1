@@ -12,7 +12,7 @@ spec:
     app: {{ .Values.apimgmt.name }}
   ports:
   - port: {{ .Values.apimgmt.trafficPort }}
-    protocol: HTTP
+    protocol: TCP
     nodePort: {{ .Values.apimgmt.nodePort }}
  # sessionAffinity: ClientIP
 {{- end }}
