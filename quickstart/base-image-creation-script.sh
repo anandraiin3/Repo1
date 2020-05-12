@@ -30,7 +30,8 @@ setup() {
 
     echo
     echo "Downloading MySQL connector JAR ..."
-    local mysql_jar_url="http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar"
+    local mysql_jar_url="https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.47/mysql-connecto:wqr-java-5.1.47.jar"
+    #"http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.47/mysql-connector-java-5.1.47.jar"
     local tmp_jar="/tmp/mysql-connector-java-5.1.47.jar"
     python 2>&1 -c "import urllib2;r=urllib2.urlopen('$mysql_jar_url',timeout=10);s=r.read();f=open('$tmp_jar','w');f.write(s);f.close();print('OK')" \
         | python -c "import sys;s=sys.stdin.readlines()[-1].strip();print(s);s!='OK' and sys.exit(1)"
