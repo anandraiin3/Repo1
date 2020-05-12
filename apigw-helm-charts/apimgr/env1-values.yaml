@@ -24,7 +24,7 @@ global:
   remoteregistry: true
 # Same TAG for all Images
 apigw:
-   imageTag: DEV.10.07.1
+   imageTag: DEV.5.12.15
 
 # Most of these values should only be changed if necessary.
 # Admin Node Manager related values
