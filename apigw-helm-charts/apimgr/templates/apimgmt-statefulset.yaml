@@ -63,7 +63,7 @@ spec:
         image: {{ .Values.apimgmt.imageName }}:{{ .Values.apigw.imageTag }}
 {{- end }}
     
-        imagePullPolicy: {{ .Values.pullPolicy }}
+       # imagePullPolicy: {{ .Values.pullPolicy }}
         name: apimgmt
         ports:
         - containerPort: 8075
