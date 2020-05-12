@@ -1,4 +1,4 @@
-{{- if eq .Values.apimgmt.enabled true }}
+{{- if eq .Values.apimgmt.extenabled true }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -12,7 +12,7 @@ spec:
     app: {{ .Values.apimgmt.name }}
   ports:
   - port: {{ .Values.apimgmt.trafficPort }}
-    protocol: TCP
+    protocol: HTTP
     nodePort: {{ .Values.apimgmt.nodePort }}
  # sessionAffinity: ClientIP
 {{- end }}

@@ -57,7 +57,8 @@ apimgmt:
    # Username and Password should match those configured when building your images
    adminUsername: apiadmin
    adminUserPw: changeme
-   enabled: true
+   extenabled: true
+   intenabled: false
    # The name of the image stored in your repository. Same for apimgmt and apimgr
    #imageName: apac-ci-images/api-gateway-defaultgroup
    imageName: api-gateway-defaultgroup
@@ -77,7 +78,8 @@ apimgmt:
 # API Gateway Traffic related values
 apimgr:
    name: apimgr
-   enabled: true
+   extenabled: true
+   intenabled: false
    # The name of the image stored in your repository. Same for apimgmt and apimgr
    #imageName: apac-ci-images/api-gateway-defaultgroup
    imageName: api-gateway-defaultgroup

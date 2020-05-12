@@ -1,4 +1,4 @@
-{{- if eq .Values.apimgr.enabled true }}
+{{- if eq .Values.apimgr.extenabled true }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -12,6 +12,6 @@ spec:
     app: {{ .Values.apimgr.name }}
   ports:
   - port: {{ .Values.apimgr.trafficPort }}
-    protocol: TCP
+    protocol: HTTP
     nodePort: {{ .Values.apimgr.nodePort }}
 {{- end }}

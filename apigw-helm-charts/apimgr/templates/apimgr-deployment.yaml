@@ -95,7 +95,7 @@ spec:
         command: ['sh', '-c', 'until nc -w 3 -v {{ .Values.anm.name }}-int {{ .Values.anm.trafficPort }}; do echo waiting for anm-int; sleep 2; done;']
       - name: init6
         image: {{ .Values.global.initImageTag }}
-        command: ['sh', '-c', 'until nc -w 3 -v {{ .Values.apimgmt.name }}-int {{ .Values.apimgmt.trafficPort }}; do echo waiting for apimgmt; sleep 2; done;']
+        command: ['sh', '-c', 'until nc -w 3 -v {{ .Values.apimgmt.name }}-ext {{ .Values.apimgmt.trafficPort }}; do echo waiting for apimgmt; sleep 2; done;']
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
