@@ -1514,7 +1514,7 @@
 	<fval name="inputEncodings"><value>.inherit</value></fval>
 	<fval name="maxRequestMemory"><value>16777216</value></fval>
 	<fval name="name"><value>Portal Traffic HTTPS Interface</value></fval>
-	<fval name="opsSettingsUsage"><value>SYSTEM</value></fval>
+	<fval name="opsSettingsUsage"><value>PORT</value></fval>
 	<fval name="outputEncodings"><value>.inherit</value></fval>
 	<fval name="port"><value>8065</value></fval>
 	<fval name="protocol"><value>ipv4</value></fval>
@@ -1533,7 +1533,7 @@
 		<value>nosslv2</value>
 		<value>nosslv3</value>
 	</fval>
-	<fval name="tracelevel"><value>INHERIT</value></fval>
+	<fval name="tracelevel"><value>ERROR</value></fval>
 	<fval name="transparentProxy"><value>0</value></fval>
 	<fval name="wafProfile"><value contentType="reference">-1</value></fval>
 </entity>
