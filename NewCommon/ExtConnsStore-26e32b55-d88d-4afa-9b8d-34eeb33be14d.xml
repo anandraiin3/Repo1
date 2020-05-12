@@ -2281,8 +2281,8 @@
 	<fval name="username"><value></value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="CassandraServer" entityPK="-8955585858142920232" parentPK="5751651540088273732">
-	<fval name="host"><value>localhost</value></fval>
-	<fval name="name"><value>cassandra</value></fval>
+	<fval name="host"><value>13.236.118.184</value></fval>
+	<fval name="name"><value>host0</value></fval>
 	<fval name="port"><value>9042</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="GSSMechanismOidGroup" entityPK="7532462637087339229" parentPK="0">
