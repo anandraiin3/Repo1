@@ -13,6 +13,6 @@ spec:
   ports:
   - port: {{ .Values.apimgmt.trafficPort }}
     protocol: TCP
-    nodePort: {{ .Values.apimgmt.targetPort }}
+    targetPort: {{ .Values.apimgmt.targetPort }}
  # sessionAffinity: ClientIP
 {{- end }}
