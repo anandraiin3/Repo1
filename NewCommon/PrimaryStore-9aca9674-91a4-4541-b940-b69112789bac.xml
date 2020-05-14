@@ -10147,7 +10147,7 @@
 	<fval name="logMaskType"><value>SERVICE</value></fval>
 	<fval name="logSuccess"><value>Filter passed</value></fval>
 	<fval name="name"><value>JSON Add Node</value></fval>
-	<fval name="objectFieldName"><value>temp_celsius</value></fval>
+	<fval name="objectFieldName"><value>temp_cel</value></fval>
 	<fval name="successNode"><value contentType="reference">1272403951369375924</value></fval>
 </entity>
 <entity xmlns="http://www.vordel.com/2005/06/24/entityStore"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" type="JavaScriptFilter" entityPK="4394523737113799232" parentPK="6080737271108641724">
